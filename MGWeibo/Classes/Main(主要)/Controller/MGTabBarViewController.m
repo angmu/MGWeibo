@@ -79,13 +79,13 @@
 //    } else {
 //        [self setupChildViewController:home title:@"首页" imageName:@"tabbar_home" selectedImageName:@"tabbar_home_selected"];
 //    }
-    home.tabBarItem.badgeValue = @"10";
+//    home.tabBarItem.badgeValue = @"10";
     [self setupChildViewController:home title:@"首页" imageName:@"tabbar_home" selectedImageName:@"tabbar_home_selected"];
     
     
     // 2.消息
     MgMessageViewController *message = [[MgMessageViewController alloc] init];
-    message.tabBarItem.badgeValue = @"new";
+//    message.tabBarItem.badgeValue = @"new";
     [self setupChildViewController:message title:@"消息" imageName:@"tabbar_message_center" selectedImageName:@"tabbar_message_center_selected"];
     
     

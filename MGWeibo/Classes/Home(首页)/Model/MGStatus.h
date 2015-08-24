@@ -10,51 +10,29 @@
 @class MGUser;
 
 @interface MGStatus : NSObject
-/**
- *  微博的内容(文字)
- */
+/** 微博的内容(文字) */
 @property (nonatomic, copy) NSString *text;
-/**
- *  微博的来源
- */
+/** 微博的来源 */
 @property (nonatomic, copy) NSString *source;
-/**
- *  微博的ID
- */
+/** 微博的ID */
 @property (nonatomic, copy) NSString *idstr;
-/**
- *  微博的转发数
- */
+/** 微博的转发数 */
 @property (nonatomic, assign) int reposts_count;
-/**
- *  微博的评论数
- */
+/** 微博的评论数 */
 @property (nonatomic, assign) int comments_count;
+/** 微博的表态数(点赞数) */
+@property (nonatomic, assign) int attitudes_count;
 
-/**
- *  微博的作者
- */
+/** 微博的作者 */
 @property (nonatomic, strong) MGUser *user;
 
-/**
- *  字典转模型
- */
-//+ (instancetype)statusWithDict:(NSDictionary *)dict;
-//- (instancetype)initWithDict:(NSDictionary *)dict;
-@end
+/** 是否为vip */
+@property (nonatomic, assign, getter=isVip) BOOL *vip;
+/** 微博的单张配图 */
+@property (nonatomic, copy) NSString *thumbnail_pic;
+/** 微博的创建时间 */
+@property (nonatomic, copy) NSString *created_at;
+/** 被转发的微博 */
+@property (nonatomic, strong) MGStatus *retweeted_status;
 
-/*
- {
- "created_at": "Tue May 31 17:46:55 +0800 2011",
- "id": 11488058246,
- "text": "求关注。"，
- "source": "<a href="http://weibo.com" rel="nofollow">新浪微博</a>",
- "reposts_count": 8,
- "comments_count": 9,
- "user": {
- "id": 1404376560,
- "name": "zaku",
- "profile_image_url": "http://tp1.sinaimg.cn/1404376560/50/0/1",
- }
- }
- */
+@end

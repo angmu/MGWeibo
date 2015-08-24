@@ -9,21 +9,11 @@
 #import <Foundation/Foundation.h>
 
 @interface MGUser : NSObject
-/**
- *  用户的ID
- */
+/** 用户的ID */
 @property (nonatomic, copy) NSString *idstr;
-/**
- *  用户的名称
- */
+/** 用户的名称 */
 @property (nonatomic, copy) NSString *name;
-/**
- *  用户的图像
- */
+/** 用户的图像 */
 @property (nonatomic, copy) NSString *profile_image_url;
-/**
- *  字典转模型
- */
-//+ (instancetype)userWithDict:(NSDictionary *)dict;
-//- (instancetype)initWithDict:(NSDictionary *)dict;
+
 @end

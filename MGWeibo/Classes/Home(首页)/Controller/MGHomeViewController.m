@@ -53,20 +53,7 @@
     // 3.发送请求
     [mgr GET:@"https://api.weibo.com/2/statuses/friends_timeline.json" parameters:params
      success:^(AFHTTPRequestOperation *operation, id responseObject) {
-        
-//         // 取出所有微博数据(每一条微博都是一个字典)
-//         NSMutableArray *dictArray = responseObject[@"statuses"];
-//         
-//         // 将字典数据转为模型
-//         NSMutableArray *statusArray = [NSMutableArray array];
-//         for (NSDictionary *dict in dictArray) {
-//             // 创建模型
-////             MGStatus *status = [MGStatus statusWithDict:dict];
-//             MGStatus *status = [MGStatus objectWithKeyValues:dict];
-//             // 添加模型
-//             [statusArray addObject:status];
-//         }
-//         self.statues = statusArray;
+         
          self.statues = [MGStatus objectArrayWithKeyValuesArray:responseObject[@"statuses"]];
         
          // 异步加载(1-2s后才有结果)，重新刷新表格，否则看不见
@@ -81,23 +68,6 @@
  */
 - (void)setupNavBar
 {
-    //    UIButton *addBtn = [UIButton buttonWithType:UIButtonTypeContactAdd];
-    //    addBtn.center = CGPointMake(100, 200);
-    //    [addBtn addTarget:self action:@selector(btnClick) forControlEvents:UIControlEventTouchUpInside];
-    //    [self.view addSubview:addBtn];
-    //
-    //
-    //    MGBadgeButton *badgeButton = [[MGBadgeButton alloc] init];
-    //    badgeButton.center = CGPointMake(100, 100);
-    //    badgeButton.badgeValue = @"79";
-    //    [self.view addSubview:badgeButton];
-    
-    // 左边按钮
-    //    UIButton *leftBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    //    [leftBtn setBackgroundImage:[UIImage imageWithName:@"navigationbar_friendsearch"] forState:UIControlStateNormal];
-    //    [leftBtn setBackgroundImage:[UIImage imageWithName:@"navigationbar_friendsearch_highlighted"] forState:UIControlStateHighlighted];
-    //    leftBtn.bounds = (CGRect){CGPointZero, leftBtn.currentBackgroundImage.size};
-    //    [leftBtn addTarget:self action:@selector(findFriend) forControlEvents:UIControlEventTouchUpInside];
     
     // 左边按钮
     self.navigationItem.leftBarButtonItem = [UIBarButtonItem itemWithIcon:@"navigationbar_friendsearch"highIcon:@"navigationbar_friendsearch_highlighted" target:self action:@selector(findFriend)];

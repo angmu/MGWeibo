@@ -48,6 +48,7 @@
 		CC5F32701B8A259E00603055 /* UIView+WebCacheOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = CC5F32601B8A259E00603055 /* UIView+WebCacheOperation.m */; };
 		CC5F32731B8A2AEA00603055 /* MGStatus.m in Sources */ = {isa = PBXBuildFile; fileRef = CC5F32721B8A2AEA00603055 /* MGStatus.m */; };
 		CC5F32761B8A2D7A00603055 /* MGUser.m in Sources */ = {isa = PBXBuildFile; fileRef = CC5F32751B8A2D7A00603055 /* MGUser.m */; };
+		CC60FBCE1B8AC736001571C6 /* MGStatusCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CC60FBCD1B8AC736001571C6 /* MGStatusCell.m */; };
 		CC6DD4C51B3FA2DB00B5D860 /* MGTabBar.m in Sources */ = {isa = PBXBuildFile; fileRef = CC6DD4C41B3FA2DB00B5D860 /* MGTabBar.m */; };
 		CC71BE4C1B462A4C0076AE04 /* MGNewfeatureViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CC71BE4B1B462A4C0076AE04 /* MGNewfeatureViewController.m */; };
 		CC7C454C1B3D8F7700BBB3DD /* MgWeiboTests.m in Sources */ = {isa = PBXBuildFile; fileRef = CC7C454B1B3D8F7700BBB3DD /* MgWeiboTests.m */; };
@@ -170,6 +171,8 @@
 		CC5F32721B8A2AEA00603055 /* MGStatus.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MGStatus.m; path = "MGWeibo/Classes/Home(首页)/Model/MGStatus.m"; sourceTree = SOURCE_ROOT; };
 		CC5F32741B8A2D7A00603055 /* MGUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MGUser.h; path = "MGWeibo/Classes/Home(首页)/Model/MGUser.h"; sourceTree = SOURCE_ROOT; };
 		CC5F32751B8A2D7A00603055 /* MGUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MGUser.m; path = "MGWeibo/Classes/Home(首页)/Model/MGUser.m"; sourceTree = SOURCE_ROOT; };
+		CC60FBCC1B8AC736001571C6 /* MGStatusCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MGStatusCell.h; path = "MGWeibo/Classes/Home(首页)/View/MGStatusCell.h"; sourceTree = SOURCE_ROOT; };
+		CC60FBCD1B8AC736001571C6 /* MGStatusCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MGStatusCell.m; path = "MGWeibo/Classes/Home(首页)/View/MGStatusCell.m"; sourceTree = SOURCE_ROOT; };
 		CC6DD4C31B3FA2DB00B5D860 /* MGTabBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MGTabBar.h; sourceTree = "<group>"; };
 		CC6DD4C41B3FA2DB00B5D860 /* MGTabBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MGTabBar.m; sourceTree = "<group>"; };
 		CC71BE4A1B462A4C0076AE04 /* MGNewfeatureViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MGNewfeatureViewController.h; sourceTree = "<group>"; };
@@ -592,6 +595,8 @@
 			children = (
 				CCE7B6711B44143500BDA866 /* MGTitleButton.h */,
 				CCE7B6721B44143500BDA866 /* MGTitleButton.m */,
+				CC60FBCC1B8AC736001571C6 /* MGStatusCell.h */,
+				CC60FBCD1B8AC736001571C6 /* MGStatusCell.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -830,6 +835,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				CC9BBFA71B7CDD7C00E4258C /* AFHTTPRequestOperation.m in Sources */,
+				CC60FBCE1B8AC736001571C6 /* MGStatusCell.m in Sources */,
 				CC5F32351B8A246700603055 /* NSObject+MJIvar.m in Sources */,
 				CC5F326F1B8A259E00603055 /* UIImageView+WebCache.m in Sources */,
 				CC5F32671B8A259E00603055 /* SDWebImageDownloaderOperation.m in Sources */,
