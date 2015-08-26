@@ -20,14 +20,12 @@
 @property (nonatomic, assign) int reposts_count;
 /** 微博的评论数 */
 @property (nonatomic, assign) int comments_count;
-/** 微博的表态数(点赞数) */
+/** 微博的表态数(被点赞数) */
 @property (nonatomic, assign) int attitudes_count;
 
 /** 微博的作者 */
 @property (nonatomic, strong) MGUser *user;
 
-/** 是否为vip */
-@property (nonatomic, assign, getter=isVip) BOOL *vip;
 /** 微博的单张配图 */
 @property (nonatomic, copy) NSString *thumbnail_pic;
 /** 微博的创建时间 */

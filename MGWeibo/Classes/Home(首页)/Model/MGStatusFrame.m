@@ -1,0 +1,96 @@
+//
+//  MGStatusFrame.m
+//  MGWeibo
+//
+//  Created by 穆良 on 15/8/24.
+//  Copyright (c) 2015年 穆良. All rights reserved.
+//
+
+
+#import "MGStatusFrame.h"
+#import "MGStatus.h"
+#import "MGUser.h"
+
+/** cell的边框宽度 */
+#define MGStatusCellBorder 5
+/** 昵称的字体 */
+#define MGStatusNameFont [UIFont systemFontOfSize:15]
+/** 时间的字体 */
+#define MGStatusTimeFont [UIFont systemFontOfSize:14]
+/** 来源的字体 */
+#define MGStatusSourceFont MGStatusTimeFont
+/** 微博正文的字体 */
+#define MGStatusContentFont [UIFont systemFontOfSize:13]
+
+
+@implementation MGStatusFrame
+
+/**
+ *  获得微博数据模型后
+ *  根据微博数据计算所有子控件的frame
+ */
+- (void)setStatus:(MGStatus *)status
+{
+    _status = status;
+    
+    // cell的宽度
+    CGFloat cellW = [UIScreen mainScreen].bounds.size.width;
+    
+    // 1.topView
+    CGFloat topViewW = cellW;
+    CGFloat topViewX = 0;
+    CGFloat topViewY = 0;
+    
+    // 2.图像
+    CGFloat iconViewWH = 35;
+    CGFloat iconViewX = MGStatusCellBorder;
+    CGFloat iconViewY = MGStatusCellBorder;
+    _iconViewF = CGRectMake(iconViewX, iconViewY, iconViewWH, iconViewWH);
+    
+    // 3.昵称
+    CGFloat nameLabelX = CGRectGetMaxX(_iconViewF) + MGStatusCellBorder;
+    CGFloat nameLabelY = iconViewY;
+    // 昵称文字尺寸
+    CGSize nameLabelSize = [status.user.name sizeWithFont:MGStatusNameFont];
+    _nameLabelF = (CGRect){{nameLabelX, nameLabelY},nameLabelSize};
+    
+    // 4.会员图标
+    if (status.user.isVip) {
+        CGFloat vipViewW = 14;
+        CGFloat vipViewH = nameLabelSize.height;
+        CGFloat vipViewX = CGRectGetMaxX(_nameLabelF) + MGStatusCellBorder;
+        CGFloat vipViewY = nameLabelY;
+        _vipViewF = CGRectMake(vipViewX, vipViewY, vipViewW, vipViewH);
+        
+    }
+    
+    // 5.时间
+    CGFloat timeLabelX = nameLabelX;
+    CGFloat timeLabelY = CGRectGetMaxY(_nameLabelF) + MGStatusCellBorder;
+    CGSize timeLabelSize = [status.created_at sizeWithFont:MGStatusTimeFont];
+    _timeLabelF = (CGRect){{timeLabelX, timeLabelY}, timeLabelSize};
+    
+    // 6.来源
+    CGFloat sourceLabelX = CGRectGetMaxX(_timeLabelF) + MGStatusCellBorder;
+    CGFloat sourceLabelY = timeLabelY;
+    // 文字尺寸
+    CGSize sourceLabelSize = [status.source sizeWithFont:MGStatusSourceFont];
+    _sourceLabelF = (CGRect){{sourceLabelX, sourceLabelY}, sourceLabelSize};
+    
+    // 7.微博的正文
+    CGFloat contentLabelX = MGStatusCellBorder;
+    CGFloat contentlabelY = MAX(CGRectGetMaxY(_timeLabelF), CGRectGetMaxY(_iconViewF)) + MGStatusCellBorder;
+    // 微博文字很长，需要换行
+    CGFloat contentLabelMaxW = topViewW - 2 * MGStatusCellBorder;
+    CGSize contentLabelSize = [status.text sizeWithFont:MGStatusContentFont constrainedToSize:CGSizeMake(contentLabelMaxW, MAXFLOAT)];
+    _contentLabelF = (CGRect){{contentLabelX, contentlabelY}, contentLabelSize};
+    
+    
+    // 计算topView的尺寸
+    CGFloat topViewH = CGRectGetMaxY(_contentLabelF) + MGStatusCellBorder;
+    _topViewF = CGRectMake(topViewX, topViewY, topViewW, topViewH);
+    
+    // cell的高度
+    _cellHeight = topViewH;
+}
+@end

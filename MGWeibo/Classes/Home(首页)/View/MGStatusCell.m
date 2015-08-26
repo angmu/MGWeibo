@@ -7,6 +7,9 @@
 //
 
 #import "MGStatusCell.h"
+#import "MGStatusFrame.h"
+#import "MGStatus.h"
+#import "MGUser.h"
 
 @interface MGStatusCell ()
 /** 顶部的view */
@@ -138,6 +141,49 @@
     UIImageView *statusToolbar = [[UIImageView alloc] init];
     [self.contentView addSubview:statusToolbar];
     self.statusToolbar = statusToolbar;
+}
+
+/**
+ *  传递模型数据
+ */
+- (void)setStatusFrame:(MGStatusFrame *)statusFrame
+{
+    _statusFrame = statusFrame;
+    
+    // 1.原创微博
+    [self setupOriginalData];
+    
+    // 2.转发微博
+    [self setupRetweetData];
+    
+    // 3.工具条
+    
+    
+    
+    
+}
+
+/**
+ *  原创微博数据
+ */
+- (void)setupOriginalData
+{
+    // 1.topView
+    self.topView.frame = self.statusFrame.topViewF;
+    
+    // 2.头像
+    
+    
+    
+    // 3.
+}
+
+/**
+ *  转发微博数据
+ */
+- (void)setupRetweetData
+{
+    
 }
 
 @end

@@ -7,7 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
+@class MGStatusFrame;
 
 @interface MGStatusCell : UITableViewCell
-
+@property (nonatomic, strong) MGStatusFrame *statusFrame;
 @end

@@ -16,4 +16,7 @@
 /** 用户的图像 */
 @property (nonatomic, copy) NSString *profile_image_url;
 
+/** 是否为vip */
+@property (nonatomic, assign, getter=isVip) BOOL *vip;
+
 @end
