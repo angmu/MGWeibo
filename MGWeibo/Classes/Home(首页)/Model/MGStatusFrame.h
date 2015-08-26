@@ -7,7 +7,19 @@
 // 一个cell对应一个MGStatusFrame对象
 
 #import <Foundation/Foundation.h>
+
+/** 昵称的字体 */
+#define MGStatusNameFont [UIFont systemFontOfSize:15]
+/** 时间的字体 */
+#define MGStatusTimeFont [UIFont systemFontOfSize:14]
+/** 来源的字体 */
+#define MGStatusSourceFont MGStatusTimeFont
+/** 微博正文的字体 */
+#define MGStatusContentFont [UIFont systemFontOfSize:13]
+
 @class MGStatus;
+
+
 @interface MGStatusFrame : NSObject
 /** 微博数据模型 */
 @property (nonatomic, strong) MGStatus *status;

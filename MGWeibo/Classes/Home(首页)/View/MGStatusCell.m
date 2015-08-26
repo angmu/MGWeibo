@@ -10,6 +10,7 @@
 #import "MGStatusFrame.h"
 #import "MGStatus.h"
 #import "MGUser.h"
+#import "UIImageView+WebCache.h"
 
 @interface MGStatusCell ()
 /** 顶部的view */
@@ -43,6 +44,16 @@
 @end
 
 @implementation MGStatusCell
+
++ (instancetype)cellWithTableView:(UITableView *)tableView
+{
+    static NSString *ID = @"status";
+    MGStatusCell *cell = [tableView dequeueReusableCellWithIdentifier:ID];
+    if (cell == nil) {
+        cell = [[MGStatusCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:ID];
+    }
+    return cell;
+}
 
 - (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {
@@ -87,21 +98,26 @@
     
     /** 5.昵称 */
     UILabel *nameLabel = [[UILabel alloc] init];
+    nameLabel.font =  MGStatusNameFont;
     [self.topView addSubview:nameLabel];
     self.nameLabel = nameLabel;
     
     /** 6.时间 */
     UILabel *timeLabel = [[UILabel alloc] init];
+    timeLabel.font =  MGStatusTimeFont;
     [self.topView addSubview:timeLabel];
     self.timeLabel = timeLabel;
     
     /** 7.来源 */
     UILabel *sourceLabel = [[UILabel alloc] init];
+    sourceLabel.font = MGStatusSourceFont;
     [self.topView addSubview:sourceLabel];
     self.sourceLabel = sourceLabel;
     
     /** 8.正文\内容 */
     UILabel *contentLabel = [[UILabel alloc] init];
+    contentLabel.font = MGStatusContentFont;
+    contentLabel.numberOfLines = 0;
     [self.topView addSubview:contentLabel];
     self.contentLabel = contentLabel;
 }
@@ -157,10 +173,7 @@
     [self setupRetweetData];
     
     // 3.工具条
-    
-    
-    
-    
+    [self setupStatusToolBarData];
 }
 
 /**
@@ -172,10 +185,35 @@
     self.topView.frame = self.statusFrame.topViewF;
     
     // 2.头像
+    MGStatus *status = self.statusFrame.status;
+    MGUser *user = status.user;
+    [self.iconView sd_setImageWithURL:[NSURL URLWithString:user.profile_image_url] placeholderImage:[UIImage imageWithName:@"avatar_default_small"]];
+    self.iconView.frame = self.statusFrame.iconViewF;
     
+    // 3.昵称
+    self.nameLabel.text = user.name;
+    self.nameLabel.frame = self.statusFrame.nameLabelF;
     
+    // 4.会员图标
+    if (user.isVip) {
+        self.vipView.hidden = NO;
+        self.vipView.image = [UIImage imageWithName:@"common_icon_membership"];
+        self.vipView.frame = self.statusFrame.vipViewF;
+    } else {
+        self.vipView.hidden = YES;
+    }
     
-    // 3.
+    // 5.时间
+    self.timeLabel.text = status.created_at;
+    self.timeLabel.frame = self.statusFrame.timeLabelF;
+    
+    // 6.来源
+    self.sourceLabel.text = status.source;
+    self.sourceLabel.frame = self.statusFrame.sourceLabelF;
+    
+    // 7.正文\微博内容
+    self.contentLabel.text = status.text;
+    self.contentLabel.frame = self.statusFrame.contentLabelF;
 }
 
 /**
@@ -185,5 +223,16 @@
 {
     
 }
+
+/**
+ *  设置工具条数据
+ */
+- (void)setupStatusToolBarData
+{
+    
+}
+
+
+
 
 @end

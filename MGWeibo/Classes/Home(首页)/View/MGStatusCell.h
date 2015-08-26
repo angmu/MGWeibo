@@ -11,4 +11,6 @@
 
 @interface MGStatusCell : UITableViewCell
 @property (nonatomic, strong) MGStatusFrame *statusFrame;
+/** 快速创建一个cell */
++ (instancetype)cellWithTableView:(UITableView *)tableView;
 @end
