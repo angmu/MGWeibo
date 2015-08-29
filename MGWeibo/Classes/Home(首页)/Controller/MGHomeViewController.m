@@ -20,9 +20,12 @@
 #import "MGStatus.h"
 #import "MGUser.h"
 #import "MJExtension.h"
+#import "MGStatusFrame.h"
+#import "MGStatusCell.h"
+
 
 @interface MGHomeViewController ()
-@property (nonatomic, strong) NSArray *statues;
+@property (nonatomic, strong) NSArray *statusFrames;
 @end
 
 @implementation MGHomeViewController
@@ -53,9 +56,20 @@
     // 3.发送请求
     [mgr GET:@"https://api.weibo.com/2/statuses/friends_timeline.json" parameters:params
      success:^(AFHTTPRequestOperation *operation, id responseObject) {
+         // 将字典数组转化为模型数组(里面放的就是MGStatus模型)
+         NSArray *statues = [MGStatus objectArrayWithKeyValuesArray:responseObject[@"statuses"]];
+         // 创建frame模型对象
+         NSMutableArray *statusFrameArray = [NSMutableArray array];
+         for (MGStatus *status in statues) {
+             
+             MGStatusFrame *statusFrame = [[MGStatusFrame alloc] init];
+             // 传递微博数据模型
+             statusFrame.status = status;
+             [statusFrameArray addObject:statusFrame];
+         }
+         // 赋值
+         self.statusFrames = statusFrameArray;
          
-         self.statues = [MGStatus objectArrayWithKeyValuesArray:responseObject[@"statuses"]];
-        
          // 异步加载(1-2s后才有结果)，重新刷新表格，否则看不见
          [self.tableView reloadData];
      } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
@@ -119,35 +133,19 @@
 //    self.tabBarItem.badgeValue = @"103";
 //}
 
-
 #pragma mark - 数据源方法
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return self.statues.count;
+    return self.statusFrames.count;
 }
-
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    
     // 1.创建cell
-    static NSString *ID = @"cell";
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:ID];
-    if (cell == nil) {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:ID];
-    }
-    
-    // 2.设置cell的数据
-    // 微博的文字(内容)
-    MGStatus *status = self.statues[indexPath.row];
-    cell.textLabel.text = status.text;
-    
-    // 微博作者的昵称
-    MGUser *user = status.user;
-    cell.detailTextLabel.text = user.name;
-    
-    // 微博作者的图像
-    [cell.imageView sd_setImageWithURL:[NSURL URLWithString:user.profile_image_url] placeholderImage:[UIImage imageWithName:@"tabbar_compose_button"]];
+    MGStatusCell *cell = [MGStatusCell cellWithTableView:tableView];
+
+    // 2.设置cell的数据,传递frame模型
+    cell.statusFrame = self.statusFrames[indexPath.row];
     
     return cell;
 }
@@ -161,5 +159,11 @@
 //    [self.navigationController pushViewController:vc animated:YES];
 //}
 
+#pragma mark - 代理方法
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    MGStatusFrame *statusFrame = self.statusFrames[indexPath.row];
+    return statusFrame.cellHeight;
+}
 
 @end

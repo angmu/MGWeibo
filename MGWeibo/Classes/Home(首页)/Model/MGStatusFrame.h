@@ -10,12 +10,17 @@
 
 /** 昵称的字体 */
 #define MGStatusNameFont [UIFont systemFontOfSize:15]
+/** 被转发微博的昵称的字体 */
+#define MGRetweetStatusNameFont MGStatusNameFont
+
 /** 时间的字体 */
 #define MGStatusTimeFont [UIFont systemFontOfSize:14]
 /** 来源的字体 */
 #define MGStatusSourceFont MGStatusTimeFont
-/** 微博正文的字体 */
+/** 正文的字体 */
 #define MGStatusContentFont [UIFont systemFontOfSize:13]
+/** 被转发微博的正文的字体 */
+#define MGRetweetStatusContentFont MGStatusContentFont
 
 @class MGStatus;
 

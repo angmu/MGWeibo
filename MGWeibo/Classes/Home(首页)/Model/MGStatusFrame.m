@@ -40,6 +40,7 @@
     CGFloat topViewW = cellW;
     CGFloat topViewX = 0;
     CGFloat topViewY = 0;
+    CGFloat topViewH = 0;
     
     // 2.图像
     CGFloat iconViewWH = 35;
@@ -61,7 +62,6 @@
         CGFloat vipViewX = CGRectGetMaxX(_nameLabelF) + MGStatusCellBorder;
         CGFloat vipViewY = nameLabelY;
         _vipViewF = CGRectMake(vipViewX, vipViewY, vipViewW, vipViewH);
-        
     }
     
     // 5.时间
@@ -85,12 +85,76 @@
     CGSize contentLabelSize = [status.text sizeWithFont:MGStatusContentFont constrainedToSize:CGSizeMake(contentLabelMaxW, MAXFLOAT)];
     _contentLabelF = (CGRect){{contentLabelX, contentlabelY}, contentLabelSize};
     
+    // 8.配图
+    if (status.thumbnail_pic) {
+        CGFloat photoViewWH = 75;
+        CGFloat photoViewX = contentLabelX;
+        CGFloat photoViewY = CGRectGetMaxY(_contentLabelF) + MGStatusCellBorder;
+        _photoViewF = CGRectMake(photoViewX, photoViewY, photoViewWH, photoViewWH);
+        
+        
+    }
+    
+    // 9.被转发微博
+    if (status.retweeted_status) {
+        
+        CGFloat retweetViewW = contentLabelMaxW;
+        CGFloat retweetViewX = contentLabelX;
+        CGFloat retweetViewY = CGRectGetMaxY(_contentLabelF) + MGStatusCellBorder;
+        CGFloat retweetViewH = 0;
+        
+        // 10.被转发微博的昵称
+        CGFloat retweetNameLabelX = MGStatusCellBorder;
+        CGFloat retweetNameLabelY = MGStatusCellBorder;
+        CGSize retweetNameLabelSize = [status.retweeted_status.user.name sizeWithFont:MGRetweetStatusNameFont];
+        _retweetNameLabelF = (CGRect){{retweetNameLabelX, retweetNameLabelY},retweetNameLabelSize};
+        
+        // 11.被转发微博的正文
+        CGFloat retweetContentLabelX = retweetNameLabelX;
+        CGFloat retweetContentlabelY = CGRectGetMaxY(_retweetNameLabelF) + MGStatusCellBorder;
+        CGFloat retweetContentLabelMaxW = retweetViewW - 2 * MGStatusCellBorder;
+        CGSize retweetContentLabelSize = [status.retweeted_status.text sizeWithFont:MGRetweetStatusContentFont constrainedToSize:CGSizeMake(retweetContentLabelMaxW, MAXFLOAT)];
+        _retweetContentLabelF = (CGRect){{retweetContentLabelX, retweetContentlabelY}, retweetContentLabelSize};
+        
+        // 12.被转发微博的配图
+        if (status.retweeted_status.thumbnail_pic) {
+            CGFloat retweetPhotoViewWH = 75;
+            CGFloat retweetPhotoViewX = contentLabelX;
+            CGFloat retweetPhotoViewY = CGRectGetMaxY(_retweetContentLabelF) + MGStatusCellBorder;
+            _retweetPhotoViewF = (CGRect){{retweetPhotoViewX, retweetPhotoViewY}, retweetPhotoViewWH};
+            
+            retweetViewH = CGRectGetMaxY(_retweetPhotoViewF);
+        } else { // 没有配图
+            retweetViewH = CGRectGetMaxY(_retweetContentLabelF);
+        }
+        retweetViewH += MGStatusCellBorder;
+        // 被转发微博的高度
+        _retweetViewF = CGRectMake(retweetViewX, retweetViewY, retweetViewW, retweetViewH);
+        
+        // 有转发微博
+        topViewH = CGRectGetMaxY(_retweetViewF);
+    } else { // 没有转发微博
+        
+        if (status.thumbnail_pic) {
+            topViewH = CGRectGetMaxY(_photoViewF);
+        } else { // 没有配图
+            topViewH = CGRectGetMaxY(_contentLabelF);
+        }
+ 
+    }
     
     // 计算topView的尺寸
-    CGFloat topViewH = CGRectGetMaxY(_contentLabelF) + MGStatusCellBorder;
+    topViewH += MGStatusCellBorder;
     _topViewF = CGRectMake(topViewX, topViewY, topViewW, topViewH);
     
-    // cell的高度
-    _cellHeight = topViewH;
+    // 13.工具条
+    CGFloat statusToolX = topViewX;
+    CGFloat statusToolY = CGRectGetMaxY(_topViewF) + MGStatusCellBorder;
+    CGFloat statusToolW = topViewW;
+    CGFloat statusToolH = 35;
+    _statusToolbarF = CGRectMake(topViewX, statusToolY, statusToolW, statusToolH);
+    
+    // 14.cell的高度
+    _cellHeight = CGRectGetMaxY(_statusToolbarF);
 }
 @end
