@@ -18,4 +18,5 @@
  *  返回一张自由拉伸的图片
  */
 + (UIImage *)resizeimageWithName:(NSString *)name;
++ (UIImage *)resizeimageWithName:(NSString *)name left:(CGFloat)left top:(CGFloat)top;
 @end

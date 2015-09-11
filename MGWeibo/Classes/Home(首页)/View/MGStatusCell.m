@@ -76,8 +76,12 @@
  */
 - (void)setupOriginalSubviews
 {
+    /** 0.设置cell的背景颜色 */
+    self.backgroundColor = [UIColor clearColor];
+    
     /** 1.顶部的view */
     UIImageView *topView = [[UIImageView alloc] init];
+    topView.image = [UIImage resizeimageWithName:@"timeline_card_top_background"];
     [self.contentView addSubview:topView];
     self.topView = topView;
     
@@ -99,24 +103,30 @@
     /** 5.昵称 */
     UILabel *nameLabel = [[UILabel alloc] init];
     nameLabel.font =  MGStatusNameFont;
+    nameLabel.backgroundColor = [UIColor clearColor];
     [self.topView addSubview:nameLabel];
     self.nameLabel = nameLabel;
     
     /** 6.时间 */
     UILabel *timeLabel = [[UILabel alloc] init];
     timeLabel.font =  MGStatusTimeFont;
+    timeLabel.textColor = MGColor(245, 156, 51);
+    timeLabel.backgroundColor = [UIColor clearColor];
     [self.topView addSubview:timeLabel];
     self.timeLabel = timeLabel;
     
     /** 7.来源 */
     UILabel *sourceLabel = [[UILabel alloc] init];
     sourceLabel.font = MGStatusSourceFont;
+    sourceLabel.textColor = MGColor(176, 176, 176);
+    sourceLabel.backgroundColor = [UIColor clearColor];
     [self.topView addSubview:sourceLabel];
     self.sourceLabel = sourceLabel;
     
     /** 8.正文\内容 */
     UILabel *contentLabel = [[UILabel alloc] init];
     contentLabel.font = MGStatusContentFont;
+    contentLabel.backgroundColor = [UIColor clearColor];
     contentLabel.numberOfLines = 0;
     [self.topView addSubview:contentLabel];
     self.contentLabel = contentLabel;
@@ -129,6 +139,7 @@
 {
     /** 1.被转发微博的view(父控件) */
     UIImageView *retweetView = [[UIImageView alloc] init];
+    retweetView.image = [UIImage resizeimageWithName:@"timeline_retweet_background" left:0.9 top:0.5];
     [self.topView addSubview:retweetView];
     self.retweetView = retweetView;
 
@@ -158,8 +169,23 @@
 {
     /** 添加微博的工具条 */
     UIImageView *statusToolbar = [[UIImageView alloc] init];
+    statusToolbar.image = [UIImage resizeimageWithName:@"timeline_card_bottom_background"];
     [self.contentView addSubview:statusToolbar];
     self.statusToolbar = statusToolbar;
+}
+
+
+/**
+ *  拦截frame的设置
+ *  只要tableView设置cell的frame,就把它改掉
+ */
+- (void)setFrame:(CGRect)frame
+{
+    frame.origin.y += MGStatusTableBorder;
+    frame.origin.x = MGStatusTableBorder;
+    frame.size.width -= 2 * MGStatusTableBorder;
+    frame.size.height -= MGStatusTableBorder;
+    [super setFrame:frame];
 }
 
 /**
@@ -267,8 +293,6 @@
 {
     self.statusToolbar.frame = self.statusFrame.statusToolbarF;
 }
-
-
 
 
 @end

@@ -11,16 +11,8 @@
 #import "MGStatus.h"
 #import "MGUser.h"
 
-/** cell的边框宽度 */
-#define MGStatusCellBorder 5
-/** 昵称的字体 */
-#define MGStatusNameFont [UIFont systemFontOfSize:15]
-/** 时间的字体 */
-#define MGStatusTimeFont [UIFont systemFontOfSize:14]
-/** 来源的字体 */
-#define MGStatusSourceFont MGStatusTimeFont
-/** 微博正文的字体 */
-#define MGStatusContentFont [UIFont systemFontOfSize:13]
+
+
 
 
 @implementation MGStatusFrame
@@ -34,7 +26,7 @@
     _status = status;
     
     // cell的宽度
-    CGFloat cellW = [UIScreen mainScreen].bounds.size.width;
+    CGFloat cellW = [UIScreen mainScreen].bounds.size.width - 2*MGStatusTableBorder;
     
     // 1.topView
     CGFloat topViewW = cellW;
@@ -149,12 +141,12 @@
     
     // 13.工具条
     CGFloat statusToolX = topViewX;
-    CGFloat statusToolY = CGRectGetMaxY(_topViewF) + MGStatusCellBorder;
+    CGFloat statusToolY = CGRectGetMaxY(_topViewF);
     CGFloat statusToolW = topViewW;
     CGFloat statusToolH = 35;
-    _statusToolbarF = CGRectMake(topViewX, statusToolY, statusToolW, statusToolH);
+    _statusToolbarF = CGRectMake(statusToolX, statusToolY, statusToolW, statusToolH);
     
     // 14.cell的高度
-    _cellHeight = CGRectGetMaxY(_statusToolbarF);
+    _cellHeight = CGRectGetMaxY(_statusToolbarF) + MGStatusTableBorder;
 }
 @end

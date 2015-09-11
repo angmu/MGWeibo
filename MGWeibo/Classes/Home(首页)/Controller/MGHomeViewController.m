@@ -99,6 +99,9 @@
     titleBtn.tag = MGTitleButtonDown;
     [titleBtn addTarget:self action:@selector(titleClick:) forControlEvents:UIControlEventTouchUpInside];
     self.navigationItem.titleView = titleBtn;
+    
+    self.tableView.backgroundColor = MGColor(226, 226, 226);
+    self.tableView.contentInset = UIEdgeInsetsMake(0, 0, MGStatusTableBorder, 0);
 }
 
 /**
