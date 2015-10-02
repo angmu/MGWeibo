@@ -788,6 +788,7 @@
 				TargetAttributes = {
 					CC7C452B1B3D8F7600BBB3DD = {
 						CreatedOnToolsVersion = 6.1.1;
+						DevelopmentTeam = YEH9VENLMS;
 					};
 					CC7C45441B3D8F7700BBB3DD = {
 						CreatedOnToolsVersion = 6.1.1;
@@ -1007,12 +1008,15 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_INCREASE_PRECOMPILED_HEADER_SHARING = NO;
 				GCC_PREFIX_HEADER = "MGWeibo/Classes/Other(其他)/PrefixHeader.pch";
 				INFOPLIST_FILE = MgWeibo/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.4;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = MGWeibo;
+				PROVISIONING_PROFILE = "";
 			};
 			name = Debug;
 		};
@@ -1021,12 +1025,15 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_INCREASE_PRECOMPILED_HEADER_SHARING = NO;
 				GCC_PREFIX_HEADER = "MGWeibo/Classes/Other(其他)/PrefixHeader.pch";
 				INFOPLIST_FILE = MgWeibo/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.4;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = MGWeibo;
+				PROVISIONING_PROFILE = "";
 			};
 			name = Release;
 		};

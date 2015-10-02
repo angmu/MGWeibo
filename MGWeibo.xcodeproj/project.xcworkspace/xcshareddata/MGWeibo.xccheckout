@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>8FBD4F5B-F7DA-4EBF-90B9-D4DD5A766C39</string>
+	<key>IDESourceControlProjectName</key>
+	<string>MGWeibo</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>5FA7DDA7B8577AF4D6F509A2C953E8C53C40D6A3</key>
+		<string>https://github.com/angmu/MGWeibo.git</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>MGWeibo.xcodeproj</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>5FA7DDA7B8577AF4D6F509A2C953E8C53C40D6A3</key>
+		<string>../..</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>https://github.com/angmu/MGWeibo.git</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>111</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>5FA7DDA7B8577AF4D6F509A2C953E8C53C40D6A3</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>5FA7DDA7B8577AF4D6F509A2C953E8C53C40D6A3</string>
+			<key>IDESourceControlWCCName</key>
+			<string>MGWeibo</string>
+		</dict>
+	</array>
+</dict>
+</plist>
