@@ -11,7 +11,7 @@
 #import "MGStatus.h"
 #import "MGUser.h"
 #import "UIImageView+WebCache.h"
-//#import ""
+#import "MGPhoto.h"
 
 @interface MGRetweetStatusView ()
 /** 被转发微博的作者昵称 */
@@ -71,10 +71,11 @@
     self.retweetContentLabel.frame = statusFrame.retweetContentLabelF;
         
     // 4.配图
-    if (retweetStatus.thumbnail_pic) {
+    if (retweetStatus.pic_urls.count) {
         self.retweetPhotoView.hidden = NO;
+        MGPhoto *photo = retweetStatus.pic_urls[0];
         self.retweetPhotoView.frame = statusFrame.retweetPhotoViewF;
-        [self.retweetPhotoView sd_setImageWithURL:[NSURL URLWithString:retweetStatus.thumbnail_pic] placeholderImage:[UIImage imageWithName:@"timeline_image_placeholder"]];
+        [self.retweetPhotoView sd_setImageWithURL:[NSURL URLWithString:photo.thumbnail_pic] placeholderImage:[UIImage imageWithName:@"timeline_image_placeholder"]];
         }
 
 }

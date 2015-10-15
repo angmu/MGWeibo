@@ -51,16 +51,26 @@
     // 2.封装请求参数
     NSMutableDictionary *params = [NSMutableDictionary dictionary];
     params[@"access_token"] = [MGAccountTool account].access_token;
-//    params[@"count"] = @2;
+//    params[@"count"] = @80;
     
     // 3.发送请求
     [mgr GET:@"https://api.weibo.com/2/statuses/friends_timeline.json" parameters:params
      success:^(AFHTTPRequestOperation *operation, id responseObject) {
          // 将字典数组转化为模型数组(里面放的就是MGStatus模型)
          NSArray *statues = [MGStatus objectArrayWithKeyValuesArray:responseObject[@"statuses"]];
+         
+         
+         for (NSDictionary *dict in responseObject[@"statuses"]) {
+             MGLog(@"%@", dict[@"pic_urls"]);
+             // dict[@"pic_urls"] ----> MGStatus.pic_urls
+             // 里面装着字典 ----> 里面装着模型
+         }
+         
          // 创建frame模型对象
          NSMutableArray *statusFrameArray = [NSMutableArray array];
          for (MGStatus *status in statues) {
+             
+             MGLog(@"%@", [[status.pic_urls lastObject] class]);
              
              MGStatusFrame *statusFrame = [[MGStatusFrame alloc] init];
              // 传递微博数据模型

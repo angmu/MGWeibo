@@ -8,8 +8,16 @@
 #import "MGStatus.h"
 #import "MGUser.h"
 #import "NSDate+MG.h"
+#import "MJExtension.h"
+#import "MGPhoto.h"
 
 @implementation MGStatus
+
+//数组中装对象的类型
+- (NSDictionary *)objectClassInArray
+{
+    return @{@"pic_urls" : [MGPhoto class]};
+}
 
 - (NSString *)created_at
 {

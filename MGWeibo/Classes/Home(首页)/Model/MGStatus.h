@@ -27,7 +27,10 @@
 @property (nonatomic, strong) MGUser *user;
 
 /** 微博的单张配图 */
-@property (nonatomic, copy) NSString *thumbnail_pic;
+//@property (nonatomic, copy) NSString *thumbnail_pic;
+/** 微博的配图数组(数组里装模型：MGPhoto) */
+@property (nonatomic, strong) NSArray *pic_urls;
+
 /** 微博的创建时间 */
 @property (nonatomic, copy) NSString *created_at;
 /** 被转发的微博 */

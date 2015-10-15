@@ -50,6 +50,7 @@
 		CC5F32731B8A2AEA00603055 /* MGStatus.m in Sources */ = {isa = PBXBuildFile; fileRef = CC5F32721B8A2AEA00603055 /* MGStatus.m */; };
 		CC5F32761B8A2D7A00603055 /* MGUser.m in Sources */ = {isa = PBXBuildFile; fileRef = CC5F32751B8A2D7A00603055 /* MGUser.m */; };
 		CC60FBCE1B8AC736001571C6 /* MGStatusCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CC60FBCD1B8AC736001571C6 /* MGStatusCell.m */; };
+		CC6475B31BD009C500310D27 /* MGPhoto.m in Sources */ = {isa = PBXBuildFile; fileRef = CC6475B21BD009C500310D27 /* MGPhoto.m */; settings = {ASSET_TAGS = (); }; };
 		CC6799EB1BCC74E0006B877D /* MGRetweetStatusView.m in Sources */ = {isa = PBXBuildFile; fileRef = CC6799EA1BCC74E0006B877D /* MGRetweetStatusView.m */; settings = {ASSET_TAGS = (); }; };
 		CC6799EE1BCC7D06006B877D /* MGStatusTopView.m in Sources */ = {isa = PBXBuildFile; fileRef = CC6799ED1BCC7D06006B877D /* MGStatusTopView.m */; settings = {ASSET_TAGS = (); }; };
 		CC6DD4C51B3FA2DB00B5D860 /* MGTabBar.m in Sources */ = {isa = PBXBuildFile; fileRef = CC6DD4C41B3FA2DB00B5D860 /* MGTabBar.m */; };
@@ -180,6 +181,8 @@
 		CC5F32751B8A2D7A00603055 /* MGUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MGUser.m; path = "MGWeibo/Classes/Home(首页)/Model/MGUser.m"; sourceTree = SOURCE_ROOT; };
 		CC60FBCC1B8AC736001571C6 /* MGStatusCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MGStatusCell.h; path = "MGWeibo/Classes/Home(首页)/View/MGStatusCell.h"; sourceTree = SOURCE_ROOT; };
 		CC60FBCD1B8AC736001571C6 /* MGStatusCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MGStatusCell.m; path = "MGWeibo/Classes/Home(首页)/View/MGStatusCell.m"; sourceTree = SOURCE_ROOT; };
+		CC6475B11BD009C500310D27 /* MGPhoto.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MGPhoto.h; path = "MGWeibo/Classes/Home(首页)/Model/MGPhoto.h"; sourceTree = SOURCE_ROOT; };
+		CC6475B21BD009C500310D27 /* MGPhoto.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MGPhoto.m; path = "MGWeibo/Classes/Home(首页)/Model/MGPhoto.m"; sourceTree = SOURCE_ROOT; };
 		CC6799E91BCC74E0006B877D /* MGRetweetStatusView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MGRetweetStatusView.h; path = "MGWeibo/Classes/Home(首页)/View/MGRetweetStatusView.h"; sourceTree = SOURCE_ROOT; };
 		CC6799EA1BCC74E0006B877D /* MGRetweetStatusView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MGRetweetStatusView.m; path = "MGWeibo/Classes/Home(首页)/View/MGRetweetStatusView.m"; sourceTree = SOURCE_ROOT; };
 		CC6799EC1BCC7D06006B877D /* MGStatusTopView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MGStatusTopView.h; path = "MGWeibo/Classes/Home(首页)/View/MGStatusTopView.h"; sourceTree = SOURCE_ROOT; };
@@ -603,6 +606,8 @@
 				CC5F32751B8A2D7A00603055 /* MGUser.m */,
 				CC464C781B8B5E200087A67E /* MGStatusFrame.h */,
 				CC464C791B8B5E200087A67E /* MGStatusFrame.m */,
+				CC6475B11BD009C500310D27 /* MGPhoto.h */,
+				CC6475B21BD009C500310D27 /* MGPhoto.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -872,6 +877,7 @@
 				CC5F32641B8A259E00603055 /* SDWebImageCompat.m in Sources */,
 				CC5F323D1B8A246700603055 /* UIScrollView+MJRefresh.m in Sources */,
 				CCB853071B3E916100CD4662 /* MGTabBarViewController.m in Sources */,
+				CC6475B31BD009C500310D27 /* MGPhoto.m in Sources */,
 				CC5F32691B8A259E00603055 /* SDWebImagePrefetcher.m in Sources */,
 				CC5F32631B8A259E00603055 /* SDImageCache.m in Sources */,
 				CC0394061B7DEE55007309F1 /* MGAccount.m in Sources */,

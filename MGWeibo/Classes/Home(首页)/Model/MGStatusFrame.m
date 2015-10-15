@@ -81,7 +81,7 @@
     _contentLabelF = (CGRect){{contentLabelX, contentlabelY}, contentLabelSize};
     
     // 8.配图
-    if (status.thumbnail_pic) {
+    if (status.pic_urls.count) {
         CGFloat photoViewWH = 75;
         CGFloat photoViewX = contentLabelX;
         CGFloat photoViewY = CGRectGetMaxY(_contentLabelF) + MGStatusCellBorder;
@@ -113,7 +113,7 @@
         _retweetContentLabelF = (CGRect){{retweetContentLabelX, retweetContentlabelY}, retweetContentLabelSize};
         
         // 12.被转发微博的配图
-        if (status.retweeted_status.thumbnail_pic) {
+        if (status.retweeted_status.pic_urls.count) {
             CGFloat retweetPhotoViewWH = 75;
             CGFloat retweetPhotoViewX = contentLabelX;
             CGFloat retweetPhotoViewY = CGRectGetMaxY(_retweetContentLabelF) + MGStatusCellBorder;
@@ -131,7 +131,7 @@
         topViewH = CGRectGetMaxY(_retweetViewF);
     } else { // 没有转发微博
         
-        if (status.thumbnail_pic) {
+        if (status.pic_urls.count) {
             topViewH = CGRectGetMaxY(_photoViewF);
         } else { // 没有配图
             topViewH = CGRectGetMaxY(_contentLabelF);
