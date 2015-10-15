@@ -9,11 +9,11 @@
 #import <Foundation/Foundation.h>
 
 /** 昵称的字体 */
-#define MGStatusNameFont [UIFont systemFontOfSize:15]
+#define MGStatusNameFont [UIFont systemFontOfSize:14]
 /** 被转发微博的昵称的字体 */
 #define MGRetweetStatusNameFont MGStatusNameFont
 /** 时间的字体 */
-#define MGStatusTimeFont [UIFont systemFontOfSize:14]
+#define MGStatusTimeFont [UIFont systemFontOfSize:13]
 /** 来源的字体 */
 #define MGStatusSourceFont MGStatusTimeFont
 /** 正文的字体 */
@@ -22,9 +22,9 @@
 #define MGRetweetStatusContentFont MGStatusContentFont
 
 /** cell的边框宽度 */
-#define MGStatusCellBorder 8
+#define MGStatusCellBorder 7
 /** 表格的边框宽度 */
-#define MGStatusTableBorder 10
+#define MGStatusTableBorder 4
 
 @class MGStatus;
 
@@ -61,7 +61,7 @@
 @property (nonatomic, assign, readonly) CGRect retweetPhotoViewF;
 
 /** 添加微博的工具条 */
-@property (nonatomic, assign, readonly) CGRect statusToolbarF;
+@property (nonatomic, assign, readonly) CGRect statusToolBarF;
 
 /** 微博cell的高度 */
 @property (nonatomic, assign, readonly) CGFloat cellHeight;

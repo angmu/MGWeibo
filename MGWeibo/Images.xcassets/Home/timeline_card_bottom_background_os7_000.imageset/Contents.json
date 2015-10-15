@@ -2,13 +2,12 @@
   "images" : [
     {
       "idiom" : "universal",
-      "filename" : "timeline_card_bottom_background_os7.png",
       "scale" : "1x"
     },
     {
       "idiom" : "universal",
-      "filename" : "timeline_card_bottom_background_os7@2x.png",
-      "scale" : "2x"
+      "scale" : "2x",
+      "filename" : "timeline_card_bottom_background_os7@2x.png"
     },
     {
       "idiom" : "universal",

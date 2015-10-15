@@ -25,6 +25,7 @@
 
 @end
 @implementation MgTabBarButton
+
 -(instancetype)initWithFrame:(CGRect)frame
 {
     self = [super initWithFrame:frame];

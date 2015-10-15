@@ -15,7 +15,7 @@
 #import "MGTabBar.h"
 #import "MGNavigationController.h"
 
-@interface MGTabBarViewController () <MGTabBarDelegate>
+@interface MGTabBarViewController ()<MGTabBarDelegate>
 /**
  *  自定义tabBar
  */
@@ -30,7 +30,7 @@
     [self setupTabBar];
 
     // 初始化所有子控制器
-    [self setupAllChildViewControllers];
+    [self setupAllChildViewController];
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -44,6 +44,10 @@
             [child removeFromSuperview];
         }
     }
+    
+//    UITabBarBackgroundView
+//    UIImageView
+//    UITabBarButton
 }
 
 /**
@@ -69,7 +73,7 @@
 /**
  *  初始化所有控制器
  */
-- (void)setupAllChildViewControllers
+- (void)setupAllChildViewController
 {
     // 1.首页
     MGHomeViewController *home = [[MGHomeViewController alloc] init];

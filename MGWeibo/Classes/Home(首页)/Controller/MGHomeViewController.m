@@ -83,6 +83,8 @@
 - (void)setupNavBar
 {
     
+    
+    
     // 左边按钮
     self.navigationItem.leftBarButtonItem = [UIBarButtonItem itemWithIcon:@"navigationbar_friendsearch"highIcon:@"navigationbar_friendsearch_highlighted" target:self action:@selector(findFriend)];
     
@@ -101,7 +103,11 @@
     self.navigationItem.titleView = titleBtn;
     
     self.tableView.backgroundColor = MGColor(226, 226, 226);
+//    self.tableView.backgroundColor = [UIColor clearColor];
     self.tableView.contentInset = UIEdgeInsetsMake(0, 0, MGStatusTableBorder, 0);
+    //设置cell分割线样式
+    self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+    
 }
 
 /**

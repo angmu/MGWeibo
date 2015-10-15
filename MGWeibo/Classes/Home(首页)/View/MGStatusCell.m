@@ -11,36 +11,19 @@
 #import "MGStatus.h"
 #import "MGUser.h"
 #import "UIImageView+WebCache.h"
+#import "MGStatusToolBar.h"
+#import "MGRetweetStatusView.h"
+#import "MGStatusTopView.h"
 
 @interface MGStatusCell ()
 /** 顶部的view */
-@property (nonatomic, weak) UIImageView *topView;
-/** 图像 */
-@property (nonatomic, weak) UIImageView *iconView;
-/** 会员图标 */
-@property (nonatomic, weak) UIImageView *vipView;
-/** 配图 */
-@property (nonatomic, weak) UIImageView *photoView;
-/** 昵称 */
-@property (nonatomic, weak) UILabel *nameLabel;
-/** 时间 */
-@property (nonatomic, weak) UILabel *timeLabel;
-/** 来源 */
-@property (nonatomic, weak) UILabel *sourceLabel;
-/** 正文\内容 */
-@property (nonatomic, weak) UILabel *contentLabel;
+@property (nonatomic, weak) MGStatusTopView *topView;
 
 /** 被转发微博的view(父控件) */
-@property (nonatomic, weak) UIImageView *retweetView;
-/** 被转发微博的作者昵称 */
-@property (nonatomic, weak) UILabel *retweetNameLabel;
-/** 被转发微博的正文\内容 */
-@property (nonatomic, weak) UILabel *retweetContentLabel;
-/** 被转发微博的配图 */
-@property (nonatomic, weak) UIImageView *retweetPhotoView;
+@property (nonatomic, weak) MGRetweetStatusView *retweetView;
 
 /** 添加微博的工具条 */
-@property (nonatomic, weak) UIImageView *statusToolbar;
+@property (nonatomic, weak) MGStatusToolBar *statusToolBar;
 @end
 
 @implementation MGStatusCell
@@ -55,20 +38,42 @@
     return cell;
 }
 
+#pragma mark - 一次性初始化，添加控件
 - (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self) {
+        
         // 1.添加原创微博内部的子控件
         [self setupOriginalSubviews];
         
         // 2.添加被转发微博的子控件
         [self setupRetweetSubviews];
         
-        // 3.添加微博的工具条
-        [self setupStatusToolBar];
+        //微博顶部控件
+        [self setupTopView];
+        
+        //2.添加微博的工具条
+        [self setupstatusToolBar];
     }
     return self;
+}
+
+- (void)setupTopView
+{
+    /** 0.设置cell的背景颜色 */
+    self.backgroundColor = [UIColor clearColor];
+    self.selectedBackgroundView = [[UIView alloc] init];
+    //    self.backgroundView = [[UIView alloc] init];
+    //    UIImageView *bgView = [[UIImage alloc] init];
+    //    bgView.image = [UIImage resizeimageWithName:@"common_card_background_highlighted_os7"];
+    //    self.selectedBackgroundView = bgView;
+    
+    /** 1.顶部的view */
+    MGStatusTopView *topView = [[MGStatusTopView alloc] init];
+    
+    [self.contentView addSubview:topView];
+    self.topView = topView;
 }
 
 /**
@@ -76,60 +81,8 @@
  */
 - (void)setupOriginalSubviews
 {
-    /** 0.设置cell的背景颜色 */
-    self.backgroundColor = [UIColor clearColor];
     
-    /** 1.顶部的view */
-    UIImageView *topView = [[UIImageView alloc] init];
-    topView.image = [UIImage resizeimageWithName:@"timeline_card_top_background"];
-    [self.contentView addSubview:topView];
-    self.topView = topView;
     
-    /** 2.图像 */
-    UIImageView *iconView = [[UIImageView alloc] init];
-    [self.topView addSubview:iconView];
-    self.iconView = iconView;
-    
-    /** 3.会员图标 */
-    UIImageView *vipView = [[UIImageView alloc] init];
-    [self.topView addSubview:vipView];
-    self.vipView = vipView;
-    
-    /** 4.配图 */
-    UIImageView *photoView = [[UIImageView alloc] init];
-    [self.topView addSubview:photoView];
-    self.photoView = photoView;
-    
-    /** 5.昵称 */
-    UILabel *nameLabel = [[UILabel alloc] init];
-    nameLabel.font =  MGStatusNameFont;
-    nameLabel.backgroundColor = [UIColor clearColor];
-    [self.topView addSubview:nameLabel];
-    self.nameLabel = nameLabel;
-    
-    /** 6.时间 */
-    UILabel *timeLabel = [[UILabel alloc] init];
-    timeLabel.font =  MGStatusTimeFont;
-    timeLabel.textColor = MGColor(245, 156, 51);
-    timeLabel.backgroundColor = [UIColor clearColor];
-    [self.topView addSubview:timeLabel];
-    self.timeLabel = timeLabel;
-    
-    /** 7.来源 */
-    UILabel *sourceLabel = [[UILabel alloc] init];
-    sourceLabel.font = MGStatusSourceFont;
-    sourceLabel.textColor = MGColor(176, 176, 176);
-    sourceLabel.backgroundColor = [UIColor clearColor];
-    [self.topView addSubview:sourceLabel];
-    self.sourceLabel = sourceLabel;
-    
-    /** 8.正文\内容 */
-    UILabel *contentLabel = [[UILabel alloc] init];
-    contentLabel.font = MGStatusContentFont;
-    contentLabel.backgroundColor = [UIColor clearColor];
-    contentLabel.numberOfLines = 0;
-    [self.topView addSubview:contentLabel];
-    self.contentLabel = contentLabel;
 }
 
 /**
@@ -138,43 +91,25 @@
 - (void)setupRetweetSubviews
 {
     /** 1.被转发微博的view(父控件) */
-    UIImageView *retweetView = [[UIImageView alloc] init];
-    retweetView.image = [UIImage resizeimageWithName:@"timeline_retweet_background" left:0.9 top:0.5];
+    MGRetweetStatusView *retweetView = [[MGRetweetStatusView alloc] init];
+    
     [self.topView addSubview:retweetView];
     self.retweetView = retweetView;
-
-    /** 2.被转发微博的作者昵称 */
-    UILabel *retweetNameLabel = [[UILabel alloc] init];
-    retweetNameLabel.font = MGRetweetStatusNameFont;
-    [self.retweetView addSubview:retweetNameLabel];
-    self.retweetNameLabel = retweetNameLabel;
-    
-    /** 3.被转发微博的正文\内容 */
-    UILabel *retweetContentLabel = [[UILabel alloc] init];
-    retweetContentLabel.font = MGRetweetStatusContentFont;
-    retweetContentLabel.numberOfLines = 0;
-    [self.retweetView addSubview:retweetContentLabel];
-    self.retweetContentLabel = retweetContentLabel;
-    
-    /** 4.被转发微博的配图 */
-    UIImageView *retweetPhotoView = [[UIImageView alloc] init];
-    [self.retweetView addSubview:retweetPhotoView];
-    self.retweetPhotoView = retweetPhotoView;
 }
 
 /**
  *  添加微博的工具条
  */
-- (void)setupStatusToolBar
+- (void)setupstatusToolBar
 {
     /** 添加微博的工具条 */
-    UIImageView *statusToolbar = [[UIImageView alloc] init];
-    statusToolbar.image = [UIImage resizeimageWithName:@"timeline_card_bottom_background"];
-    [self.contentView addSubview:statusToolbar];
-    self.statusToolbar = statusToolbar;
+    MGStatusToolBar *statusToolBar = [[MGStatusToolBar alloc] init];
+    
+    [self.contentView addSubview:statusToolBar];
+    self.statusToolBar = statusToolBar;
 }
 
-
+# pragma mark - 重写cell的setFrame方法
 /**
  *  拦截frame的设置
  *  只要tableView设置cell的frame,就把它改掉
@@ -188,6 +123,7 @@
     [super setFrame:frame];
 }
 
+#pragma mark - 设置控件数据
 /**
  *  传递模型数据
  */
@@ -202,7 +138,7 @@
     [self setupRetweetData];
     
     // 3.微博工具条
-    [self setupStatusToolBarData];
+    [self setupstatusToolBarData];
 }
 
 /**
@@ -212,46 +148,8 @@
 {
     // 1.topView
     self.topView.frame = self.statusFrame.topViewF;
-    
-    // 2.头像
-    MGStatus *status = self.statusFrame.status;
-    MGUser *user = status.user;
-    [self.iconView sd_setImageWithURL:[NSURL URLWithString:user.profile_image_url] placeholderImage:[UIImage imageWithName:@"avatar_default_small"]];
-    self.iconView.frame = self.statusFrame.iconViewF;
-    
-    // 3.昵称
-    self.nameLabel.text = user.name;
-    self.nameLabel.frame = self.statusFrame.nameLabelF;
-    
-    // 4.会员图标
-    if (user.isVip) {
-        self.vipView.hidden = NO;
-        self.vipView.image = [UIImage imageWithName:@"common_icon_membership"];
-        self.vipView.frame = self.statusFrame.vipViewF;
-    } else {
-        self.vipView.hidden = YES;
-    }
-    
-    // 5.时间
-    self.timeLabel.text = status.created_at;
-    self.timeLabel.frame = self.statusFrame.timeLabelF;
-    
-    // 6.来源
-    self.sourceLabel.text = status.source;
-    self.sourceLabel.frame = self.statusFrame.sourceLabelF;
-    
-    // 7.正文\微博内容
-    self.contentLabel.text = status.text;
-    self.contentLabel.frame = self.statusFrame.contentLabelF;
-    
-    // 8.配图
-    if (status.thumbnail_pic) {
-        self.photoView.hidden = NO;
-        self.photoView.frame = self.statusFrame.photoViewF;
-        [self.photoView sd_setImageWithURL:[NSURL URLWithString:status.thumbnail_pic] placeholderImage:[UIImage imageWithName:@"timeline_image_placeholder"]];
-    } else {
-        self.photoView.hidden = YES;
-    }
+    //传递模型数据
+    self.topView.statusFrame = self.statusFrame;
 }
 
 /**
@@ -260,27 +158,16 @@
 - (void)setupRetweetData
 {
     MGStatus *retweetStatus = self.statusFrame.status.retweeted_status;
+    
+    //父控件是否显示
     if (retweetStatus) {
         self.retweetView.hidden = NO;
-        // 1.父控件
+        //设置retweetView自身的尺寸
         self.retweetView.frame = self.statusFrame.retweetViewF;
         
-        // 2.昵称
-        self.retweetNameLabel.text = retweetStatus.user.name;
-        self.retweetNameLabel.frame = self.statusFrame.retweetNameLabelF;
-        
-        // 3.正文
-        self.retweetContentLabel.text = retweetStatus.text;
-        self.retweetContentLabel.frame = self.statusFrame.retweetContentLabelF;
-        
-        // 4.配图
-        if (retweetStatus.thumbnail_pic) {
-            self.retweetPhotoView.hidden = NO;
-            self.retweetPhotoView.frame = self.statusFrame.retweetPhotoViewF;
-            [self.retweetPhotoView sd_setImageWithURL:[NSURL URLWithString:retweetStatus.thumbnail_pic] placeholderImage:[UIImage imageWithName:@"timeline_image_placeholder"]];
-        } else {
-            self.retweetPhotoView.hidden = YES;
-        }
+        //传递模型数据
+        self.retweetView.statusFrame = self.statusFrame;
+    
     } else {
         self.retweetView.hidden = YES;
     }
@@ -289,9 +176,10 @@
 /**
  *  设置工具条数据
  */
-- (void)setupStatusToolBarData
+- (void)setupstatusToolBarData
 {
-    self.statusToolbar.frame = self.statusFrame.statusToolbarF;
+    self.statusToolBar.frame = self.statusFrame.statusToolBarF;
+    self.statusToolBar.status = self.statusFrame.status;
 }
 
 

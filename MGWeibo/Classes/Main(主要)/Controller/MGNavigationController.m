@@ -34,6 +34,7 @@
         [item setBackgroundImage:[UIImage imageWithName:@"navigationbar_button_background"] forState:UIControlStateNormal barMetrics:UIBarMetricsDefault];
         [item setBackgroundImage:[UIImage imageWithName:@"navigationbar_button_background_pushed"] forState:UIControlStateHighlighted barMetrics:UIBarMetricsDefault];
         [item setBackgroundImage:[UIImage imageWithName:@"navigationbar_button_background_disable"] forState:UIControlStateDisabled barMetrics:UIBarMetricsDefault];
+        
     }
 
     // 设置文字属性
@@ -58,6 +59,10 @@
         [navBar setBackgroundImage:[UIImage imageWithName:@"navigationbar_background"] forBarMetrics:UIBarMetricsDefault];
         [UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleBlackOpaque;
     }
+    
+//    [navBar setBackgroundImage:[UIImage imageWithName:@"navigationbar_background"] forBarMetrics:UIBarMetricsDefault];
+//    [[UINavigationBar appearance] setBarTintColor:MGColor(157, 184, 253)];
+
     // 设置标题属性
     NSMutableDictionary *textAttrs = [NSMutableDictionary dictionary];
     textAttrs[UITextAttributeTextColor] = [UIColor blackColor];
