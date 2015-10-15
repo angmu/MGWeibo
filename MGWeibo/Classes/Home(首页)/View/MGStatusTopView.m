@@ -11,6 +11,7 @@
 #import "MGStatus.h"
 #import "MGUser.h"
 #import "UIImageView+WebCache.h"
+#import "MGRetweetStatusView.h"
 
 
 @interface MGStatusTopView ()
@@ -28,6 +29,9 @@
 @property (nonatomic, weak) UILabel *sourceLabel;
 /** 正文\内容 */
 @property (nonatomic, weak) UILabel *contentLabel;
+
+/** 被转发微博的view(父控件) */
+@property (nonatomic, weak) MGRetweetStatusView *retweetView;
 
 @end
 
@@ -88,6 +92,11 @@
         [self addSubview:contentLabel];
         self.contentLabel = contentLabel;
         
+        /** 1.被转发微博的view(父控件) */
+        MGRetweetStatusView *retweetView = [[MGRetweetStatusView alloc] init];
+        
+        [self addSubview:retweetView];
+        self.retweetView = retweetView;
     }
     return self;
 }
@@ -149,6 +158,21 @@
         [self.photoView sd_setImageWithURL:[NSURL URLWithString:status.thumbnail_pic] placeholderImage:[UIImage imageWithName:@"timeline_image_placeholder"]];
     } else {
         self.photoView.hidden = YES;
+    }
+    
+    MGStatus *retweetStatus = self.statusFrame.status.retweeted_status;
+    
+    //父控件是否显示
+    if (retweetStatus) {
+        self.retweetView.hidden = NO;
+        //设置retweetView自身的尺寸
+        self.retweetView.frame = self.statusFrame.retweetViewF;
+        
+        //传递模型数据
+        self.retweetView.statusFrame = self.statusFrame;
+        
+    } else {
+        self.retweetView.hidden = YES;
     }
 }
 

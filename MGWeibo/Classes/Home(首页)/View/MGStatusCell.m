@@ -19,9 +19,6 @@
 /** 顶部的view */
 @property (nonatomic, weak) MGStatusTopView *topView;
 
-/** 被转发微博的view(父控件) */
-@property (nonatomic, weak) MGRetweetStatusView *retweetView;
-
 /** 添加微博的工具条 */
 @property (nonatomic, weak) MGStatusToolBar *statusToolBar;
 @end
@@ -44,12 +41,6 @@
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self) {
         
-        // 1.添加原创微博内部的子控件
-        [self setupOriginalSubviews];
-        
-        // 2.添加被转发微博的子控件
-        [self setupRetweetSubviews];
-        
         //微博顶部控件
         [self setupTopView];
         
@@ -63,39 +54,16 @@
 {
     /** 0.设置cell的背景颜色 */
     self.backgroundColor = [UIColor clearColor];
-    self.selectedBackgroundView = [[UIView alloc] init];
-    //    self.backgroundView = [[UIView alloc] init];
-    //    UIImageView *bgView = [[UIImage alloc] init];
-    //    bgView.image = [UIImage resizeimageWithName:@"common_card_background_highlighted_os7"];
-    //    self.selectedBackgroundView = bgView;
+//    self.selectedBackgroundView = [[UIView alloc] init];
     
     /** 1.顶部的view */
     MGStatusTopView *topView = [[MGStatusTopView alloc] init];
     
     [self.contentView addSubview:topView];
     self.topView = topView;
-}
-
-/**
- *  添加原创微博内部的子控件
- */
-- (void)setupOriginalSubviews
-{
-    
     
 }
 
-/**
- *  添加被转发微博的子控件
- */
-- (void)setupRetweetSubviews
-{
-    /** 1.被转发微博的view(父控件) */
-    MGRetweetStatusView *retweetView = [[MGRetweetStatusView alloc] init];
-    
-    [self.topView addSubview:retweetView];
-    self.retweetView = retweetView;
-}
 
 /**
  *  添加微博的工具条
@@ -131,20 +99,17 @@
 {
     _statusFrame = statusFrame;
     
-    // 1.原创微博
-    [self setupOriginalData];
+    //1.设置顶部View的数据
+    [self setupTopViewData];
     
-    // 2.转发微博
-    [self setupRetweetData];
-    
-    // 3.微博工具条
+    // 2.微博工具条
     [self setupstatusToolBarData];
 }
 
 /**
  *  原创微博数据
  */
-- (void)setupOriginalData
+- (void)setupTopViewData
 {
     // 1.topView
     self.topView.frame = self.statusFrame.topViewF;
@@ -152,26 +117,6 @@
     self.topView.statusFrame = self.statusFrame;
 }
 
-/**
- *  转发微博数据
- */
-- (void)setupRetweetData
-{
-    MGStatus *retweetStatus = self.statusFrame.status.retweeted_status;
-    
-    //父控件是否显示
-    if (retweetStatus) {
-        self.retweetView.hidden = NO;
-        //设置retweetView自身的尺寸
-        self.retweetView.frame = self.statusFrame.retweetViewF;
-        
-        //传递模型数据
-        self.retweetView.statusFrame = self.statusFrame;
-    
-    } else {
-        self.retweetView.hidden = YES;
-    }
-}
 
 /**
  *  设置工具条数据
