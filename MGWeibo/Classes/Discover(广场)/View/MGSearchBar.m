@@ -28,7 +28,7 @@
         self.leftView = iconView;
         self.leftViewMode = UITextFieldViewModeAlways;
         
-        self.leftView.frame = CGRectMake(0, 0, 30, self.frame.size.height);
+//        self.leftView.frame = CGRectMake(0, 0, 30, self.frame.size.height);
         
         // 字体
         self.font = [UIFont systemFontOfSize:13];
@@ -44,6 +44,7 @@
         // 设置键盘右下角按钮样式
         self.returnKeyType = UIReturnKeySearch;
         self.enablesReturnKeyAutomatically = YES;
+        NSLog(@"initWithFrame-----%@", NSStringFromCGRect(self.leftView.frame));
     }
     
     return self;
@@ -52,9 +53,20 @@
 
 - (void)layoutSubviews
 {
-    [super layoutSubviews];
+//    [super layoutSubviews];
     
     // 设置左边图标的frame
-//    self.leftView.frame = CGRectMake(0, 0, 30, self.frame.size.height);
+    self.leftView.frame = CGRectMake(0, 0, 30, self.frame.size.height);
+    
+    
+    NSLog(@"layoutSubviews-----%@", NSStringFromCGRect(self.leftView.frame));
+    
+    //把它放在最后是好的
+    [super layoutSubviews];
 }
 @end
+
+/*
+ 2015-10-17 10:20:41.030 MGWeibo[908:36831] initWithFrame-----{{0, 0}, {15, 15}}
+ 2015-10-17 10:20:41.037 MGWeibo[908:36831] layoutSubviews-----{{0, 0}, {30, 30}}
+ */

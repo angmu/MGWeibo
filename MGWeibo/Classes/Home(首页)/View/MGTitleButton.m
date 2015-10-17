@@ -27,7 +27,7 @@
         self.imageView.contentMode = UIViewContentModeCenter;
         self.titleLabel.textAlignment = NSTextAlignmentRight;
         // 设置字体
-        self.titleLabel.font = [UIFont boldSystemFontOfSize:19];
+        self.titleLabel.font = [UIFont boldSystemFontOfSize:18];
         // 背景
         [self setBackgroundImage:[UIImage resizeimageWithName:@"navigationbar_filter_background_highlighted"] forState:UIControlStateHighlighted];
         [self setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
@@ -52,6 +52,19 @@
     CGFloat titleW = contentRect.size.width - MGTitleButtonImageW;;
     CGFloat titleH = contentRect.size.height;
     return CGRectMake(titleX, titleY, titleW, titleH);
+}
+
+- (void)setTitle:(NSString *)title forState:(UIControlState)state
+{
+    //根据title计算自己的宽度
+    CGFloat titleW = [title sizeWithFont:self.titleLabel.font].width;
+    
+    CGRect frame = self.frame;
+    //加上image的宽度 两边最好有点距离
+    frame.size.width = titleW + MGTitleButtonImageW + 6;
+    self.frame = frame;
+    
+    [super setTitle:title forState:state];
 }
 
 @end

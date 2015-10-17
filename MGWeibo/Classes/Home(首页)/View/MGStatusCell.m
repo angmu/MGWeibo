@@ -54,7 +54,8 @@
 {
     /** 0.设置cell的背景颜色 */
     self.backgroundColor = [UIColor clearColor];
-//    self.selectedBackgroundView = [[UIView alloc] init];
+    //选中时的背景图片
+    self.selectedBackgroundView = [[UIView alloc] init];
     
     /** 1.顶部的view */
     MGStatusTopView *topView = [[MGStatusTopView alloc] init];

@@ -18,6 +18,9 @@
 @property (nonatomic, assign) long long remind_in;
 @property (nonatomic, assign) long long uid;
 
+/** 用户的昵称 */
+@property (nonatomic, copy) NSString *name;
+
 // 字典转模型的方法
 + (instancetype)accountWithDict:(NSDictionary *)dict;
 - (instancetype)initWithDict:(NSDictionary *)dict;
