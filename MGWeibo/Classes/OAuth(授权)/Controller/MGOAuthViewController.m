@@ -29,7 +29,8 @@
     [self.view addSubview:webView];
     
     // 2.加载授权页面(新浪提供的登录页面)
-    NSURL *url = [NSURL URLWithString:@"https://api.weibo.com/oauth2/authorize?client_id=3637170628&redirect_uri=https://api.weibo.com/oauth2/default.html"];
+    NSString *urlStr = [NSString stringWithFormat:@"https://api.weibo.com/oauth2/authorize?client_id=%@&redirect_uri=%@", MGAppKey,  MGRedirectURI];
+    NSURL *url = [NSURL URLWithString:urlStr];
     NSURLRequest *reequest = [NSURLRequest requestWithURL:url];
     [webView loadRequest:reequest];
 }
@@ -62,6 +63,7 @@
     // 隐藏提醒框
     [MBProgressHUD hideHUD];
 }
+
 /**
  *  当webView发送一个请求之前，都会先调用这个方法,询问代理可不可以加载这个页面的请求
  *  @return YES : 可以加载页面,  NO : 不可以加载页面
@@ -70,6 +72,7 @@
 {
 //    MGLog(@"%@", request.URL);
     // 1.请求的URL路径
+    //https://api.weibo.com/oauth2/default.html?code=dec6952c6c56c300f5e58aa9c3fa95bb
     NSString *urlStr = request.URL.absoluteString;
     // 2.查找code=在urlStr中得范围
     NSRange range = [urlStr rangeOfString:@"code="];
@@ -78,11 +81,14 @@
 //    if (range.location != NSNotFound)
     if (range.length) {
         // 4.截取code=后面的请求标记(经过用户授权成功的)
-        int loc = range.location + range.length;
+        NSInteger loc = range.location + range.length;
         NSString *code = [urlStr substringFromIndex:loc];
         
         // 5.发送POST请求给新浪，通过code换取一个accessToken访问标记
         [self accessTokenWithCode:code];
+        
+        //肯定是回调页面
+        return NO;
     }
     return YES;
 }
@@ -98,11 +104,13 @@
 
     // 2.封装请求参数
     NSMutableDictionary *params = [NSMutableDictionary dictionary];
-    params[@"client_id"] = @"3637170628";
-    params[@"client_secret"] = @"b4990ef2e737298552a1c8388fca78c3";
+    params[@"client_id"] = MGAppKey;
+    params[@"client_secret"] = MGAppSecret;
     params[@"grant_type"] = @"authorization_code";
     params[@"code"] = code;
-    params[@"redirect_uri"] = @"https://api.weibo.com/oauth2/default.html";
+    params[@"redirect_uri"] = MGRedirectURI;
+    
+    
     
 //    mgr.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"text/plain​", nil];
     // 3.发送请求

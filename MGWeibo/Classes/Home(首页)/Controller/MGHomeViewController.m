@@ -30,6 +30,7 @@
 @property (nonatomic, weak) MGTitleButton *titleButton;
 
 @property (nonatomic, weak) MJRefreshFooterView *footer;
+@property (nonatomic, weak) MJRefreshHeaderView *header;
 @end
 
 @implementation MGHomeViewController
@@ -95,22 +96,17 @@
  */
 - (void)setupRefreashView
 {
-    UIRefreshControl *refreshControl = [[UIRefreshControl alloc] init];
-    //监听刷新控件状态的改变
-    [refreshControl addTarget:self action:@selector(refreshControlStateChange:) forControlEvents:UIControlEventValueChanged];
-    
-    [self.tableView addSubview:refreshControl];
-    //自动进入刷新状态(不会触发监听方法)
-    [refreshControl beginRefreshing];
-    //直接加载数据
-    [self refreshControlStateChange:refreshControl];
+    //下拉刷新
+    MJRefreshHeaderView *header = [MJRefreshHeaderView header];
+    header.scrollView = self.tableView;
+    header.delegate = self;
+    //一进来就刷新
+    [header beginRefreshing];
+    self.header = header;
     
     //3.下拉刷新(上拉加载更多数据)
     MJRefreshFooterView *footer = [MJRefreshFooterView footer];
     footer.scrollView = self.tableView;
-//    footer.beginRefreshingBlock = ^(MJRefreshBaseView *refreshView) {
-//        MGLog(@"beginRefreshingBlock-------");
-//    };
     footer.delegate = self;
     self.footer = footer;
     
@@ -120,6 +116,18 @@
  *  当上刷新控件进入开始刷新时调用
  */
 -(void)refreshViewBeginRefreshing:(MJRefreshBaseView *)refreshView
+{
+    if ([refreshView isKindOfClass:[MJRefreshFooterView class]]) { //上拉刷新
+        [self loadMoreData];
+    } else { //下拉刷新
+        [self loadNewData];
+    }
+}
+
+/**
+ *  加载更多数据
+ */
+- (void)loadMoreData
 {
     //传进来的refreshView就是footerView
     //发送请求 加载更多数据
@@ -148,7 +156,7 @@
          // 创建frame模型对象
          NSMutableArray *statusFrameArray = [NSMutableArray array];
          for (MGStatus *status in statues) {
-            
+             
              MGStatusFrame *statusFrame = [[MGStatusFrame alloc] init];
              // 传递微博数据模型
              statusFrame.status = status;
@@ -156,31 +164,29 @@
          }
          //直接 把新数据加到旧数据 后面
          [self.statusFrames addObjectsFromArray:statusFrameArray];
- 
+         
          // 异步加载(1-2s后才有结果)，重新刷新表格，否则看不见
          [self.tableView reloadData];
          
          //让刷新控件停止显示刷新状态
-         [refreshView endRefreshing];
+         [self.footer endRefreshing];
          //显示最新微博数量(给用户一些友善的提示)
          [self showNewStatusCount:statusFrameArray.count];
      } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-         
+
          //让刷新控件停止显示刷新状态
-         [refreshView endRefreshing];
+         [self.footer endRefreshing];
      }];
-}
-
-
-- (void)dealloc
-{
-    [self.footer free];
+    
 }
 
 /**
  *  监听刷新控件状态的改变(手动进入刷新状态才会调用这个方法)
  */
-- (void)refreshControlStateChange:(UIRefreshControl *)refreshControl
+/**
+ *  下拉加载更新的数据
+ */
+- (void)loadNewData
 {
     // 1.创建请求管理对象
     AFHTTPRequestOperationManager *mgr = [AFHTTPRequestOperationManager manager];
@@ -219,24 +225,26 @@
          [tempArray addObjectsFromArray:statusFrameArray];
          [tempArray addObjectsFromArray:self.statusFrames];
          self.statusFrames = tempArray;
-//         self.statusFrames = statusFrameArray;
-//         MGLog(@"header--%zd----", self.statusFrames.count);
          
          // 异步加载(1-2s后才有结果)，重新刷新表格，否则看不见
          [self.tableView reloadData];
          
          //让刷新控件停止显示刷新状态
-         [refreshControl endRefreshing];
+         [self.header endRefreshing];
          
          //显示最新微博数量(给用户一些友善的提示)
          [self showNewStatusCount:statusFrameArray.count];
      } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
          
          //让刷新控件停止显示刷新状态
-         [refreshControl endRefreshing];
+         [self.header endRefreshing];
      }];
+}
 
-
+- (void)dealloc
+{
+    [self.header free];
+    [self.footer free];
 }
 
 /**
@@ -361,7 +369,7 @@
     
     self.tableView.backgroundColor = MGColor(226, 226, 226);
 //    self.tableView.backgroundColor = [UIColor clearColor];
-//    self.tableView.contentInset = UIEdgeInsetsMake(0, 0, MGStatusTableBorder, 0);
+    self.tableView.contentInset = UIEdgeInsetsMake(0, 0, MGStatusTableBorder, 0);
     //设置cell分割线样式
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
 }

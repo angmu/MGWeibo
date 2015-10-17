@@ -22,6 +22,7 @@
 
 }
 
+
 +(MGAccount *)account
 {
     // 取出账号

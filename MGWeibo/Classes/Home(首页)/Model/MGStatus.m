@@ -23,10 +23,12 @@
 {
     //Thu Oct 08 22:30:15 +0800 2015
     //EEE MMM d HH:mm:ss Z yyyy
-    
+
     //1.获得微博发送时间
     NSDateFormatter *fmt = [[NSDateFormatter alloc] init];
     fmt.dateFormat = @"EEE MMM d HH:mm:ss Z yyyy";
+    #warning 真机调试，必须加上这段
+    fmt.locale = [[NSLocale alloc] initWithLocaleIdentifier:@"en_US"];
     //把一个字符串以这种格式解析成一个日期对象
     NSDate *createdDate = [fmt dateFromString:_created_at];
 
