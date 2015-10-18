@@ -11,12 +11,29 @@
 #import "MGStatus.h"
 #import "MGUser.h"
 
-
-
-
+#define MGStatusPhotoWH 70
+#define MGStatusPhotoMargin 10
 
 @implementation MGStatusFrame
 
+/**
+ *  根据配图的个数 确定尺寸
+
+ */
+- (CGSize)photosSizeWithCount:(int)count
+{
+    int maxCols = 3;
+    //count很来到这 可定大于0
+    int cols = (count > maxCols)? maxCols :count;
+    CGFloat photoViewW = MGStatusPhotoWH * cols + MGStatusPhotoMargin * (cols - 1);
+    
+    int rows = (count + maxCols -1 ) / maxCols;
+    CGFloat photoViewH = MGStatusPhotoWH * rows + MGStatusPhotoMargin * (rows - 1);
+
+    return CGSizeMake(photoViewW, photoViewH);
+    
+    
+}
 /**
  *  获得微博数据模型后
  *  根据微博数据计算所有子控件的frame
@@ -48,7 +65,7 @@
     _nameLabelF = (CGRect){{nameLabelX, nameLabelY}, nameLabelSize};
     
     // 4.会员图标
-    if (status.user.mbrank) {
+    if (status.user.mbrank > 2) {
         CGFloat vipViewW = 14;
         CGFloat vipViewH = nameLabelSize.height;
         CGFloat vipViewX = CGRectGetMaxX(_nameLabelF) + MGStatusCellBorder;
@@ -76,22 +93,24 @@
     CGFloat contentLabelMaxW = topViewW - 2 * MGStatusCellBorder;
     CGSize contentLabelSize = [status.text sizeWithFont:MGStatusContentFont constrainedToSize:CGSizeMake(contentLabelMaxW, MAXFLOAT)];
     
-    CGSize ssLabel =  [status.text boundingRectWithSize:CGSizeMake(contentLabelMaxW, MAXFLOAT) options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName : MGStatusContentFont} context:nil].size;
+//    CGSize ssLabel =  [status.text boundingRectWithSize:CGSizeMake(contentLabelMaxW, MAXFLOAT) options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName : MGStatusContentFont} context:nil].size;
 //    NSLog(@"%@", NSStringFromCGSize(ssLabel));
     _contentLabelF = (CGRect){{contentLabelX, contentlabelY}, contentLabelSize};
     
     // 8.配图
     if (status.pic_urls.count) {
-        CGFloat photoViewWH = 75;
+        
         CGFloat photoViewX = contentLabelX;
         CGFloat photoViewY = CGRectGetMaxY(_contentLabelF) + MGStatusCellBorder;
-        _photoViewF = CGRectMake(photoViewX, photoViewY, photoViewWH, photoViewWH);
+        CGSize photoViewSize = [self photosSizeWithCount:status.pic_urls.count];
         
+        _photoViewF = (CGRect){{photoViewX, photoViewY}, photoViewSize};
         
     }
     
     // 9.被转发微博
-    if (status.retweeted_status) {
+    MGStatus *retweeted_status = status.retweeted_status;
+    if (retweeted_status) {
         
         CGFloat retweetViewW = contentLabelMaxW;
         CGFloat retweetViewX = contentLabelX;
@@ -101,7 +120,7 @@
         // 10.被转发微博的昵称
         CGFloat retweetNameLabelX = MGStatusCellBorder;
         CGFloat retweetNameLabelY = MGStatusCellBorder;
-        NSString *name = [NSString stringWithFormat:@"@%@", status.retweeted_status.user.name];
+        NSString *name = [NSString stringWithFormat:@"@%@", retweeted_status.user.name];
         CGSize retweetNameLabelSize = [name sizeWithFont:MGRetweetStatusNameFont];
         _retweetNameLabelF = (CGRect){{retweetNameLabelX, retweetNameLabelY},retweetNameLabelSize};
         
@@ -109,15 +128,16 @@
         CGFloat retweetContentLabelX = retweetNameLabelX;
         CGFloat retweetContentlabelY = CGRectGetMaxY(_retweetNameLabelF) + MGStatusCellBorder * 0.5;
         CGFloat retweetContentLabelMaxW = retweetViewW - 2 * MGStatusCellBorder;
-        CGSize retweetContentLabelSize = [status.retweeted_status.text sizeWithFont:MGRetweetStatusContentFont constrainedToSize:CGSizeMake(retweetContentLabelMaxW, MAXFLOAT)];
+        CGSize retweetContentLabelSize = [retweeted_status.text sizeWithFont:MGRetweetStatusContentFont constrainedToSize:CGSizeMake(retweetContentLabelMaxW, MAXFLOAT)];
         _retweetContentLabelF = (CGRect){{retweetContentLabelX, retweetContentlabelY}, retweetContentLabelSize};
         
         // 12.被转发微博的配图
         if (status.retweeted_status.pic_urls.count) {
-            CGFloat retweetPhotoViewWH = 75;
+            
             CGFloat retweetPhotoViewX = contentLabelX;
             CGFloat retweetPhotoViewY = CGRectGetMaxY(_retweetContentLabelF) + MGStatusCellBorder;
-            _retweetPhotoViewF = (CGRect){{retweetPhotoViewX, retweetPhotoViewY}, retweetPhotoViewWH};
+            CGSize retweetPhotoViewSize = [self photosSizeWithCount:retweeted_status.pic_urls.count];
+            _retweetPhotoViewF = (CGRect){{retweetPhotoViewX, retweetPhotoViewY}, retweetPhotoViewSize};
             
             retweetViewH = CGRectGetMaxY(_retweetPhotoViewF);
         } else { // 没有配图

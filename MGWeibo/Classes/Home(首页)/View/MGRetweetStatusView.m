@@ -12,6 +12,7 @@
 #import "MGUser.h"
 #import "UIImageView+WebCache.h"
 #import "MGPhoto.h"
+#import "MGStatusPhotosView.h"
 
 @interface MGRetweetStatusView ()
 /** 被转发微博的作者昵称 */
@@ -19,7 +20,7 @@
 /** 被转发微博的正文\内容 */
 @property (nonatomic, weak) UILabel *retweetContentLabel;
 /** 被转发微博的配图 */
-@property (nonatomic, weak) UIImageView *retweetPhotoView;
+@property (nonatomic, weak) MGStatusPhotosView *retweetPhotoView;
 
 @end
 
@@ -48,7 +49,7 @@
         self.retweetContentLabel = retweetContentLabel;
         
         /** 4.被转发微博的配图 */
-        UIImageView *retweetPhotoView = [[UIImageView alloc] init];
+        MGStatusPhotosView *retweetPhotoView = [[MGStatusPhotosView alloc] init];
         [self addSubview:retweetPhotoView];
         self.retweetPhotoView = retweetPhotoView;
     }
@@ -75,7 +76,9 @@
         self.retweetPhotoView.hidden = NO;
         MGPhoto *photo = retweetStatus.pic_urls[0];
         self.retweetPhotoView.frame = statusFrame.retweetPhotoViewF;
-        [self.retweetPhotoView sd_setImageWithURL:[NSURL URLWithString:photo.thumbnail_pic] placeholderImage:[UIImage imageWithName:@"timeline_image_placeholder"]];
+//        [self.retweetPhotoView sd_setImageWithURL:[NSURL URLWithString:photo.thumbnail_pic] placeholderImage:[UIImage imageWithName:@"timeline_image_placeholder"]];
+        #warning TODO 设置图片
+        
         }
 
 }

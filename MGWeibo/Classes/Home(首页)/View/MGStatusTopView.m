@@ -13,7 +13,7 @@
 #import "UIImageView+WebCache.h"
 #import "MGRetweetStatusView.h"
 #import "MGPhoto.h"
-
+#import "MGStatusPhotosView.h"
 
 @interface MGStatusTopView ()
 /** 图像 */
@@ -21,7 +21,7 @@
 /** 会员图标 */
 @property (nonatomic, weak) UIImageView *vipView;
 /** 配图 */
-@property (nonatomic, weak) UIImageView *photoView;
+@property (nonatomic, weak) MGStatusPhotosView *photoView;
 /** 昵称 */
 @property (nonatomic, weak) UILabel *nameLabel;
 /** 时间 */
@@ -58,7 +58,7 @@
         self.vipView = vipView;
         
         /** 4.配图 */
-        UIImageView *photoView = [[UIImageView alloc] init];
+        MGStatusPhotosView *photoView = [[MGStatusPhotosView alloc] init];
         [self addSubview:photoView];
         self.photoView = photoView;
         
@@ -95,7 +95,6 @@
         
         /** 1.被转发微博的view(父控件) */
         MGRetweetStatusView *retweetView = [[MGRetweetStatusView alloc] init];
-        
         [self addSubview:retweetView];
         self.retweetView = retweetView;
     }
@@ -157,7 +156,10 @@
         self.photoView.hidden = NO;
         self.photoView.frame = self.statusFrame.photoViewF;
         MGPhoto *photo = status.pic_urls[0];
-        [self.photoView sd_setImageWithURL:[NSURL URLWithString:photo.thumbnail_pic] placeholderImage:[UIImage imageWithName:@"timeline_image_placeholder"]];
+//        [self.photoView sd_setImageWithURL:[NSURL URLWithString:photo.thumbnail_pic] placeholderImage:[UIImage imageWithName:@"timeline_image_placeholder"]];
+#warning TODO 设置图片
+        
+        
     } else {
         self.photoView.hidden = YES;
     }

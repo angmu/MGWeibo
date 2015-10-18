@@ -140,7 +140,6 @@
     [self setupBtn:self.reweetBtn originalTitle:@"转发" count:status.reposts_count];
     [self setupBtn:self.commentBtn originalTitle:@"评论" count:status.comments_count];
     [self setupBtn:self.attituBtn originalTitle:@"赞" count:status.attitudes_count];
-    
 }
 
 /**

@@ -18,6 +18,6 @@
 
 /** 是否为vip */
 //@property (nonatomic, assign, getter=isVip) BOOL *vip;
-/** 会员等级 */
+/** 会员等级 >2是会员 */
 @property (nonatomic, assign) int mbrank;
 @end
