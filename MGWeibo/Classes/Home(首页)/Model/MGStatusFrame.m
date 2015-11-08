@@ -10,30 +10,11 @@
 #import "MGStatusFrame.h"
 #import "MGStatus.h"
 #import "MGUser.h"
+#import "MGStatusPhotosView.h"
 
-#define MGStatusPhotoWH 70
-#define MGStatusPhotoMargin 10
 
 @implementation MGStatusFrame
 
-/**
- *  根据配图的个数 确定尺寸
-
- */
-- (CGSize)photosSizeWithCount:(int)count
-{
-    int maxCols = 3;
-    //count很来到这 可定大于0
-    int cols = (count > maxCols)? maxCols :count;
-    CGFloat photoViewW = MGStatusPhotoWH * cols + MGStatusPhotoMargin * (cols - 1);
-    
-    int rows = (count + maxCols -1 ) / maxCols;
-    CGFloat photoViewH = MGStatusPhotoWH * rows + MGStatusPhotoMargin * (rows - 1);
-
-    return CGSizeMake(photoViewW, photoViewH);
-    
-    
-}
 /**
  *  获得微博数据模型后
  *  根据微博数据计算所有子控件的frame
@@ -94,7 +75,7 @@
     CGSize contentLabelSize = [status.text sizeWithFont:MGStatusContentFont constrainedToSize:CGSizeMake(contentLabelMaxW, MAXFLOAT)];
     
 //    CGSize ssLabel =  [status.text boundingRectWithSize:CGSizeMake(contentLabelMaxW, MAXFLOAT) options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName : MGStatusContentFont} context:nil].size;
-//    NSLog(@"%@", NSStringFromCGSize(ssLabel));
+    //    NSLog(@"%@", NSStringFromCGSize(ssLabel));
     _contentLabelF = (CGRect){{contentLabelX, contentlabelY}, contentLabelSize};
     
     // 8.配图
@@ -102,7 +83,7 @@
         
         CGFloat photoViewX = contentLabelX;
         CGFloat photoViewY = CGRectGetMaxY(_contentLabelF) + MGStatusCellBorder;
-        CGSize photoViewSize = [self photosSizeWithCount:status.pic_urls.count];
+        CGSize photoViewSize = [MGStatusPhotosView sizeWithCount:status.pic_urls.count];
         
         _photoViewF = (CGRect){{photoViewX, photoViewY}, photoViewSize};
         
@@ -136,7 +117,7 @@
             
             CGFloat retweetPhotoViewX = contentLabelX;
             CGFloat retweetPhotoViewY = CGRectGetMaxY(_retweetContentLabelF) + MGStatusCellBorder;
-            CGSize retweetPhotoViewSize = [self photosSizeWithCount:retweeted_status.pic_urls.count];
+            CGSize retweetPhotoViewSize = [MGStatusPhotosView sizeWithCount:retweeted_status.pic_urls.count];
             _retweetPhotoViewF = (CGRect){{retweetPhotoViewX, retweetPhotoViewY}, retweetPhotoViewSize};
             
             retweetViewH = CGRectGetMaxY(_retweetPhotoViewF);
@@ -156,7 +137,7 @@
         } else { // 没有配图
             topViewH = CGRectGetMaxY(_contentLabelF);
         }
- 
+        
     }
     
     // 计算topView的尺寸
@@ -173,4 +154,6 @@
     // 14.cell的高度
     _cellHeight = CGRectGetMaxY(_statusToolBarF) + MGStatusTableBorder;
 }
+
+
 @end

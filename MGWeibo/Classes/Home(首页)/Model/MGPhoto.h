@@ -9,6 +9,6 @@
 #import <Foundation/Foundation.h>
 
 @interface MGPhoto : NSObject
-/** 微博图片地址*/
+/** 微博图片地址 */
 @property (nonatomic, copy) NSString *thumbnail_pic;
 @end

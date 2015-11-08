@@ -9,5 +9,7 @@
 #import <UIKit/UIKit.h>
 
 @interface MGStatusPhotosView : UIView
-
+@property (nonatomic, strong) NSArray *photos;
+/** 根据图片个数计算相册的尺寸 */
++ (CGSize)sizeWithCount:(int)count;
 @end

@@ -13,7 +13,7 @@
 
 @implementation MGStatus
 
-//数组中装对象的类型
+//数组中装的对象的类型
 - (NSDictionary *)objectClassInArray
 {
     return @{@"pic_urls" : [MGPhoto class]};

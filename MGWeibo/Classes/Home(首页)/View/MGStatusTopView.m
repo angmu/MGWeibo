@@ -43,6 +43,9 @@
     self = [super initWithFrame:frame];
     
     if (self) {
+        
+        self.userInteractionEnabled = YES;
+        
         self.image = [UIImage resizeimageWithName:@"timeline_card_top_background"];
         self.highlightedImage = [UIImage resizeimageWithName:@"timeline_card_top_background_highlighted"];
         
@@ -117,7 +120,7 @@
     self.nameLabel.frame = self.statusFrame.nameLabelF;
     
     // 4.会员图标
-    if (user.mbrank) {
+    if (user.mbrank > 2) {
         self.vipView.hidden = NO;
         //        self.vipView.image = [UIImage imageWithName:@"common_icon_membership"];
         self.vipView.image = [UIImage imageWithName:[NSString stringWithFormat:@"common_icon_membership_level%d", user.mbrank]];
@@ -155,23 +158,22 @@
     if (status.pic_urls.count) {
         self.photoView.hidden = NO;
         self.photoView.frame = self.statusFrame.photoViewF;
-        MGPhoto *photo = status.pic_urls[0];
-//        [self.photoView sd_setImageWithURL:[NSURL URLWithString:photo.thumbnail_pic] placeholderImage:[UIImage imageWithName:@"timeline_image_placeholder"]];
-#warning TODO 设置图片
-        
+//        MGPhoto *photo = status.pic_urls[0];
+    //        [self.photoView sd_setImageWithURL:[NSURL URLWithString:photo.thumbnail_pic] placeholderImage:[UIImage imageWithName:@"timeline_image_placeholder"]];
+    #warning TODO 设置图片
+        self.photoView.photos = status.pic_urls;
         
     } else {
         self.photoView.hidden = YES;
     }
+
     
     MGStatus *retweetStatus = self.statusFrame.status.retweeted_status;
-    
-    //父控件是否显示
+    //转发微博父控件是否显示
     if (retweetStatus) {
         self.retweetView.hidden = NO;
         //设置retweetView自身的尺寸
         self.retweetView.frame = self.statusFrame.retweetViewF;
-        
         //传递模型数据
         self.retweetView.statusFrame = self.statusFrame;
         

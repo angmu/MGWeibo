@@ -308,8 +308,10 @@
     } else {
         [btn setTitle:@"没有新的微博" forState:UIControlStateNormal];
     }
+    // TODO:
     [btn setTitleColor:[UIColor orangeColor] forState:UIControlStateNormal];
     [btn.titleLabel setFont:[UIFont systemFontOfSize:14]];
+    
     
     //3.设置按钮的frame
     CGFloat btnH = 30;
@@ -320,7 +322,7 @@
     
     //通过动画移动按钮(向下移动 btnH+1)
     [UIView animateWithDuration:0.7 animations:^{
-        btn.transform = CGAffineTransformMakeTranslation(0, btnH + 1);
+        btn.transform = CGAffineTransformMakeTranslation(0, btnH);
     } completion:^(BOOL finished) { //向下的动画执行完毕后
         
         //延迟1s，在执行
