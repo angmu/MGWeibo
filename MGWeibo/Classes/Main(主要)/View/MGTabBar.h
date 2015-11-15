@@ -12,6 +12,9 @@
 @protocol MGTabBarDelegate <NSObject>
 @optional
 - (void)tabBar:(MGTabBar *)tabBar didSelectedButtonFrom:(int)from to:(int)to;
+//tabBar点击了加号按钮
+- (void)tabBarDidClickedPlusBtton:(MGTabBar *)tabBar;
+
 @end
 
 

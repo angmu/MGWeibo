@@ -44,11 +44,23 @@
         [plusButton setImage:[UIImage imageWithName:@"tabbar_compose_icon_add_highlighted"] forState:UIControlStateSelected];
         plusButton.bounds = CGRectMake(0, 0, plusButton.currentBackgroundImage.size.width, plusButton.currentBackgroundImage.size.height);
         
+        //监听加号按钮点击 发微博
+        [plusButton addTarget:self action:@selector(plusButtonClick) forControlEvents:UIControlEventTouchUpInside];
+        
+        
         [self addSubview:plusButton];
         self.plusButton = plusButton;
         
     }
     return self;
+}
+
+- (void)plusButtonClick
+{
+    if ([self.delegate respondsToSelector:@selector(tabBarDidClickedPlusBtton:)]) {
+        
+        [self.delegate tabBarDidClickedPlusBtton:self];
+    }
 }
 
 - (void)addTabBarbuttonWithItem:(UITabBarItem *)item

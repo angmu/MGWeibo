@@ -44,6 +44,11 @@
     textAttrs[UITextAttributeFont] = [UIFont systemFontOfSize:iOS7 ? 15 : 12];
     [item setTitleTextAttributes:textAttrs forState:UIControlStateNormal];
     [item setTitleTextAttributes:textAttrs forState:UIControlStateHighlighted];
+    
+    //设置不能点击时，按钮的颜色
+    NSMutableDictionary *disableTextAttrs = [NSMutableDictionary dictionary];
+    disableTextAttrs[UITextAttributeTextColor] = [UIColor lightGrayColor]; //亮灰色
+    [item setTitleTextAttributes:disableTextAttrs forState:UIControlStateDisabled];
 }
 
 /**

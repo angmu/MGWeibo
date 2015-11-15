@@ -11,6 +11,7 @@
 #import "MGAccount.h"
 #import "MGWeiboTool.h"
 #import "MGAccountTool.h"
+#import "SDWebImageManager.h"
 
 @interface AppDelegate ()
 
@@ -18,6 +19,7 @@
 
 
 @implementation AppDelegate
+
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     self.window.backgroundColor = [UIColor whiteColor];
@@ -58,6 +60,15 @@
 
 - (void)applicationWillTerminate:(UIApplication *)application {
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
+}
+
+- (void)applicationDidReceiveMemoryWarning:(UIApplication *)application
+{
+    //停止下载所有图片 获得它的单例对象
+    [[SDWebImageManager sharedManager] cancelAll];
+    
+    //清除内存中的图片
+    [[SDWebImageManager sharedManager].imageCache clearMemory];
 }
 
 @end
