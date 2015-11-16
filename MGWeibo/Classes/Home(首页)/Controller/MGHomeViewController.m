@@ -13,7 +13,7 @@
 #import "MGBadgeButton.h"
 #import "UIBarButtonItem+MG.h"
 #import "MGTitleButton.h"
-#import "AFNetworking.h"
+
 #import "MGAccountTool.h"
 #import "MGAccount.h"
 #import "UIImageView+WebCache.h"
@@ -23,6 +23,9 @@
 #import "MGStatusFrame.h"
 #import "MGStatusCell.h"
 #import "MJRefresh.h"
+
+#import "MGHttpTool.h"
+//#import "AFNetworking.h"
 
 
 @interface MGHomeViewController () <MJRefreshBaseViewDelegate>
@@ -66,29 +69,27 @@
  */
 - (void)setupUserData
 {
-    // 1.创建请求管理对象
-    AFHTTPRequestOperationManager *mgr = [AFHTTPRequestOperationManager manager];
-    
-    // 2.封装请求参数
+    //1.封装请求参数
     NSMutableDictionary *params = [NSMutableDictionary dictionary];
     params[@"access_token"] = [MGAccountTool account].access_token;
     params[@"uid"] = @([MGAccountTool account].uid);
 
-    // 3.发送请求
-    [mgr GET:@"https://api.weibo.com/2/users/show.json" parameters:params
-     success:^(AFHTTPRequestOperation *operation, id responseObject) {
-         //字典转模型
-         MGUser *user = [MGUser objectWithKeyValues:responseObject];
-         //设置标题文字
-         [self.titleButton setTitle:user.name forState:UIControlStateNormal];
-         //保存昵称
-         MGAccount *account = [MGAccountTool account];
-         account.name = user.name;
-         [MGAccountTool saveAccount:account];
-         
-     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-         
-     }];
+    //2.发送请求
+    [MGHttpTool getWithURL:@"https://api.weibo.com/2/users/show.json" params:params success:^(id json) {
+        
+        //字典转模型
+        MGUser *user = [MGUser objectWithKeyValues:json];
+        //设置标题文字
+        [self.titleButton setTitle:user.name forState:UIControlStateNormal];
+        //保存昵称
+        MGAccount *account = [MGAccountTool account];
+        account.name = user.name;
+        [MGAccountTool saveAccount:account];
+        
+    } failure:^(NSError *error) {
+        
+    }];
+    
 }
 
 /**
@@ -131,10 +132,10 @@
 {
     //传进来的refreshView就是footerView
     //发送请求 加载更多数据
-    // 1.创建请求管理对象
-    AFHTTPRequestOperationManager *mgr = [AFHTTPRequestOperationManager manager];
+
+
     
-    // 2.封装请求参数
+    // 1.封装请求参数
     NSMutableDictionary *params = [NSMutableDictionary dictionary];
     params[@"access_token"] = [MGAccountTool account].access_token;
     params[@"count"] = @5;
@@ -147,37 +148,36 @@
         params[@"max_id"] = @(maxID);
     }
     
-    // 3.发送请求
-    [mgr GET:@"https://api.weibo.com/2/statuses/friends_timeline.json" parameters:params
-     success:^(AFHTTPRequestOperation *operation, id responseObject) {
-         // 将字典数组转化为模型数组(里面放的就是MGStatus模型)
-         NSArray *statues = [MGStatus objectArrayWithKeyValuesArray:responseObject[@"statuses"]];
-         
-         // 创建frame模型对象
-         NSMutableArray *statusFrameArray = [NSMutableArray array];
-         for (MGStatus *status in statues) {
-             
-             MGStatusFrame *statusFrame = [[MGStatusFrame alloc] init];
-             // 传递微博数据模型
-             statusFrame.status = status;
-             [statusFrameArray addObject:statusFrame];
-         }
-         //直接 把新数据加到旧数据 后面
-         [self.statusFrames addObjectsFromArray:statusFrameArray];
-         
-         // 异步加载(1-2s后才有结果)，重新刷新表格，否则看不见
-         [self.tableView reloadData];
-         
-         //让刷新控件停止显示刷新状态
-         [self.footer endRefreshing];
-         //显示最新微博数量(给用户一些友善的提示)
-         [self showNewStatusCount:statusFrameArray.count];
-     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-
-         //让刷新控件停止显示刷新状态
-         [self.footer endRefreshing];
-     }];
-    
+    // 2.发送请求
+    [MGHttpTool getWithURL:@"https://api.weibo.com/2/statuses/friends_timeline.json" params:params success:^(id json) {
+        
+        // 将字典数组转化为模型数组(里面放的就是MGStatus模型)
+        NSArray *statues = [MGStatus objectArrayWithKeyValuesArray:json[@"statuses"]];
+        
+        // 创建frame模型对象
+        NSMutableArray *statusFrameArray = [NSMutableArray array];
+        for (MGStatus *status in statues) {
+            
+            MGStatusFrame *statusFrame = [[MGStatusFrame alloc] init];
+            // 传递微博数据模型
+            statusFrame.status = status;
+            [statusFrameArray addObject:statusFrame];
+        }
+        //直接 把新数据加到旧数据 后面
+        [self.statusFrames addObjectsFromArray:statusFrameArray];
+        
+        // 异步加载(1-2s后才有结果)，重新刷新表格，否则看不见
+        [self.tableView reloadData];
+        
+        //让刷新控件停止显示刷新状态
+        [self.footer endRefreshing];
+        //显示最新微博数量(给用户一些友善的提示)
+        [self showNewStatusCount:statusFrameArray.count];
+    } failure:^(NSError *error) {
+        
+        //让刷新控件停止显示刷新状态
+        [self.footer endRefreshing];
+    }];
 }
 
 /**
@@ -188,10 +188,7 @@
  */
 - (void)loadNewData
 {
-    // 1.创建请求管理对象
-    AFHTTPRequestOperationManager *mgr = [AFHTTPRequestOperationManager manager];
-    
-    // 2.封装请求参数
+    // 1.封装请求参数
     NSMutableDictionary *params = [NSMutableDictionary dictionary];
     params[@"access_token"] = [MGAccountTool account].access_token;
     params[@"count"] = @5;
@@ -203,42 +200,43 @@
         params[@"since_id"] = statusFrame.status.idstr;
     }
 
-    // 3.发送请求
-    [mgr GET:@"https://api.weibo.com/2/statuses/friends_timeline.json" parameters:params
-     success:^(AFHTTPRequestOperation *operation, id responseObject) {
-         
-//         MGLog(@"responseObject---%@", responseObject);
-         // 将字典数组转化为模型数组(里面放的就是MGStatus模型)
-         NSArray *statues = [MGStatus objectArrayWithKeyValuesArray:responseObject[@"statuses"]];
-         
-         // 创建frame模型对象
-         NSMutableArray *statusFrameArray = [NSMutableArray array];
-         for (MGStatus *status in statues) {
-             
-             MGStatusFrame *statusFrame = [[MGStatusFrame alloc] init];
-             // 传递微博数据模型
-             statusFrame.status = status;
-             [statusFrameArray addObject:statusFrame];
-         }
-         // 赋值
-         NSMutableArray *tempArray = [NSMutableArray array];
-         [tempArray addObjectsFromArray:statusFrameArray];
-         [tempArray addObjectsFromArray:self.statusFrames];
-         self.statusFrames = tempArray;
-         
-         // 异步加载(1-2s后才有结果)，重新刷新表格，否则看不见
-         [self.tableView reloadData];
-         
-         //让刷新控件停止显示刷新状态
-         [self.header endRefreshing];
-         
-         //显示最新微博数量(给用户一些友善的提示)
-         [self showNewStatusCount:statusFrameArray.count];
-     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-         
-         //让刷新控件停止显示刷新状态
-         [self.header endRefreshing];
-     }];
+    // 2.发送请求
+    [MGHttpTool getWithURL:@"https://api.weibo.com/2/statuses/friends_timeline.json" params:params success:^(id json) {
+        
+        //         MGLog(@"responseObject---%@", responseObject);
+        // 将字典数组转化为模型数组(里面放的就是MGStatus模型)
+        NSArray *statues = [MGStatus objectArrayWithKeyValuesArray:json[@"statuses"]];
+        
+        // 创建frame模型对象
+        NSMutableArray *statusFrameArray = [NSMutableArray array];
+        for (MGStatus *status in statues) {
+            
+            MGStatusFrame *statusFrame = [[MGStatusFrame alloc] init];
+            // 传递微博数据模型
+            statusFrame.status = status;
+            [statusFrameArray addObject:statusFrame];
+        }
+        
+        // 赋值
+        NSMutableArray *tempArray = [NSMutableArray array];
+        [tempArray addObjectsFromArray:statusFrameArray];
+        [tempArray addObjectsFromArray:self.statusFrames];
+        self.statusFrames = tempArray;
+        
+        // 异步加载(1-2s后才有结果)，重新刷新表格，否则看不见
+        [self.tableView reloadData];
+        
+        //让刷新控件停止显示刷新状态
+        [self.header endRefreshing];
+        
+        //显示最新微博数量(给用户一些友善的提示)
+        [self showNewStatusCount:statusFrameArray.count];
+        
+    } failure:^(NSError *error) {
+        
+        //让刷新控件停止显示刷新状态
+        [self.header endRefreshing];
+    }];
 }
 
 - (void)dealloc
@@ -252,41 +250,39 @@
  */
 - (void)setupStatusData
 {
-    
-    // 1.创建请求管理对象
-    AFHTTPRequestOperationManager *mgr = [AFHTTPRequestOperationManager manager];
-    
-    // 2.封装请求参数
+    // 1.封装请求参数
     NSMutableDictionary *params = [NSMutableDictionary dictionary];
     params[@"access_token"] = [MGAccountTool account].access_token;
     params[@"count"] = @5;
     
-    // 3.发送请求
-    [mgr GET:@"https://api.weibo.com/2/statuses/friends_timeline.json" parameters:params
-     success:^(AFHTTPRequestOperation *operation, id responseObject) {
-         
-         // 将字典数组转化为模型数组(里面放的就是MGStatus模型)
-         NSArray *statues = [MGStatus objectArrayWithKeyValuesArray:responseObject[@"statuses"]];
-         
-         // 创建frame模型对象
-         NSMutableArray *statusFrameArray = [NSMutableArray array];
-         for (MGStatus *status in statues) {
-             
-//             MGLog(@"%@", [[status.pic_urls lastObject] class]);
-             
-             MGStatusFrame *statusFrame = [[MGStatusFrame alloc] init];
-             // 传递微博数据模型
-             statusFrame.status = status;
-             [statusFrameArray addObject:statusFrame];
-         }
-         // 赋值
-         self.statusFrames = statusFrameArray;
-         
-         // 异步加载(1-2s后才有结果)，重新刷新表格，否则看不见
-         [self.tableView reloadData];
-     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-   
+    // 2.发送请求
+    [MGHttpTool getWithURL:@"https://api.weibo.com/2/statuses/friends_timeline.json" params:params success:^(id json) {
+        
+        // 将字典数组转化为模型数组(里面放的就是MGStatus模型)
+        NSArray *statues = [MGStatus objectArrayWithKeyValuesArray:json[@"statuses"]];
+        
+        // 创建frame模型对象
+        NSMutableArray *statusFrameArray = [NSMutableArray array];
+        for (MGStatus *status in statues) {
+            
+            //             MGLog(@"%@", [[status.pic_urls lastObject] class]);
+            
+            MGStatusFrame *statusFrame = [[MGStatusFrame alloc] init];
+            // 传递微博数据模型
+            statusFrame.status = status;
+            [statusFrameArray addObject:statusFrame];
+        }
+        // 赋值
+        self.statusFrames = statusFrameArray;
+        
+        // 异步加载(1-2s后才有结果)，重新刷新表格，否则看不见
+        [self.tableView reloadData];
+    } failure:^(NSError *error) {
+        
+        
     }];
+    
+
 }
 
 /**

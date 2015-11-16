@@ -48,6 +48,7 @@
 		CC3C2BD81BEFA612006C6277 /* MGTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = CC3C2BD71BEFA612006C6277 /* MGTextView.m */; };
 		CC464C7A1B8B5E200087A67E /* MGStatusFrame.m in Sources */ = {isa = PBXBuildFile; fileRef = CC464C791B8B5E200087A67E /* MGStatusFrame.m */; };
 		CC47A3731BF6D9A100EC990F /* MGComposeToolbar.m in Sources */ = {isa = PBXBuildFile; fileRef = CC47A3721BF6D9A100EC990F /* MGComposeToolbar.m */; };
+		CC4D5ABC1BF8E50A00F85B16 /* MGHttpTool.m in Sources */ = {isa = PBXBuildFile; fileRef = CC4D5ABB1BF8E50A00F85B16 /* MGHttpTool.m */; };
 		CC55AC071B43957B00F9A89F /* MGNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = CC55AC061B43957B00F9A89F /* MGNavigationController.m */; };
 		CC5F313D1B89B1E900603055 /* MGWeiboTool.m in Sources */ = {isa = PBXBuildFile; fileRef = CC5F313C1B89B1E800603055 /* MGWeiboTool.m */; };
 		CC5F31491B89BF9300603055 /* MGAccountTool.m in Sources */ = {isa = PBXBuildFile; fileRef = CC5F31481B89BF9300603055 /* MGAccountTool.m */; };
@@ -189,6 +190,8 @@
 		CC464C791B8B5E200087A67E /* MGStatusFrame.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MGStatusFrame.m; path = "MGWeibo/Classes/Home(首页)/Model/MGStatusFrame.m"; sourceTree = SOURCE_ROOT; };
 		CC47A3711BF6D9A100EC990F /* MGComposeToolbar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MGComposeToolbar.h; sourceTree = "<group>"; };
 		CC47A3721BF6D9A100EC990F /* MGComposeToolbar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MGComposeToolbar.m; sourceTree = "<group>"; };
+		CC4D5ABA1BF8E50A00F85B16 /* MGHttpTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MGHttpTool.h; sourceTree = "<group>"; };
+		CC4D5ABB1BF8E50A00F85B16 /* MGHttpTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MGHttpTool.m; sourceTree = "<group>"; };
 		CC55AC051B43957B00F9A89F /* MGNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MGNavigationController.h; sourceTree = "<group>"; };
 		CC55AC061B43957B00F9A89F /* MGNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MGNavigationController.m; sourceTree = "<group>"; };
 		CC5F313B1B89B1E800603055 /* MGWeiboTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MGWeiboTool.h; path = "MGWeibo/Classes/Other(其他)/MGWeiboTool.h"; sourceTree = SOURCE_ROOT; };
@@ -450,6 +453,16 @@
 			);
 			path = View;
 			sourceTree = "<group>";
+		};
+		CC4D5AB91BF8E4E600F85B16 /* Tool */ = {
+			isa = PBXGroup;
+			children = (
+				CC4D5ABA1BF8E50A00F85B16 /* MGHttpTool.h */,
+				CC4D5ABB1BF8E50A00F85B16 /* MGHttpTool.m */,
+			);
+			name = Tool;
+			path = "MGWeibo/Classes/Other(其他)/Tool";
+			sourceTree = SOURCE_ROOT;
 		};
 		CC5F31461B89BF9300603055 /* Tool */ = {
 			isa = PBXGroup;
@@ -858,6 +871,7 @@
 			children = (
 				CC9BBF921B7CDD7C00E4258C /* Lib */,
 				CCB8530E1B3ECA2F00CD4662 /* Category */,
+				CC4D5AB91BF8E4E600F85B16 /* Tool */,
 				CCB853021B3E916100CD4662 /* AppDelegate.h */,
 				CCB853031B3E916100CD4662 /* AppDelegate.m */,
 				CCB853041B3E916100CD4662 /* main.m */,
@@ -1008,6 +1022,7 @@
 				CCE7B66D1B43DEA000BDA866 /* UIBarButtonItem+MG.m in Sources */,
 				CC1D9D211BD2B37500839EEB /* NSData+ImageContentType.m in Sources */,
 				CC3C2A831BEECE61006C6277 /* MJPhotoBrowser.m in Sources */,
+				CC4D5ABC1BF8E50A00F85B16 /* MGHttpTool.m in Sources */,
 				CCE7B6731B44143500BDA866 /* MGTitleButton.m in Sources */,
 				CC5F313D1B89B1E900603055 /* MGWeiboTool.m in Sources */,
 				CC5F31491B89BF9300603055 /* MGAccountTool.m in Sources */,

@@ -8,12 +8,14 @@
 
 #import "MGComposeViewController.h"
 #import "MGTextView.h"
-#import "AFNetworking.h"
 #import "MGAccount.h"
 #import "MGAccountTool.h"
 #import "MBProgressHUD+MJ.h"
 #import "MGComposeToolbar.h"
 #import "MGPhotosView.h"
+
+#import "MGHttpTool.h"
+#import "AFNetworking.h"
 
 @interface MGComposeViewController () <UITextViewDelegate, MGComposeToolbarDelegaet, UINavigationControllerDelegate, UIImagePickerControllerDelegate>
 @property (nonatomic, weak) MGTextView *textView;
@@ -275,45 +277,74 @@
  */
 - (void)sendWithImage
 {
-    // 1.创建请求管理类
-    AFHTTPRequestOperationManager *mgr = [AFHTTPRequestOperationManager manager];
-    // 说明服务器返回的JSON数据
-    mgr.responseSerializer = [AFJSONResponseSerializer serializer];
-    
-    // 2.封装请求参数
+    //1.封装请求参数
     NSMutableDictionary *params = [NSMutableDictionary dictionary];
-    
     params[@"access_token"] = [MGAccountTool account].access_token;
     params[@"status"] = self.textView.text;
-//    params[@"pic"] = UIImageJPEGRepresentation(self.imageView.image, 0.5);
     
-    // 3.发送请求
-    [mgr POST:@"https://upload.api.weibo.com/2/statuses/upload.json" parameters:params constructingBodyWithBlock:^(id<AFMultipartFormData>  _Nonnull formData) {
-        //在发送请求之前 会自动调用这个block
+    //2.封装文件参数
+    NSMutableArray *formDataArray = [NSMutableArray array];
+    NSArray *images = self.photosView.totalImages;
+    
+    for (UIImage *image in images) {
         
-        //必须在这里说明要上传 那些文件
-//        NSData *data = UIImageJPEGRepresentation(self.imageView.image, 0.5);
-//        //name 服务器接收数据的字段名, fileName上传到服务器上文件名,写个空即可, mimeType文件类型
-//        [formData appendPartWithFileData:data name:@"pic" fileName:@"" mimeType:@"image/jpeg"];
+        MGFormData *formData = [[MGFormData alloc] init];
+        formData.data = UIImageJPEGRepresentation(image, 0.5);
+        formData.name = @"pic";
+        formData.filename = @"";
+        formData.mimeType = @"image/jpeg";
+        [formDataArray addObject:formData];
+    }
+    
+    //3.发送网络请求
+    [MGHttpTool postWithURL:@"https://upload.api.weibo.com/2/statuses/upload.json" params:params formDataArray:formDataArray success:^(id json) {
         
-        NSArray *images = self.photosView.totalImages;
-        int count = 0;
-        for (UIImage *image in images) {
-            count++;
-            NSString *fileName = [NSString stringWithFormat:@"%02d.jpg", count];
-            NSData *data = UIImageJPEGRepresentation(image, 0.5);
-            //name 服务器接收数据的字段名, fileName上传到服务器上文件名,写个空即可, mimeType文件类型
-            [formData appendPartWithFileData:data name:@"pic" fileName:fileName mimeType:@"image/jpeg"];
-        }
-        
-        
-    } success:^(AFHTTPRequestOperation *operation, NSDictionary *responseObject) {
         [MBProgressHUD showSuccess:@"发送成功"];
-        
-    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+    } failure:^(NSError *error) {
         
         [MBProgressHUD showError:@"发送失败"];
     }];
+    
+    
+//    // 1.创建请求管理类
+//    AFHTTPRequestOperationManager *mgr = [AFHTTPRequestOperationManager manager];
+//    // 说明服务器返回的JSON数据
+//    mgr.responseSerializer = [AFJSONResponseSerializer serializer];
+//    
+//    // 2.封装请求参数
+//    NSMutableDictionary *params = [NSMutableDictionary dictionary];
+//    
+//    params[@"access_token"] = [MGAccountTool account].access_token;
+//    params[@"status"] = self.textView.text;
+////    params[@"pic"] = UIImageJPEGRepresentation(self.imageView.image, 0.5);
+//    
+//    // 3.发送请求
+//    [mgr POST: parameters:params constructingBodyWithBlock:^(id<AFMultipartFormData>  _Nonnull formData) {
+//        //在发送请求之前 会自动调用这个block
+//        
+//        //必须在这里说明要上传 那些文件
+////        NSData *data = UIImageJPEGRepresentation(self.imageView.image, 0.5);
+////        //name 服务器接收数据的字段名, fileName上传到服务器上文件名,写个空即可, mimeType文件类型
+////        [formData appendPartWithFileData:data name:@"pic" fileName:@"" mimeType:@"image/jpeg"];
+//        
+//        NSArray *images = self.photosView.totalImages;
+//        int count = 0;
+//        for (UIImage *image in images) {
+//            count++;
+//            NSString *fileName = [NSString stringWithFormat:@"%02d.jpg", count];
+//            NSData *data = UIImageJPEGRepresentation(image, 0.5);
+//            //name 服务器接收数据的字段名, fileName上传到服务器上文件名,写个空即可, mimeType文件类型
+//            [formData appendPartWithFileData:data name:@"pic" fileName:fileName mimeType:@"image/jpeg"];
+//        }
+//        
+//        
+//    } success:^(AFHTTPRequestOperation *operation, NSDictionary *responseObject) {
+//        [MBProgressHUD showSuccess:@"发送成功"];
+//        
+//    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+//        
+//        [MBProgressHUD showError:@"发送失败"];
+//    }];
 }
 
 /**
@@ -321,25 +352,16 @@
  */
 - (void)sendWithoutImage
 {
-    // 1.创建请求管理类
-    AFHTTPRequestOperationManager *mgr = [AFHTTPRequestOperationManager manager];
-    // 说明服务器返回的JSON数据
-    mgr.responseSerializer = [AFJSONResponseSerializer serializer];
-    
-    // 2.封装请求参数
+    //1.封装请求参数
     NSMutableDictionary *params = [NSMutableDictionary dictionary];
-    
     params[@"access_token"] = [MGAccountTool account].access_token;
     params[@"status"] = self.textView.text;
     
-    // 3.发送请求
-    NSString *urlStr = @"https://api.weibo.com/2/statuses/update.json";
-    
-    [mgr POST:urlStr parameters:params success:^(AFHTTPRequestOperation *operation, NSDictionary *responseObject) {
+    //2.发送请求
+    [MGHttpTool postWithURL:@"https://api.weibo.com/2/statuses/update.json" params:params success:^(id json) {
         
         [MBProgressHUD showSuccess:@"发送成功"];
-        
-    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+    } failure:^(NSError *error) {
         
         [MBProgressHUD showError:@"发送失败"];
     }];

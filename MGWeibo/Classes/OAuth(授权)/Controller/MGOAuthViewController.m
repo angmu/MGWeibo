@@ -7,11 +7,12 @@
 //
 
 #import "MGOAuthViewController.h"
-#import "AFNetworking.h"
+//#import "AFNetworking.h"
 #import "MGAccount.h"
 #import "MGWeiboTool.h"
 #import "MGAccountTool.h"
 #import "MBProgressHUD+MJ.h"
+#import "MGHttpTool.h"
 
 @interface MGOAuthViewController () <UIWebViewDelegate>
 
@@ -93,6 +94,39 @@
     return YES;
 }
 
+//用自己封装的网络请求
+- (void)accessTokenWithCode:(NSString *)code
+{
+    //1.封装请求参数
+    NSMutableDictionary *params = [NSMutableDictionary dictionary];
+    params[@"client_id"] = MGAppKey;
+    params[@"client_secret"] = MGAppSecret;
+    params[@"grant_type"] = @"authorization_code";
+    params[@"code"] = code;
+    params[@"redirect_uri"] = MGRedirectURI;
+    
+    [MGHttpTool postWithURL:@"https://api.weibo.com/oauth2/access_token" params:params success:^(id json) {
+        
+        //1.先将字典转成模型
+        MGAccount *account = [MGAccount accountWithDict:json];
+        
+        //2.存储accessToken信息,下次不需要登录
+        [MGAccountTool saveAccount:account];
+        
+        //3.去新特新\首页
+        [MGWeiboTool chooseRootController];
+        
+        //4.隐藏提醒框
+        [MBProgressHUD hideHUD];
+    } failure:^(NSError *error) {
+        
+        //4.隐藏提醒框
+        [MBProgressHUD hideHUD];
+    }];
+}
+
+/*
+
 - (void)accessTokenWithCode:(NSString *)code
 {
     // ASI: HTTP终结者,停止更新，潜在bug
@@ -101,7 +135,7 @@
     AFHTTPRequestOperationManager *mgr = [AFHTTPRequestOperationManager manager];
     // 说明服务器返回的JSON数据
     mgr.responseSerializer = [AFJSONResponseSerializer serializer];
-
+    
     // 2.封装请求参数
     NSMutableDictionary *params = [NSMutableDictionary dictionary];
     params[@"client_id"] = MGAppKey;
@@ -109,16 +143,16 @@
     params[@"grant_type"] = @"authorization_code";
     params[@"code"] = code;
     params[@"redirect_uri"] = MGRedirectURI;
+
     
     
-    
-//    mgr.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"text/plain​", nil];
+    //    mgr.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"text/plain​", nil];
     // 3.发送请求
     NSString *urlStr = @"https://api.weibo.com/oauth2/access_token";
-//    NSString *encoded = [link stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLQueryAllowedCharacterSet]];
+    //    NSString *encoded = [link stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLQueryAllowedCharacterSet]];
     
-//    MGLog(@"link=%@, encoded=%@ ,解码=%@", urlStr, encoded,[encoded stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding]);
-
+    //    MGLog(@"link=%@, encoded=%@ ,解码=%@", urlStr, encoded,[encoded stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding]);
+    
     // 2.00xRuvQC5OMJyDe819844d9d0Soj1E
     [mgr POST:urlStr parameters:params success:^(AFHTTPRequestOperation *operation, NSDictionary *responseObject) {
         
@@ -135,10 +169,11 @@
         [MBProgressHUD hideHUD];
         
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-//        MGLog(@"请求失败:%@", error);
+        //        MGLog(@"请求失败:%@", error);
         // 7.隐藏提醒框
         [MBProgressHUD hideHUD];
         
     }];
 }
+ */
 @end
