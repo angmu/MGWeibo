@@ -133,8 +133,6 @@
     //传进来的refreshView就是footerView
     //发送请求 加载更多数据
 
-
-    
     // 1.封装请求参数
     NSMutableDictionary *params = [NSMutableDictionary dictionary];
     params[@"access_token"] = [MGAccountTool account].access_token;
@@ -183,6 +181,7 @@
 /**
  *  监听刷新控件状态的改变(手动进入刷新状态才会调用这个方法)
  */
+
 /**
  *  下拉加载更新的数据
  */

@@ -207,6 +207,7 @@
     }];
 }
 
+#pragma mark - 滚动隐藏键盘
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView
 {
     [self.view endEditing:YES];
