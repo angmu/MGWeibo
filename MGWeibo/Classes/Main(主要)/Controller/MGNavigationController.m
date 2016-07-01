@@ -7,6 +7,7 @@
 //
 
 #import "MGNavigationController.h"
+#import "UIBarButtonItem+MG.h"
 
 @implementation MGNavigationController
 
@@ -38,17 +39,17 @@
     }
 
     // 设置文字属性
-    NSMutableDictionary *textAttrs = [NSMutableDictionary dictionary];
-    textAttrs[UITextAttributeTextColor] = iOS7 ? [UIColor orangeColor] : [UIColor grayColor];
-    textAttrs[UITextAttributeTextShadowOffset] = [NSValue valueWithUIOffset:UIOffsetZero];
-    textAttrs[UITextAttributeFont] = [UIFont systemFontOfSize:iOS7 ? 15 : 12];
-    [item setTitleTextAttributes:textAttrs forState:UIControlStateNormal];
-    [item setTitleTextAttributes:textAttrs forState:UIControlStateHighlighted];
+    NSMutableDictionary *attrs = [NSMutableDictionary dictionary];
+    attrs[UITextAttributeTextColor] = iOS7 ? [UIColor orangeColor] : [UIColor grayColor];
+    attrs[UITextAttributeTextShadowOffset] = [NSValue valueWithUIOffset:UIOffsetZero];
+    attrs[UITextAttributeFont] = [UIFont systemFontOfSize:iOS7 ? 15 : 12];
+    [item setTitleTextAttributes:attrs forState:UIControlStateNormal];
+    [item setTitleTextAttributes:attrs forState:UIControlStateHighlighted];
     
     //设置不能点击时，按钮的颜色
-    NSMutableDictionary *disableTextAttrs = [NSMutableDictionary dictionary];
-    disableTextAttrs[UITextAttributeTextColor] = [UIColor lightGrayColor]; //亮灰色
-    [item setTitleTextAttributes:disableTextAttrs forState:UIControlStateDisabled];
+    NSMutableDictionary *disableAttrs = [NSMutableDictionary dictionary];
+    disableAttrs[NSForegroundColorAttributeName] = [UIColor lightGrayColor]; //亮灰色
+    [item setTitleTextAttributes:disableAttrs forState:UIControlStateDisabled];
 }
 
 /**
@@ -65,8 +66,6 @@
         [UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleBlackOpaque;
     }
     
-//    [navBar setBackgroundImage:[UIImage imageWithName:@"navigationbar_background"] forBarMetrics:UIBarMetricsDefault];
-//    [[UINavigationBar appearance] setBarTintColor:MGColor(157, 184, 253)];
 
     // 设置标题属性
     NSMutableDictionary *textAttrs = [NSMutableDictionary dictionary];
@@ -77,14 +76,41 @@
     [navBar setTitleTextAttributes:textAttrs];
 }
 
-
+/**
+ *  重写这个方法目的：能够拦截所有push进来的控制器
+ *
+ *  @param viewController 即将push进来的控制器
+ */
 - (void)pushViewController:(UIViewController *)viewController animated:(BOOL)animated
 {
-    if (self.viewControllers.count > 0) {
+    if (self.viewControllers.count > 0) { // 这时push进来的控制器viewController，不是第一个子控制器（不是根控制器）
+        /* 自动显示和隐藏tabbar */
         viewController.hidesBottomBarWhenPushed = YES;
+        
+        /* 设置导航栏上面的内容 */
+        // 设置左边的返回按钮
+
+        viewController.navigationItem.leftBarButtonItem = [UIBarButtonItem itemWithIcon:@"navigationbar_back" highIcon:@"navigationbar_back_highlighted" target:self action:@selector(back)];
+
+        
+        // 设置右边的更多按钮
+        viewController.navigationItem.rightBarButtonItem = [UIBarButtonItem itemWithIcon:@"navigationbar_more" highIcon:@"navigationbar_more_highlighted" target:self action:@selector(more)];
     }
     
     [super pushViewController:viewController animated:animated];
 }
+
+- (void)back
+{
+#warning 这里要用self，不是self.navigationController
+    // 因为self本来就是一个导航控制器，self.navigationController这里是nil的
+    [self popViewControllerAnimated:YES];
+}
+
+- (void)more
+{
+    [self popToRootViewControllerAnimated:YES];
+}
+
 
 @end

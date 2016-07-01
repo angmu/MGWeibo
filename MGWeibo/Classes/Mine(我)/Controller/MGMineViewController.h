@@ -7,7 +7,8 @@
 // 我
 
 #import <UIKit/UIKit.h>
+#import "IWSettingViewController.h"
 
-@interface MgMeViewController : UITableViewController
+@interface MGMineViewController : IWSettingViewController
 
 @end

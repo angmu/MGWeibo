@@ -10,7 +10,7 @@
 #import "MGHomeViewController.h"
 #import "MgMessageViewController.h"
 #import "MgDiscoverViewController.h"
-#import "MgMeViewController.h"
+#import "MGMineViewController.h"
 #import "UIImage+MG.h"
 #import "MGTabBar.h"
 #import "MGNavigationController.h"
@@ -111,8 +111,11 @@
     [self setupChildViewController:discover title:@"广场" imageName:@"tabbar_discover" selectedImageName:@"tabbar_discover_selected"];
     
     // 4.我
-    MgMeViewController *me = [[MgMeViewController alloc] init];
+    MGMineViewController *me = [[MGMineViewController alloc] init];
     [self setupChildViewController:me title:@"我" imageName:@"tabbar_profile" selectedImageName:@"tabbar_profile_selected"];
+    
+//    MGTabBar *tabBar = [[MGTabBar alloc] init];
+//    [self setValue:tabBar forKeyPath:@"_tabBar"];
 }
 
 /**

@@ -44,7 +44,7 @@
         // 设置键盘右下角按钮样式
         self.returnKeyType = UIReturnKeySearch;
         self.enablesReturnKeyAutomatically = YES;
-        NSLog(@"initWithFrame-----%@", NSStringFromCGRect(self.leftView.frame));
+//        NSLog(@"initWithFrame-----%@", NSStringFromCGRect(self.leftView.frame));
     }
     
     return self;
@@ -53,15 +53,15 @@
 
 - (void)layoutSubviews
 {
+    //把它放在最后是好的
 //    [super layoutSubviews];
     
     // 设置左边图标的frame
     self.leftView.frame = CGRectMake(0, 0, 30, self.frame.size.height);
     
     
-    NSLog(@"layoutSubviews-----%@", NSStringFromCGRect(self.leftView.frame));
+//    NSLog(@"layoutSubviews-----%@", NSStringFromCGRect(self.leftView.frame));
     
-    //把它放在最后是好的
     [super layoutSubviews];
 }
 @end

@@ -7,7 +7,7 @@
 //
 
 #import "MGComposeViewController.h"
-#import "MGTextView.h"
+#import "MGPlaceholderTextView.h"
 #import "MGAccount.h"
 #import "MGAccountTool.h"
 #import "MBProgressHUD+MJ.h"
@@ -18,7 +18,7 @@
 #import "AFNetworking.h"
 
 @interface MGComposeViewController () <UITextViewDelegate, MGComposeToolbarDelegaet, UINavigationControllerDelegate, UIImagePickerControllerDelegate>
-@property (nonatomic, weak) MGTextView *textView;
+@property (nonatomic, weak) MGPlaceholderTextView *textView;
 @property (nonatomic, weak) MGComposeToolbar *toolbar;
 //@property (nonatomic, weak) UIImageView *imageView;
 @property (nonatomic, weak) MGPhotosView *photosView;
@@ -95,21 +95,21 @@
 - (void)setupTextView
 {
     //1、添加textView
-    MGTextView *textView = [[MGTextView alloc] init];
-    _textView = textView;
-    [self.view addSubview:textView];
+    MGPlaceholderTextView *textView = [[MGPlaceholderTextView alloc] init];
     
-    textView.font = [UIFont systemFontOfSize:15];
     textView.frame = self.view.bounds;
-    textView.placeholder = @"分享新鲜事...";
-    //垂直方向永远能拖拽
-    textView.alwaysBounceVertical = YES;
+    textView.width = 200;
+    textView.placeholder = @"分享新鲜事...分享新鲜事...分享新鲜事...分享新鲜事...分享新鲜事...分享新鲜事...分享新鲜事...分享新鲜事...分享新鲜事...分享新鲜事...分享新鲜事...分享新鲜事...";
     textView.delegate = self;
+//    textView.font = [UIFont systemFontOfSize:20];
     
-    //2、监听textView文字改变的通知
+    [self.view addSubview:textView];
+    _textView = textView;
+    
+    // 2、监听textView文字改变的通知,发送按钮可点击,直接用文字改变的代理方法也行
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(textDidChange) name:UITextViewTextDidChangeNotification object:textView];
     
-    //3、监听键盘的通知
+    // 3、监听键盘的通知
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillShow:) name:UIKeyboardWillShowNotification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillHide:) name:UIKeyboardWillHideNotification object:nil];
 }
@@ -218,8 +218,10 @@
  */
 - (void)setupNavBar
 {
+    self.title = @"发微博";
+    
     //设置背景
-    self.view.backgroundColor = [UIColor whiteColor];
+    self.view.backgroundColor = [UIColor blackColor];
     
     //类加载完毕 设置导航栏内容
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"取消" style:UIBarButtonItemStyleDone target:self action:@selector(cancel)];
@@ -227,7 +229,7 @@
     
     //文字还是显示不了 亮灰色 ？？小bug不是程序的错
     self.navigationItem.rightBarButtonItem.enabled = NO;
-    self.title = @"发微博";
+    [self.navigationController.navigationBar layoutIfNeeded];
 }
 
 //移除通知
@@ -255,12 +257,17 @@
  */
 - (void)cancel
 {
+//    self.textView.font = [UIFont systemFontOfSize:14];
+//    self.textView.placeholder = @"2234343534";
+    
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 #pragma mark - 发微博
 - (void)send
 {
+    MGLog(@"%s", __func__);
+    
     //self.imageView.image
     if (self.photosView.totalImages.count) { //有图片
         

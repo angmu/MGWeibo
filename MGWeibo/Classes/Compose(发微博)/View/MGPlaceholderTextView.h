@@ -8,14 +8,10 @@
 
 #import <UIKit/UIKit.h>
 
-@interface MGTextView : UITextView
-/**
- *  占位文字
- */
+@interface MGPlaceholderTextView : UITextView
+/** 占位文字 */
 @property (nonatomic, copy) NSString *placeholder;
 
-/**
- *  placeholder的字体颜色 默认是亮灰色
- */
+/** placeholder的字体颜色 */
 @property (nonatomic, strong) UIColor *placeholderColor;
 @end

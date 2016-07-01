@@ -22,6 +22,7 @@
 // 添加按钮
 - (void)addTabBarbuttonWithItem:(UITabBarItem *)item;
 @property (nonatomic, weak) id<MGTabBarDelegate> delegate;
+
 @end
 
 
