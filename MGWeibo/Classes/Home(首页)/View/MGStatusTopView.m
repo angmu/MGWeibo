@@ -43,7 +43,6 @@
     self = [super initWithFrame:frame];
     
     if (self) {
-        
         self.userInteractionEnabled = YES;
         
         self.image = [UIImage resizeimageWithName:@"timeline_card_top_background"];

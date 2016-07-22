@@ -16,7 +16,6 @@
 #import "MGStatusTopView.h"
 
 
-
 @interface MGStatusCell ()
 /** 顶部的view */
 @property (nonatomic, weak) MGStatusTopView *topView;
@@ -64,9 +63,7 @@
     
     [self.contentView addSubview:topView];
     self.topView = topView;
-    
 }
-
 
 /**
  *  添加微博的工具条
@@ -80,18 +77,19 @@
     self.statusToolBar = statusToolBar;
 }
 
-# pragma mark - 重写cell的setFrame方法
+#pragma mark - 重写cell的setFrame方法
 /**
  *  拦截frame的设置
  *  只要tableView设置cell的frame,就把它改掉
  */
 - (void)setFrame:(CGRect)frame
 {
+    [super setFrame:frame];
+    
     frame.origin.y += MGStatusTableBorder;
     frame.origin.x = MGStatusTableBorder;
     frame.size.width -= 2 * MGStatusTableBorder;
     frame.size.height -= MGStatusTableBorder;
-    [super setFrame:frame];
 }
 
 #pragma mark - 设置控件数据
@@ -129,6 +127,4 @@
     self.statusToolBar.frame = self.statusFrame.statusToolBarF;
     self.statusToolBar.status = self.statusFrame.status;
 }
-
-
 @end

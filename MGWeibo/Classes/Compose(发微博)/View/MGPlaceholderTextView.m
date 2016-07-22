@@ -57,7 +57,6 @@
 {
     [super layoutSubviews];
     
-    self.placeholderLabel.backgroundColor = [UIColor redColor];
     self.placeholderLabel.width = self.width - 2 * self.placeholderLabel.x;
     [self.placeholderLabel sizeToFit];
 }

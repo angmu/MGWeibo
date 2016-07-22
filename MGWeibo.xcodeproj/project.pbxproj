@@ -108,7 +108,7 @@
 		CC8CD3AD1B6A864F00B4E043 /* MGOAuthViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CC8CD3AC1B6A864F00B4E043 /* MGOAuthViewController.m */; };
 		CC97E32A1B416A15005CE29F /* MGBadgeButton.m in Sources */ = {isa = PBXBuildFile; fileRef = CC97E3291B416A15005CE29F /* MGBadgeButton.m */; };
 		CCB7DCD41B3E401300708281 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CCB7DCD31B3E401300708281 /* Images.xcassets */; };
-		CCB853051B3E916100CD4662 /* MgDiscoverViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CCB852E61B3E916100CD4662 /* MgDiscoverViewController.m */; };
+		CCB853051B3E916100CD4662 /* MGDiscoverViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CCB852E61B3E916100CD4662 /* MGDiscoverViewController.m */; };
 		CCB853061B3E916100CD4662 /* MGHomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CCB852EC1B3E916100CD4662 /* MGHomeViewController.m */; };
 		CCB853071B3E916100CD4662 /* MGTabBarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CCB852F21B3E916100CD4662 /* MGTabBarViewController.m */; };
 		CCB853091B3E916100CD4662 /* MgMessageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CCB852FE1B3E916100CD4662 /* MgMessageViewController.m */; };
@@ -120,16 +120,6 @@
 		CCE7B6731B44143500BDA866 /* MGTitleButton.m in Sources */ = {isa = PBXBuildFile; fileRef = CCE7B6721B44143500BDA866 /* MGTitleButton.m */; };
 		CCF0C3741BC6D65A007063F4 /* NSDate+MG.m in Sources */ = {isa = PBXBuildFile; fileRef = CCF0C3731BC6D65A007063F4 /* NSDate+MG.m */; };
 /* End PBXBuildFile section */
-
-/* Begin PBXContainerItemProxy section */
-		CC7C45461B3D8F7700BBB3DD /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = CC7C45241B3D8F7600BBB3DD /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = CC7C452B1B3D8F7600BBB3DD;
-			remoteInfo = MgWeibo;
-		};
-/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		CC0394041B7DEE55007309F1 /* MGAccount.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MGAccount.h; sourceTree = "<group>"; };
@@ -328,15 +318,13 @@
 		CC7AE4A31CBEEC3F00241975 /* MGMineViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MGMineViewController.m; sourceTree = "<group>"; };
 		CC7C452C1B3D8F7700BBB3DD /* MGWeibo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MGWeibo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CC7C45301B3D8F7700BBB3DD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		CC7C45451B3D8F7700BBB3DD /* MGWeibo.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MGWeibo.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		CC7C454A1B3D8F7700BBB3DD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		CC8CD3AB1B6A864F00B4E043 /* MGOAuthViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MGOAuthViewController.h; sourceTree = "<group>"; };
 		CC8CD3AC1B6A864F00B4E043 /* MGOAuthViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MGOAuthViewController.m; sourceTree = "<group>"; };
 		CC97E3281B416A15005CE29F /* MGBadgeButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MGBadgeButton.h; sourceTree = "<group>"; };
 		CC97E3291B416A15005CE29F /* MGBadgeButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MGBadgeButton.m; sourceTree = "<group>"; };
 		CCB7DCD31B3E401300708281 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
-		CCB852E51B3E916100CD4662 /* MgDiscoverViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MgDiscoverViewController.h; sourceTree = "<group>"; };
-		CCB852E61B3E916100CD4662 /* MgDiscoverViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MgDiscoverViewController.m; sourceTree = "<group>"; };
+		CCB852E51B3E916100CD4662 /* MGDiscoverViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MGDiscoverViewController.h; sourceTree = "<group>"; };
+		CCB852E61B3E916100CD4662 /* MGDiscoverViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MGDiscoverViewController.m; sourceTree = "<group>"; };
 		CCB852EB1B3E916100CD4662 /* MGHomeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MGHomeViewController.h; sourceTree = "<group>"; };
 		CCB852EC1B3E916100CD4662 /* MGHomeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MGHomeViewController.m; sourceTree = "<group>"; };
 		CCB852F11B3E916100CD4662 /* MGTabBarViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MGTabBarViewController.h; sourceTree = "<group>"; };
@@ -361,13 +349,6 @@
 
 /* Begin PBXFrameworksBuildPhase section */
 		CC7C45291B3D8F7600BBB3DD /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		CC7C45421B3D8F7700BBB3DD /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -733,7 +714,6 @@
 			isa = PBXGroup;
 			children = (
 				CC7C452E1B3D8F7700BBB3DD /* MGWeibo */,
-				CC7C45481B3D8F7700BBB3DD /* MGWeiboTests */,
 				CC7C452D1B3D8F7700BBB3DD /* Products */,
 			);
 			sourceTree = "<group>";
@@ -742,7 +722,6 @@
 			isa = PBXGroup;
 			children = (
 				CC7C452C1B3D8F7700BBB3DD /* MGWeibo.app */,
-				CC7C45451B3D8F7700BBB3DD /* MGWeibo.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -764,22 +743,6 @@
 				CC1D9D301BD2D02D00839EEB /* new_feature_1-568h@2x.png */,
 				CC1D9D311BD2D02D00839EEB /* new_feature_2-568h@2x.png */,
 				CC1D9D321BD2D02D00839EEB /* new_feature_3-568h@2x.png */,
-			);
-			path = "Supporting Files";
-			sourceTree = "<group>";
-		};
-		CC7C45481B3D8F7700BBB3DD /* MGWeiboTests */ = {
-			isa = PBXGroup;
-			children = (
-				CC7C45491B3D8F7700BBB3DD /* Supporting Files */,
-			);
-			path = MGWeiboTests;
-			sourceTree = "<group>";
-		};
-		CC7C45491B3D8F7700BBB3DD /* Supporting Files */ = {
-			isa = PBXGroup;
-			children = (
-				CC7C454A1B3D8F7700BBB3DD /* Info.plist */,
 			);
 			path = "Supporting Files";
 			sourceTree = "<group>";
@@ -832,8 +795,8 @@
 		CCB852E41B3E916100CD4662 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				CCB852E51B3E916100CD4662 /* MgDiscoverViewController.h */,
-				CCB852E61B3E916100CD4662 /* MgDiscoverViewController.m */,
+				CCB852E51B3E916100CD4662 /* MGDiscoverViewController.h */,
+				CCB852E61B3E916100CD4662 /* MGDiscoverViewController.m */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -896,10 +859,10 @@
 				CC6799EA1BCC74E0006B877D /* MGRetweetStatusView.m */,
 				CC60FBCC1B8AC736001571C6 /* MGStatusCell.h */,
 				CC60FBCD1B8AC736001571C6 /* MGStatusCell.m */,
-				CC79C4E11BCAAAEE0057D481 /* MGStatusToolBar.h */,
-				CC79C4E21BCAAAEE0057D481 /* MGStatusToolBar.m */,
 				CC6799EC1BCC7D06006B877D /* MGStatusTopView.h */,
 				CC6799ED1BCC7D06006B877D /* MGStatusTopView.m */,
+				CC79C4E11BCAAAEE0057D481 /* MGStatusToolBar.h */,
+				CC79C4E21BCAAAEE0057D481 /* MGStatusToolBar.m */,
 				CCE7B6711B44143500BDA866 /* MGTitleButton.h */,
 				CCE7B6721B44143500BDA866 /* MGTitleButton.m */,
 			);
@@ -1044,24 +1007,6 @@
 			productReference = CC7C452C1B3D8F7700BBB3DD /* MGWeibo.app */;
 			productType = "com.apple.product-type.application";
 		};
-		CC7C45441B3D8F7700BBB3DD /* MGWeibo.temp_caseinsensitive_renameTests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = CC7C45521B3D8F7700BBB3DD /* Build configuration list for PBXNativeTarget "MGWeibo.temp_caseinsensitive_renameTests" */;
-			buildPhases = (
-				CC7C45411B3D8F7700BBB3DD /* Sources */,
-				CC7C45421B3D8F7700BBB3DD /* Frameworks */,
-				CC7C45431B3D8F7700BBB3DD /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				CC7C45471B3D8F7700BBB3DD /* PBXTargetDependency */,
-			);
-			name = MGWeibo.temp_caseinsensitive_renameTests;
-			productName = MgWeiboTests;
-			productReference = CC7C45451B3D8F7700BBB3DD /* MGWeibo.xctest */;
-			productType = "com.apple.product-type.bundle.unit-test";
-		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -1074,10 +1019,6 @@
 					CC7C452B1B3D8F7600BBB3DD = {
 						CreatedOnToolsVersion = 6.1.1;
 						DevelopmentTeam = YEH9VENLMS;
-					};
-					CC7C45441B3D8F7700BBB3DD = {
-						CreatedOnToolsVersion = 6.1.1;
-						TestTargetID = CC7C452B1B3D8F7600BBB3DD;
 					};
 				};
 			};
@@ -1095,7 +1036,6 @@
 			projectRoot = "";
 			targets = (
 				CC7C452B1B3D8F7600BBB3DD /* MGWeibo.temp_caseinsensitive_rename */,
-				CC7C45441B3D8F7700BBB3DD /* MGWeibo.temp_caseinsensitive_renameTests */,
 			);
 		};
 /* End PBXProject section */
@@ -1112,13 +1052,6 @@
 				CC1D9D331BD2D02D00839EEB /* new_feature_1-568h@2x.png in Resources */,
 				CC7AE42B1CBEDB4700241975 /* MJRefresh.bundle in Resources */,
 				CC1D9D351BD2D02D00839EEB /* new_feature_3-568h@2x.png in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		CC7C45431B3D8F7700BBB3DD /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1192,7 +1125,7 @@
 				CC7AE4311CBEDB4700241975 /* NSData+ImageContentType.m in Sources */,
 				CC7AE42D1CBEDB4700241975 /* MJRefreshConst.m in Sources */,
 				CCB8530A1B3E916100CD4662 /* AppDelegate.m in Sources */,
-				CCB853051B3E916100CD4662 /* MgDiscoverViewController.m in Sources */,
+				CCB853051B3E916100CD4662 /* MGDiscoverViewController.m in Sources */,
 				CC7AE4101CBEDB4700241975 /* AFHTTPRequestOperation.m in Sources */,
 				CC7AE4AE1CBEEC3F00241975 /* IWThemeBgViewController.m in Sources */,
 				CC7AE48D1CBEEB1300241975 /* MGCommon.m in Sources */,
@@ -1237,22 +1170,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		CC7C45411B3D8F7700BBB3DD /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXSourcesBuildPhase section */
-
-/* Begin PBXTargetDependency section */
-		CC7C45471B3D8F7700BBB3DD /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = CC7C452B1B3D8F7600BBB3DD /* MGWeibo.temp_caseinsensitive_rename */;
-			targetProxy = CC7C45461B3D8F7700BBB3DD /* PBXContainerItemProxy */;
-		};
-/* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
 		CC7C454D1B3D8F7700BBB3DD /* Debug */ = {
@@ -1365,40 +1283,6 @@
 			};
 			name = Release;
 		};
-		CC7C45531B3D8F7700BBB3DD /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(SDKROOT)/Developer/Library/Frameworks",
-					"$(inherited)",
-				);
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					"DEBUG=1",
-					"$(inherited)",
-				);
-				INFOPLIST_FILE = "MGWeiboTests/Supporting Files/Info.plist";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_NAME = MGWeibo;
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/MGWeibo.app/MGWeibo";
-			};
-			name = Debug;
-		};
-		CC7C45541B3D8F7700BBB3DD /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(SDKROOT)/Developer/Library/Frameworks",
-					"$(inherited)",
-				);
-				INFOPLIST_FILE = "MGWeiboTests/Supporting Files/Info.plist";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_NAME = MGWeibo;
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/MGWeibo.app/MGWeibo";
-			};
-			name = Release;
-		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -1416,15 +1300,6 @@
 			buildConfigurations = (
 				CC7C45501B3D8F7700BBB3DD /* Debug */,
 				CC7C45511B3D8F7700BBB3DD /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		CC7C45521B3D8F7700BBB3DD /* Build configuration list for PBXNativeTarget "MGWeibo.temp_caseinsensitive_renameTests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				CC7C45531B3D8F7700BBB3DD /* Debug */,
-				CC7C45541B3D8F7700BBB3DD /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

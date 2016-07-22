@@ -98,10 +98,13 @@
     MGPlaceholderTextView *textView = [[MGPlaceholderTextView alloc] init];
     
     textView.frame = self.view.bounds;
-    textView.width = 200;
-    textView.placeholder = @"分享新鲜事...分享新鲜事...分享新鲜事...分享新鲜事...分享新鲜事...分享新鲜事...分享新鲜事...分享新鲜事...分享新鲜事...分享新鲜事...分享新鲜事...分享新鲜事...";
+//    textView.width = 200;
+    textView.placeholder = @"月落乌啼霜满天，江枫渔火对愁眠。姑苏城外寒山寺，夜半钟声到客船 ";
     textView.delegate = self;
 //    textView.font = [UIFont systemFontOfSize:20];
+    
+//    textView.keyboardDismissMode = UIScrollViewKeyboardDismissModeOnDrag;
+    
     
     [self.view addSubview:textView];
     _textView = textView;

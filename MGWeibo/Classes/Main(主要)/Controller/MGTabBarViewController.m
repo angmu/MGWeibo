@@ -9,7 +9,7 @@
 #import "MGTabBarViewController.h"
 #import "MGHomeViewController.h"
 #import "MgMessageViewController.h"
-#import "MgDiscoverViewController.h"
+#import "MGDiscoverViewController.h"
 #import "MGMineViewController.h"
 #import "UIImage+MG.h"
 #import "MGTabBar.h"
@@ -107,7 +107,7 @@
     
     
     // 3.广场
-    MgDiscoverViewController *discover = [[MgDiscoverViewController alloc] init];
+    MGDiscoverViewController *discover = [[MGDiscoverViewController alloc] init];
     [self setupChildViewController:discover title:@"广场" imageName:@"tabbar_discover" selectedImageName:@"tabbar_discover_selected"];
     
     // 4.我

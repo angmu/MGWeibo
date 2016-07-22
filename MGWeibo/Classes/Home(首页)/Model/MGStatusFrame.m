@@ -154,6 +154,4 @@
     // 14.cell的高度
     _cellHeight = CGRectGetMaxY(_statusToolBarF) + MGStatusTableBorder;
 }
-
-
 @end

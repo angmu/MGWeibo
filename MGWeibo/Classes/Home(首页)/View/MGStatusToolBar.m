@@ -58,7 +58,6 @@
         [self setupDivider];
     
     }
-    
     return self;
 }
 
@@ -180,6 +179,4 @@
         [btn setTitle:originalTilte forState:UIControlStateNormal];
     }
 }
-
-
 @end
