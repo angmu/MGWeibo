@@ -8,7 +8,7 @@
 
 #define MGNewfeatureCount 3
 #import "MGNewfeatureViewController.h"
-#import "MGTabBarViewController.h"
+#import "MGTabBarController.h"
 
 @interface MGNewfeatureViewController() <UIScrollViewDelegate>
 @property (nonatomic, weak) UIPageControl *pageControl;
@@ -155,8 +155,8 @@
     [UIApplication sharedApplication].statusBarHidden = NO;
     
     // 拿到窗口的根控制器
-//    [UIApplication sharedApplication].keyWindow.rootViewController = [[MgTabBarViewController alloc] init];
-    self.view.window.rootViewController = [[MGTabBarViewController alloc] init];
+//    [UIApplication sharedApplication].keyWindow.rootViewController = [[MGTabBarController alloc] init];
+    self.view.window.rootViewController = [[MGTabBarController alloc] init];
     
 }
 

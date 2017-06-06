@@ -7,7 +7,7 @@
 //
 
 #import "MGNavigationController.h"
-#import "UIBarButtonItem+MG.h"
+#import "UIBarButtonItem+Extension.h"
 
 @implementation MGNavigationController
 
@@ -16,11 +16,24 @@
  */
 + (void)initialize
 {
-    // 1.设置导航栏主题
-    [self setupNavBarTheme];
-    
     // 2.设置导航栏按钮主题
     [self setupBarButtonItemTheme];
+    
+    
+    // 取出appearance对象,拿到它能改导航栏里所有东西
+    UINavigationBar *navBar = [UINavigationBar appearance];
+    
+    NSShadow *shadow = [[NSShadow alloc] init];
+    shadow.shadowOffset = CGSizeZero;
+    
+    
+    // 设置标题属性
+    NSMutableDictionary *textAttrs = [NSMutableDictionary dictionary];
+    textAttrs[NSForegroundColorAttributeName] = [UIColor blackColor];
+    // 消除文字阴影
+//    textAttrs[NSShadowAttributeName] = [NSValue valueWithUIOffset:UIOffsetZero];
+    textAttrs[NSFontAttributeName] = [UIFont boldSystemFontOfSize:19];
+    [navBar setTitleTextAttributes:textAttrs];
 }
 
 /**
@@ -52,29 +65,6 @@
     [item setTitleTextAttributes:disableAttrs forState:UIControlStateDisabled];
 }
 
-/**
- *  设置导航栏主题
- */
-+ (void)setupNavBarTheme
-{
-    // 取出appearance对象,拿到它能改导航栏里所有东西
-    UINavigationBar *navBar = [UINavigationBar appearance];
-    
-    // 设置背景
-    if (!iOS7) {
-        [navBar setBackgroundImage:[UIImage imageWithName:@"navigationbar_background"] forBarMetrics:UIBarMetricsDefault];
-        [UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleBlackOpaque;
-    }
-    
-
-    // 设置标题属性
-    NSMutableDictionary *textAttrs = [NSMutableDictionary dictionary];
-    textAttrs[UITextAttributeTextColor] = [UIColor blackColor];
-    // 消除文字阴影
-    textAttrs[UITextAttributeTextShadowOffset] = [NSValue valueWithUIOffset:UIOffsetZero];
-    textAttrs[UITextAttributeFont] = [UIFont boldSystemFontOfSize:19];
-    [navBar setTitleTextAttributes:textAttrs];
-}
 
 /**
  *  重写这个方法目的：能够拦截所有push进来的控制器

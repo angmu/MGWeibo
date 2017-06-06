@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface MgMessageViewController : UITableViewController
+@interface MGMessageViewController : UITableViewController
 
 @end

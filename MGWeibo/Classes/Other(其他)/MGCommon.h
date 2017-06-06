@@ -1,3 +1,6 @@
+//#import <Foundation/Foundation.h>
+#import <UIKit/UIKit.h>
+
 //0.账号相关信息
 #define MGAppKey @"3637170628"
 #define MGAppSecret @"b4990ef2e737298552a1c8388fca78c3"

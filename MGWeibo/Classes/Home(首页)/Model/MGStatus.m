@@ -7,7 +7,6 @@
 
 #import "MGStatus.h"
 #import "MGUser.h"
-#import "NSDate+MG.h"
 #import "MJExtension.h"
 #import "MGPhoto.h"
 

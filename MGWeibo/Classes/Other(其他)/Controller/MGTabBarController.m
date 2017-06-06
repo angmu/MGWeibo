@@ -1,30 +1,32 @@
 //
-//  MGTabBarViewController.m
-//  MgWeibo
+//  MGTabBarController.m
+//  MGWeibo
 //
 //  Created by 穆良 on 15/6/27.
 //  Copyright (c) 2015年 穆良. All rights reserved.
 //
 
-#import "MGTabBarViewController.h"
+#import "MGTabBarController.h"
+
 #import "MGHomeViewController.h"
-#import "MgMessageViewController.h"
+#import "MGMessageViewController.h"
 #import "MGDiscoverViewController.h"
 #import "MGMineViewController.h"
-#import "UIImage+MG.h"
+
 #import "MGTabBar.h"
 #import "MGNavigationController.h"
 
 #import "MGComposeViewController.h"
 
-@interface MGTabBarViewController ()<MGTabBarDelegate>
+@interface MGTabBarController ()<MGTabBarDelegate>
 /**
  *  自定义tabBar
  */
 @property (nonatomic, weak) MGTabBar *customTabBar;
 @end
 
-@implementation MGTabBarViewController
+@implementation MGTabBarController
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     
@@ -101,7 +103,7 @@
     
     
     // 2.消息
-    MgMessageViewController *message = [[MgMessageViewController alloc] init];
+    MGMessageViewController *message = [[MGMessageViewController alloc] init];
 //    message.tabBarItem.badgeValue = @"new";
     [self setupChildViewController:message title:@"消息" imageName:@"tabbar_message_center" selectedImageName:@"tabbar_message_center_selected"];
     

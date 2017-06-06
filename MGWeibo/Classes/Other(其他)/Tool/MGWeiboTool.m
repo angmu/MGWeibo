@@ -7,7 +7,7 @@
 // 微博项目的工具类
 
 #import "MGWeiboTool.h"
-#import "MGTabBarViewController.h"
+#import "MGTabBarController.h"
 #import "MGNewfeatureViewController.h"
 
 @implementation MGWeiboTool
@@ -23,7 +23,7 @@
     if ([currentVersion isEqualToString:lastVersion]) {
         // 显示状态栏
         [UIApplication sharedApplication].statusBarHidden = NO;
-        [UIApplication sharedApplication].keyWindow.rootViewController = [[MGTabBarViewController alloc] init];
+        [UIApplication sharedApplication].keyWindow.rootViewController = [[MGTabBarController alloc] init];
     } else { // 新版本
         [UIApplication sharedApplication].keyWindow.rootViewController = [[MGNewfeatureViewController alloc] init];
         

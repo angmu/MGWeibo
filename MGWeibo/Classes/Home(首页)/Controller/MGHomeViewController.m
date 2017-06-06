@@ -1,5 +1,5 @@
 //
-//  MgHomeViewController.m
+//  MGHomeViewController.m
 //  MgWeibo
 //
 //  Created by 穆良 on 15/6/27.
@@ -7,10 +7,8 @@
 //
 
 
-
 #import "MGHomeViewController.h"
 #import "MGBadgeButton.h"
-#import "UIBarButtonItem+MG.h"
 #import "MGTitleButton.h"
 
 #import "MGAccountTool.h"
@@ -441,10 +439,6 @@
 - (void)viewDidLayoutSubviews
 {
     [super viewDidLayoutSubviews];
-    LxDBAnyVar(self.tableView.contentInset);
-    
-    LxDBAnyVar(self.tableView.frame);
-    LxDBAnyVar([UIScreen mainScreen].bounds);
     
 }
 @end

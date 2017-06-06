@@ -6,7 +6,7 @@
 //  Copyright (c) 2015年 穆良. All rights reserved.
 //
 
-#import "UIImage+MG.h"
+#import "UIImage+Extension.h"
 
 @implementation UIImage (Extension)
 

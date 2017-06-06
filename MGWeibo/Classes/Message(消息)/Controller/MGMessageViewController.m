@@ -6,13 +6,13 @@
 //  Copyright (c) 2015年 穆良. All rights reserved.
 //
 
-#import "MgMessageViewController.h"
+#import "MGMessageViewController.h"
 
-@interface MgMessageViewController ()
+@interface MGMessageViewController ()
 
 @end
 
-@implementation MgMessageViewController
+@implementation MGMessageViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
