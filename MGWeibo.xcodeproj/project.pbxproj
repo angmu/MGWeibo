@@ -156,6 +156,7 @@
 		CC5F32721B8A2AEA00603055 /* MGStatus.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MGStatus.m; sourceTree = "<group>"; };
 		CC5F32741B8A2D7A00603055 /* MGUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MGUser.h; sourceTree = "<group>"; };
 		CC5F32751B8A2D7A00603055 /* MGUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MGUser.m; sourceTree = "<group>"; };
+		CC6032D41EE6E2E10084A29A /* LxDBAnything.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LxDBAnything.h; sourceTree = "<group>"; };
 		CC60FBCC1B8AC736001571C6 /* MGStatusCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MGStatusCell.h; sourceTree = "<group>"; };
 		CC60FBCD1B8AC736001571C6 /* MGStatusCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MGStatusCell.m; sourceTree = "<group>"; };
 		CC63C9121BF82F9F00C51FB7 /* MGPhotosView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MGPhotosView.h; sourceTree = "<group>"; };
@@ -968,6 +969,7 @@
 				CC5F313C1B89B1E800603055 /* MGWeiboTool.m */,
 				CCB8530D1B3E944900CD4662 /* PrefixHeader.pch */,
 				CCB853041B3E916100CD4662 /* main.m */,
+				CC6032D41EE6E2E10084A29A /* LxDBAnything.h */,
 			);
 			path = "Other(其他)";
 			sourceTree = "<group>";

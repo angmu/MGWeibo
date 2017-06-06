@@ -6,14 +6,14 @@
 //  Copyright (c) 2015年 穆良. All rights reserved.
 //
 
-#import "MgDiscoverViewController.h"
+#import "MGDiscoverViewController.h"
 #import "MGSearchBar.h"
 
-@interface MgDiscoverViewController ()
+@interface MGDiscoverViewController ()
 
 @end
 
-@implementation MgDiscoverViewController
+@implementation MGDiscoverViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -22,6 +22,8 @@
     searchBar.frame = CGRectMake(0, 0, 300, 30);
     // 设置中间标题内容
     self.navigationItem.titleView = searchBar;
+    self.tableView.keyboardDismissMode = UIScrollViewKeyboardDismissModeOnDrag;
+
 }
 
 - (void)didReceiveMemoryWarning {
@@ -30,7 +32,6 @@
 }
 
 #pragma mark - Table view data source
-
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
 
     // Return the number of sections.
@@ -39,7 +40,6 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
 
-    // Return the number of rows in the section.
     return 0;
 }
 

@@ -167,13 +167,13 @@
         // 异步加载(1-2s后才有结果)，重新刷新表格，否则看不见
         [self.tableView reloadData];
         
-        //让刷新控件停止显示刷新状态
+        // 让刷新控件停止显示刷新状态
         [self.footer endRefreshing];
         //显示最新微博数量(给用户一些友善的提示)
         [self showNewStatusCount:statusFrameArray.count];
     } failure:^(NSError *error) {
         
-        //让刷新控件停止显示刷新状态
+        // 让刷新控件停止显示刷新状态
         [self.footer endRefreshing];
     }];
 }
@@ -365,10 +365,15 @@
     
     
     self.tableView.backgroundColor = MGColor(226, 226, 226);
-//    self.tableView.backgroundColor = [UIColor clearColor];
     self.tableView.contentInset = UIEdgeInsetsMake(0, 0, MGStatusTableBorder, 0);
     //设置cell分割线样式
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+}
+
+- (void)viewDidLayoutSubviews
+{
+    [super viewDidLayoutSubviews];
+    
 }
 
 /**

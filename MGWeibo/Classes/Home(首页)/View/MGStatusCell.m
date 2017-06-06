@@ -84,12 +84,12 @@
  */
 - (void)setFrame:(CGRect)frame
 {
-    [super setFrame:frame];
-    
-    frame.origin.y += MGStatusTableBorder;
     frame.origin.x = MGStatusTableBorder;
     frame.size.width -= 2 * MGStatusTableBorder;
+    frame.origin.y += MGStatusTableBorder;
     frame.size.height -= MGStatusTableBorder;
+    
+    [super setFrame:frame];
 }
 
 #pragma mark - 设置控件数据
