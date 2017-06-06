@@ -76,7 +76,7 @@
         } else {
             name = [NSString stringWithFormat:@"new_feature_%d", index+1];
         }
-        imageView.image = [UIImage imageWithName:name];
+        imageView.image = [UIImage imageNamed:name];
         
         // 设置frame
         CGFloat imageX = imageW * index;
@@ -124,8 +124,8 @@
     
     // 4.添加checkbox
     UIButton *checkbox = [[UIButton alloc] init];
-    [checkbox setImage:[UIImage imageWithName:@"new_feature_share_false"] forState:UIControlStateNormal];
-    [checkbox setImage:[UIImage imageWithName:@"new_feature_share_true"] forState:UIControlStateSelected];
+    [checkbox setImage:[UIImage imageNamed:@"new_feature_share_false"] forState:UIControlStateNormal];
+    [checkbox setImage:[UIImage imageNamed:@"new_feature_share_true"] forState:UIControlStateSelected];
     checkbox.selected = YES;
      
     // 设置frame

@@ -39,7 +39,7 @@
         
         // 有些设置操作只需做一次
         if (!iOS7) {
-            [self setBackgroundImage:[UIImage imageWithName:@"tabbar_slider"] forState:UIControlStateSelected];
+            [self setBackgroundImage:[UIImage imageNamed:@"tabbar_slider"] forState:UIControlStateSelected];
         }
         
         // 添加提醒数字按钮

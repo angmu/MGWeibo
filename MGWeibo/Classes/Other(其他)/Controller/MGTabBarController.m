@@ -92,12 +92,6 @@
 {
     // 1.首页
     MGHomeViewController *home = [[MGHomeViewController alloc] init];
-    
-//    if (iOS7){
-//        [self setupChildViewController:home title:@"首页" imageName:@"tabbar_home_os7" selectedImageName:@"tabbar_home_selected_os7"];
-//    } else {
-//        [self setupChildViewController:home title:@"首页" imageName:@"tabbar_home" selectedImageName:@"tabbar_home_selected"];
-//    }
 //    home.tabBarItem.badgeValue = @"10";
     [self setupChildViewController:home title:@"首页" imageName:@"tabbar_home" selectedImageName:@"tabbar_home_selected"];
     
@@ -133,16 +127,19 @@
     // 1.设置完控制器的属性
     childVc.title = title;
     // 设置图标
-    childVc.tabBarItem.image = [UIImage imageWithName:imageName];
+    childVc.tabBarItem.image = [UIImage imageNamed:imageName];
     
     // 设置选中时的图标
-    UIImage *selectedImage = [UIImage imageWithName:selectedImageName];
-    if (iOS7) {
-        childVc.tabBarItem.selectedImage = selectedImage;
-//        childVc.tabBarItem.selectedImage = [selectedImage imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
-    } else { // iOS6没有渲染图片的方法
-        childVc.tabBarItem.selectedImage = selectedImage;
-    }
+    UIImage *selectedImage = [UIImage imageNamed:selectedImageName];
+    childVc.tabBarItem.selectedImage = selectedImage;
+    
+//    if (iOS7) {
+//        childVc.tabBarItem.selectedImage = selectedImage;
+//        //        childVc.tabBarItem.selectedImage = [selectedImage imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+//    } else { // iOS6没有渲染图片的方法
+//        
+//    }
+
     
     // 2.包装一个导航控制器
     MGNavigationController *nav = [[MGNavigationController alloc] initWithRootViewController:childVc];

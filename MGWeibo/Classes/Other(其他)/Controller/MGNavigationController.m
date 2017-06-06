@@ -16,72 +16,50 @@
  */
 + (void)initialize
 {
-    // 2.设置导航栏按钮主题
-    [self setupBarButtonItemTheme];
     
-    
-    // 取出appearance对象,拿到它能改导航栏里所有东西
+    // 1.取出appearance对象,拿到它能改导航栏里所有东西
     UINavigationBar *navBar = [UINavigationBar appearance];
-    
-    NSShadow *shadow = [[NSShadow alloc] init];
-    shadow.shadowOffset = CGSizeZero;
-    
-    
     // 设置标题属性
     NSMutableDictionary *textAttrs = [NSMutableDictionary dictionary];
     textAttrs[NSForegroundColorAttributeName] = [UIColor blackColor];
+    textAttrs[NSFontAttributeName] = [UIFont boldSystemFontOfSize:18];
     // 消除文字阴影
+    NSShadow *shadow = [[NSShadow alloc] init];
+    shadow.shadowOffset = CGSizeZero;
 //    textAttrs[NSShadowAttributeName] = [NSValue valueWithUIOffset:UIOffsetZero];
-    textAttrs[NSFontAttributeName] = [UIFont boldSystemFontOfSize:19];
     [navBar setTitleTextAttributes:textAttrs];
-}
-
-/**
- *  设置导航栏按钮主题
- */
-+ (void)setupBarButtonItemTheme
-{
-    UIBarButtonItem *item = [UIBarButtonItem appearance];
     
-    // 设置背景
-    if (!iOS7) {
-        [item setBackgroundImage:[UIImage imageWithName:@"navigationbar_button_background"] forState:UIControlStateNormal barMetrics:UIBarMetricsDefault];
-        [item setBackgroundImage:[UIImage imageWithName:@"navigationbar_button_background_pushed"] forState:UIControlStateHighlighted barMetrics:UIBarMetricsDefault];
-        [item setBackgroundImage:[UIImage imageWithName:@"navigationbar_button_background_disable"] forState:UIControlStateDisabled barMetrics:UIBarMetricsDefault];
-        
-    }
-
+    
+    // 2.设置导航Item主题
+    UIBarButtonItem *item = [UIBarButtonItem appearance];
     // 设置文字属性
     NSMutableDictionary *attrs = [NSMutableDictionary dictionary];
-    attrs[UITextAttributeTextColor] = iOS7 ? [UIColor orangeColor] : [UIColor grayColor];
-    attrs[UITextAttributeTextShadowOffset] = [NSValue valueWithUIOffset:UIOffsetZero];
-    attrs[UITextAttributeFont] = [UIFont systemFontOfSize:iOS7 ? 15 : 12];
+    attrs[NSForegroundColorAttributeName] = [UIColor orangeColor];
+    attrs[NSFontAttributeName] = [UIFont systemFontOfSize:14];
     [item setTitleTextAttributes:attrs forState:UIControlStateNormal];
     [item setTitleTextAttributes:attrs forState:UIControlStateHighlighted];
     
-    //设置不能点击时，按钮的颜色
+    // 设置不能点击时，按钮的颜色
     NSMutableDictionary *disableAttrs = [NSMutableDictionary dictionary];
-    disableAttrs[NSForegroundColorAttributeName] = [UIColor lightGrayColor]; //亮灰色
+    disableAttrs[NSForegroundColorAttributeName] = [UIColor lightGrayColor];
     [item setTitleTextAttributes:disableAttrs forState:UIControlStateDisabled];
 }
 
 
 /**
- *  重写这个方法目的：能够拦截所有push进来的控制器
+ *  重写目的：拦截所有push进来的控制器
  *
  *  @param viewController 即将push进来的控制器
  */
 - (void)pushViewController:(UIViewController *)viewController animated:(BOOL)animated
 {
-    if (self.viewControllers.count > 0) { // 这时push进来的控制器viewController，不是第一个子控制器（不是根控制器）
+    // 这时push进来的控制器viewController，不是根控制器时
+    if (self.viewControllers.count >= 1) {
         /* 自动显示和隐藏tabbar */
         viewController.hidesBottomBarWhenPushed = YES;
         
-        /* 设置导航栏上面的内容 */
         // 设置左边的返回按钮
-
         viewController.navigationItem.leftBarButtonItem = [UIBarButtonItem itemWithIcon:@"navigationbar_back" highIcon:@"navigationbar_back_highlighted" target:self action:@selector(back)];
-
         
         // 设置右边的更多按钮
         viewController.navigationItem.rightBarButtonItem = [UIBarButtonItem itemWithIcon:@"navigationbar_more" highIcon:@"navigationbar_more_highlighted" target:self action:@selector(more)];
@@ -101,6 +79,5 @@
 {
     [self popToRootViewControllerAnimated:YES];
 }
-
 
 @end

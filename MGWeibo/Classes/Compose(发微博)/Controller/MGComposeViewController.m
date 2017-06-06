@@ -10,7 +10,6 @@
 #import "MGPlaceholderTextView.h"
 #import "MGAccount.h"
 #import "MGAccountTool.h"
-#import "MBProgressHUD+MJ.h"
 #import "MGComposeToolbar.h"
 #import "MGPhotosView.h"
 

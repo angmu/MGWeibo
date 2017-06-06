@@ -111,7 +111,7 @@
     MGUser *user = status.user;
     
     // 2.头像
-    [self.iconView sd_setImageWithURL:[NSURL URLWithString:user.profile_image_url] placeholderImage:[UIImage imageWithName:@"avatar_default_small"]];
+    [self.iconView sd_setImageWithURL:[NSURL URLWithString:user.profile_image_url] placeholderImage:[UIImage imageNamed:@"avatar_default_small"]];
     self.iconView.frame = self.statusFrame.iconViewF;
     
     // 3.昵称
@@ -122,7 +122,7 @@
     if (user.mbrank > 2) {
         self.vipView.hidden = NO;
         //        self.vipView.image = [UIImage imageWithName:@"common_icon_membership"];
-        self.vipView.image = [UIImage imageWithName:[NSString stringWithFormat:@"common_icon_membership_level%d", user.mbrank]];
+        self.vipView.image = [UIImage imageNamed:[NSString stringWithFormat:@"common_icon_membership_level%d", user.mbrank]];
         self.vipView.frame = self.statusFrame.vipViewF;
         
         self.nameLabel.textColor = [UIColor orangeColor];

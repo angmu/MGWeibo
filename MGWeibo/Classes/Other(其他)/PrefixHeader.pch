@@ -17,7 +17,7 @@
 #import "NSDate+Extension.h"
 #import "UIImage+Extension.h"
 #import "UIBarButtonItem+Extension.h"
-
+#import "MBProgressHUD+Extension.h"
 
 
 #import "LxDBAnything.h"

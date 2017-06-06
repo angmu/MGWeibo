@@ -11,7 +11,6 @@
 #import "MGAccount.h"
 #import "MGWeiboTool.h"
 #import "MGAccountTool.h"
-#import "MBProgressHUD+MJ.h"
 #import "MGHttpTool.h"
 
 @interface MGOAuthViewController () <UIWebViewDelegate>

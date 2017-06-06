@@ -42,7 +42,6 @@
         self.contentMode = UIViewContentModeScaleAspectFill;
         //超出边框的都剪掉
         self.clipsToBounds = YES;
-        
     }
     
     return self;
@@ -62,7 +61,7 @@
     _photo = photo;
     
     //设置图片 用SDImage设置
-    [self sd_setImageWithURL:[NSURL URLWithString:photo.thumbnail_pic] placeholderImage:[UIImage imageWithName:@"timeline_image_placeholder"]];
+    [self sd_setImageWithURL:[NSURL URLWithString:photo.thumbnail_pic] placeholderImage:[UIImage imageNamed:@"timeline_image_placeholder"]];
     
     //显示\隐藏gif控件
 //    if ([photo.thumbnail_pic hasSuffix:@"gif"]) { //判断后缀名

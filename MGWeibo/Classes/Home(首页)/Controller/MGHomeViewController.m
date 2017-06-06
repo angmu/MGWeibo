@@ -294,7 +294,7 @@
     ;
     //2.设置图片和文字
     btn.userInteractionEnabled = NO; //没有点击事件，不高亮调整图片
-    [btn setBackgroundImage:[UIImage resizeimageWithName:@"timeline_new_status_background_os7"] forState:UIControlStateNormal];
+    [btn setBackgroundImage:[UIImage resizeimageWithName:@"timeline_new_status_background"] forState:UIControlStateNormal];
     if (count) {
         NSString *title = [NSString stringWithFormat:@"共有%zd条新的微博", count];
         [btn setTitle:title forState:UIControlStateNormal];
@@ -302,7 +302,7 @@
         [btn setTitle:@"没有新的微博" forState:UIControlStateNormal];
     }
     // TODO:
-    [btn setTitleColor:[UIColor orangeColor] forState:UIControlStateNormal];
+    [btn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     [btn.titleLabel setFont:[UIFont systemFontOfSize:14]];
     
     
@@ -343,7 +343,7 @@
     // 中间按钮
     MGTitleButton *titleBtn = [MGTitleButton titleButton];
     // 图标
-    [titleBtn setImage:[UIImage imageWithName:@"navigationbar_arrow_down"] forState:UIControlStateNormal];
+    [titleBtn setImage:[UIImage imageNamed:@"navigationbar_arrow_down"] forState:UIControlStateNormal];
     
     //设置titleButton的frame一定要放在前面 放在后面计算字体宽度就没用了
     titleBtn.frame = CGRectMake(0, 0, 0, 40);
@@ -377,10 +377,10 @@
 - (void)titleClick:(MGTitleButton *)titleBtn
 {
     if (titleBtn.tag == MGTitleButtonDown) {
-        [titleBtn setImage:[UIImage imageWithName:@"navigationbar_arrow_up"] forState:UIControlStateNormal];
+        [titleBtn setImage:[UIImage imageNamed:@"navigationbar_arrow_up"] forState:UIControlStateNormal];
         titleBtn.tag = MGTitleButtonUp;
     } else {
-        [titleBtn setImage:[UIImage imageWithName:@"navigationbar_arrow_down"] forState:UIControlStateNormal];
+        [titleBtn setImage:[UIImage imageNamed:@"navigationbar_arrow_down"] forState:UIControlStateNormal];
         titleBtn.tag = MGTitleButtonDown;
     }
 

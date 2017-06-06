@@ -64,7 +64,7 @@
 - (void)setupDivider
 {
     UIImageView *divider = [[UIImageView alloc] init];
-    divider.image = [UIImage imageWithName:@"timeline_card_bottom_line"];
+    divider.image = [UIImage imageNamed:@"timeline_card_bottom_line"];
     [self addSubview:divider];
     [self.dividers addObject:divider];
 }
@@ -79,7 +79,7 @@
 - (UIButton *)setupBtnWithTitle:(NSString *)title image:(NSString *)image bgImage:(NSString *)bgImage
 {
     UIButton *btn = [[UIButton alloc] init];
-    [btn setImage:[UIImage imageWithName:image] forState:UIControlStateNormal];
+    [btn setImage:[UIImage imageNamed:image] forState:UIControlStateNormal];
     [btn setTitle:title forState:UIControlStateNormal];
     [btn setTitleColor:[UIColor grayColor] forState:UIControlStateNormal];
     btn.titleLabel.font = [UIFont systemFontOfSize:13];

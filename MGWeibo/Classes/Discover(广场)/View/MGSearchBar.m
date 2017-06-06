@@ -22,7 +22,7 @@
         // 背景
         self.background = [UIImage resizeimageWithName:@"searchbar_textfield_background"];
         // 左边放大镜
-        UIImageView *iconView = [[UIImageView alloc] initWithImage:[UIImage imageWithName:@"searchbar_textfield_search_icon"]];
+        UIImageView *iconView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"searchbar_textfield_search_icon"]];
 //        iconView.frame = CGRectMake(0, 0, 30, self.frame.size.height);
         iconView.contentMode = UIViewContentModeCenter;
         self.leftView = iconView;

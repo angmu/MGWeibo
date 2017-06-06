@@ -43,6 +43,7 @@
 		CC60337A1EE6F42B0084A29A /* MGBadgeButton.m in Sources */ = {isa = PBXBuildFile; fileRef = CC6033721EE6F42B0084A29A /* MGBadgeButton.m */; };
 		CC60337B1EE6F42B0084A29A /* MGTabBar.m in Sources */ = {isa = PBXBuildFile; fileRef = CC6033741EE6F42B0084A29A /* MGTabBar.m */; };
 		CC60337C1EE6F42B0084A29A /* MgTabBarButton.m in Sources */ = {isa = PBXBuildFile; fileRef = CC6033761EE6F42B0084A29A /* MgTabBarButton.m */; };
+		CC6033801EE700590084A29A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CC60337F1EE700590084A29A /* Images.xcassets */; };
 		CC60FBCE1B8AC736001571C6 /* MGStatusCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CC60FBCD1B8AC736001571C6 /* MGStatusCell.m */; };
 		CC63C9141BF82F9F00C51FB7 /* MGPhotosView.m in Sources */ = {isa = PBXBuildFile; fileRef = CC63C9131BF82F9F00C51FB7 /* MGPhotosView.m */; };
 		CC6475B31BD009C500310D27 /* MGPhoto.m in Sources */ = {isa = PBXBuildFile; fileRef = CC6475B21BD009C500310D27 /* MGPhoto.m */; };
@@ -59,7 +60,7 @@
 		CC7AE4161CBEDB4700241975 /* AFURLRequestSerialization.m in Sources */ = {isa = PBXBuildFile; fileRef = CC7AE3B81CBEDB4700241975 /* AFURLRequestSerialization.m */; };
 		CC7AE4171CBEDB4700241975 /* AFURLResponseSerialization.m in Sources */ = {isa = PBXBuildFile; fileRef = CC7AE3BA1CBEDB4700241975 /* AFURLResponseSerialization.m */; };
 		CC7AE4181CBEDB4700241975 /* AFURLSessionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CC7AE3BC1CBEDB4700241975 /* AFURLSessionManager.m */; };
-		CC7AE4191CBEDB4700241975 /* MBProgressHUD+MJ.m in Sources */ = {isa = PBXBuildFile; fileRef = CC7AE3BF1CBEDB4700241975 /* MBProgressHUD+MJ.m */; };
+		CC7AE4191CBEDB4700241975 /* MBProgressHUD+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = CC7AE3BF1CBEDB4700241975 /* MBProgressHUD+Extension.m */; };
 		CC7AE41A1CBEDB4700241975 /* MBProgressHUD.bundle in Resources */ = {isa = PBXBuildFile; fileRef = CC7AE3C01CBEDB4700241975 /* MBProgressHUD.bundle */; };
 		CC7AE41B1CBEDB4700241975 /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = CC7AE3C21CBEDB4700241975 /* MBProgressHUD.m */; };
 		CC7AE41C1CBEDB4700241975 /* MJConst.m in Sources */ = {isa = PBXBuildFile; fileRef = CC7AE3C51CBEDB4700241975 /* MJConst.m */; };
@@ -109,7 +110,6 @@
 		CC7AE4AE1CBEEC3F00241975 /* IWThemeBgViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CC7AE4A11CBEEC3F00241975 /* IWThemeBgViewController.m */; };
 		CC7AE4AF1CBEEC3F00241975 /* MGMineViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CC7AE4A31CBEEC3F00241975 /* MGMineViewController.m */; };
 		CC8CD3AD1B6A864F00B4E043 /* MGOAuthViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CC8CD3AC1B6A864F00B4E043 /* MGOAuthViewController.m */; };
-		CCB7DCD41B3E401300708281 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CCB7DCD31B3E401300708281 /* Images.xcassets */; };
 		CCB853051B3E916100CD4662 /* MGDiscoverViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CCB852E61B3E916100CD4662 /* MGDiscoverViewController.m */; };
 		CCB853061B3E916100CD4662 /* MGHomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CCB852EC1B3E916100CD4662 /* MGHomeViewController.m */; };
 		CCB853091B3E916100CD4662 /* MGMessageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CCB852FE1B3E916100CD4662 /* MGMessageViewController.m */; };
@@ -193,6 +193,7 @@
 		CC6033741EE6F42B0084A29A /* MGTabBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MGTabBar.m; sourceTree = "<group>"; };
 		CC6033751EE6F42B0084A29A /* MgTabBarButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MgTabBarButton.h; sourceTree = "<group>"; };
 		CC6033761EE6F42B0084A29A /* MgTabBarButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MgTabBarButton.m; sourceTree = "<group>"; };
+		CC60337F1EE700590084A29A /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		CC60FBCC1B8AC736001571C6 /* MGStatusCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MGStatusCell.h; sourceTree = "<group>"; };
 		CC60FBCD1B8AC736001571C6 /* MGStatusCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MGStatusCell.m; sourceTree = "<group>"; };
 		CC63C9121BF82F9F00C51FB7 /* MGPhotosView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MGPhotosView.h; sourceTree = "<group>"; };
@@ -226,8 +227,8 @@
 		CC7AE3BA1CBEDB4700241975 /* AFURLResponseSerialization.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFURLResponseSerialization.m; sourceTree = "<group>"; };
 		CC7AE3BB1CBEDB4700241975 /* AFURLSessionManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFURLSessionManager.h; sourceTree = "<group>"; };
 		CC7AE3BC1CBEDB4700241975 /* AFURLSessionManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFURLSessionManager.m; sourceTree = "<group>"; };
-		CC7AE3BE1CBEDB4700241975 /* MBProgressHUD+MJ.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "MBProgressHUD+MJ.h"; sourceTree = "<group>"; };
-		CC7AE3BF1CBEDB4700241975 /* MBProgressHUD+MJ.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "MBProgressHUD+MJ.m"; sourceTree = "<group>"; };
+		CC7AE3BE1CBEDB4700241975 /* MBProgressHUD+Extension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "MBProgressHUD+Extension.h"; sourceTree = "<group>"; };
+		CC7AE3BF1CBEDB4700241975 /* MBProgressHUD+Extension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "MBProgressHUD+Extension.m"; sourceTree = "<group>"; };
 		CC7AE3C01CBEDB4700241975 /* MBProgressHUD.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = MBProgressHUD.bundle; sourceTree = "<group>"; };
 		CC7AE3C11CBEDB4700241975 /* MBProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MBProgressHUD.h; sourceTree = "<group>"; };
 		CC7AE3C21CBEDB4700241975 /* MBProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MBProgressHUD.m; sourceTree = "<group>"; };
@@ -327,7 +328,6 @@
 		CC7C45301B3D8F7700BBB3DD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		CC8CD3AB1B6A864F00B4E043 /* MGOAuthViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MGOAuthViewController.h; sourceTree = "<group>"; };
 		CC8CD3AC1B6A864F00B4E043 /* MGOAuthViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MGOAuthViewController.m; sourceTree = "<group>"; };
-		CCB7DCD31B3E401300708281 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		CCB852E51B3E916100CD4662 /* MGDiscoverViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MGDiscoverViewController.h; sourceTree = "<group>"; };
 		CCB852E61B3E916100CD4662 /* MGDiscoverViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MGDiscoverViewController.m; sourceTree = "<group>"; };
 		CCB852EB1B3E916100CD4662 /* MGHomeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MGHomeViewController.h; sourceTree = "<group>"; };
@@ -530,6 +530,20 @@
 			path = View;
 			sourceTree = "<group>";
 		};
+		CC60337D1EE6FC8C0084A29A /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		CC60337E1EE6FC8C0084A29A /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
 		CC71BE461B462A0D0076AE04 /* Newfeature(新特性) */ = {
 			isa = PBXGroup;
 			children = (
@@ -605,8 +619,8 @@
 		CC7AE3BD1CBEDB4700241975 /* MBProgressHUD */ = {
 			isa = PBXGroup;
 			children = (
-				CC7AE3BE1CBEDB4700241975 /* MBProgressHUD+MJ.h */,
-				CC7AE3BF1CBEDB4700241975 /* MBProgressHUD+MJ.m */,
+				CC7AE3BE1CBEDB4700241975 /* MBProgressHUD+Extension.h */,
+				CC7AE3BF1CBEDB4700241975 /* MBProgressHUD+Extension.m */,
 				CC7AE3C01CBEDB4700241975 /* MBProgressHUD.bundle */,
 				CC7AE3C11CBEDB4700241975 /* MBProgressHUD.h */,
 				CC7AE3C21CBEDB4700241975 /* MBProgressHUD.m */,
@@ -785,7 +799,7 @@
 		CC7C452F1B3D8F7700BBB3DD /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				CCB7DCD31B3E401300708281 /* Images.xcassets */,
+				CC60337F1EE700590084A29A /* Images.xcassets */,
 				CC7C45301B3D8F7700BBB3DD /* Info.plist */,
 				CC1D9D301BD2D02D00839EEB /* new_feature_1-568h@2x.png */,
 				CC1D9D311BD2D02D00839EEB /* new_feature_2-568h@2x.png */,
@@ -919,8 +933,8 @@
 			isa = PBXGroup;
 			children = (
 				CCB852FC1B3E916100CD4662 /* Controller */,
-				CCB852FF1B3E916100CD4662 /* Model */,
-				CCB853001B3E916100CD4662 /* View */,
+				CC60337D1EE6FC8C0084A29A /* Model */,
+				CC60337E1EE6FC8C0084A29A /* View */,
 			);
 			path = "Message(消息)";
 			sourceTree = "<group>";
@@ -934,28 +948,14 @@
 			path = Controller;
 			sourceTree = "<group>";
 		};
-		CCB852FF1B3E916100CD4662 /* Model */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Model;
-			sourceTree = "<group>";
-		};
-		CCB853001B3E916100CD4662 /* View */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = View;
-			sourceTree = "<group>";
-		};
 		CCB853011B3E916100CD4662 /* Other(其他) */ = {
 			isa = PBXGroup;
 			children = (
 				CC6032D81EE6EE1A0084A29A /* AppDelegate */,
 				CCB8530E1B3ECA2F00CD4662 /* Category */,
-				CC6032DC1EE6F18B0084A29A /* Controller */,
 				CC4D5AB91BF8E4E600F85B16 /* Tool */,
 				CC7AE3A81CBEDB4700241975 /* Vendor */,
+				CC6032DC1EE6F18B0084A29A /* Controller */,
 				CC60336A1EE6F42B0084A29A /* View */,
 				CC6032D41EE6E2E10084A29A /* LxDBAnything.h */,
 				CC1D9D361BD2DC7000839EEB /* MGCommon.h */,
@@ -1039,9 +1039,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CCB7DCD41B3E401300708281 /* Images.xcassets in Resources */,
 				CC7AE41A1CBEDB4700241975 /* MBProgressHUD.bundle in Resources */,
 				CC1D9D341BD2D02D00839EEB /* new_feature_2-568h@2x.png in Resources */,
+				CC6033801EE700590084A29A /* Images.xcassets in Resources */,
 				CC7AE4241CBEDB4700241975 /* MJPhotoBrowser.bundle in Resources */,
 				CC1D9D331BD2D02D00839EEB /* new_feature_1-568h@2x.png in Resources */,
 				CC7AE42B1CBEDB4700241975 /* MJRefresh.bundle in Resources */,
@@ -1130,7 +1130,7 @@
 				CC7AE4381CBEDB4700241975 /* SDWebImagePrefetcher.m in Sources */,
 				CCB8530B1B3E916100CD4662 /* main.m in Sources */,
 				CC7AE4341CBEDB4700241975 /* SDWebImageDecoder.m in Sources */,
-				CC7AE4191CBEDB4700241975 /* MBProgressHUD+MJ.m in Sources */,
+				CC7AE4191CBEDB4700241975 /* MBProgressHUD+Extension.m in Sources */,
 				CC7AE4AD1CBEEC3F00241975 /* IWSystemSettingViewController.m in Sources */,
 				CC7AE4301CBEDB4700241975 /* MKAnnotationView+WebCache.m in Sources */,
 				CC6032D71EE6EDC90084A29A /* MGWeiboTool.m in Sources */,

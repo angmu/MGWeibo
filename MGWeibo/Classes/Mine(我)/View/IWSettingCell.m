@@ -51,7 +51,7 @@
 - (UIImageView *)arrowView
 {
     if (_arrowView == nil) {
-        _arrowView = [[UIImageView alloc] initWithImage:[UIImage imageWithName:@"common_icon_arrow"]];
+        _arrowView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"common_icon_arrow"]];
     }
     return _arrowView;
 }
@@ -59,7 +59,7 @@
 - (UIImageView *)checkView
 {
     if (_checkView == nil) {
-        _checkView = [[UIImageView alloc] initWithImage:[UIImage imageWithName:@"common_icon_checkmark"]];
+        _checkView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"common_icon_checkmark"]];
     }
     return _checkView;
 }
@@ -139,7 +139,7 @@
 {
     // 1.图标
     if (self.item.icon) {
-        self.imageView.image = [UIImage imageWithName:self.item.icon];
+        self.imageView.image = [UIImage imageNamed:self.item.icon];
     }
     
     // 2.标题

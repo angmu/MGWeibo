@@ -30,7 +30,7 @@
     self = [super initWithFrame:frame];
     if (self) {
         if (!iOS7) {
-            self.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageWithName:@"tabbar_background"]];
+            self.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"tabbar_background"]];
         }
         
         [self addPlusBtn];
@@ -47,13 +47,13 @@
     UIButton *plusButton = [UIButton buttonWithType:UIButtonTypeCustom];
     
     // 2.设置背景图片
-    UIImage *bg = [UIImage imageWithName:@"tabbar_compose_button"];
+    UIImage *bg = [UIImage imageNamed:@"tabbar_compose_button"];
     [plusButton setBackgroundImage:bg forState:UIControlStateNormal];
-    [plusButton setBackgroundImage:[UIImage imageWithName:@"tabbar_compose_button_highlighted"] forState:UIControlStateHighlighted];
+    [plusButton setBackgroundImage:[UIImage imageNamed:@"tabbar_compose_button_highlighted"] forState:UIControlStateHighlighted];
     
     // 3.设置顶部的+号图片
-    [plusButton setImage:[UIImage imageWithName:@"tabbar_compose_icon_add"] forState:UIControlStateNormal];
-    [plusButton setImage:[UIImage imageWithName:@"tabbar_compose_icon_add_highlighted"] forState:UIControlStateHighlighted];
+    [plusButton setImage:[UIImage imageNamed:@"tabbar_compose_icon_add"] forState:UIControlStateNormal];
+    [plusButton setImage:[UIImage imageNamed:@"tabbar_compose_icon_add_highlighted"] forState:UIControlStateHighlighted];
     
     // 4.监听按钮点击
     [plusButton addTarget:self action:@selector(plusClick) forControlEvents:UIControlEventTouchUpInside];

@@ -21,7 +21,7 @@
 
         UIImageView *addImageView = [[UIImageView alloc] init];
         _addImageView = addImageView;
-        addImageView.image = [UIImage imageWithName:@"compose_pic_add"];
+        addImageView.image = [UIImage imageNamed:@"compose_pic_add"];
         
         [self addSubview:addImageView];
 

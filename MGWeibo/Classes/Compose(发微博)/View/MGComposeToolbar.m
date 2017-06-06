@@ -16,7 +16,7 @@
     if (self = [super initWithFrame:frame]) {
 
         //1、设置工具条背景
-        self.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageWithName:@"compose_toolbar_background"]];
+        self.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"compose_toolbar_background"]];
         
         //2、添加按钮compose_toolbar_picture_highlighted
         [self addButtonWithIcon:@"compose_camerabutton_background" hight:@"compose_camerabutton_background_highlighted" tag:MGComposeToolbarButtonTypeCamera];
@@ -38,8 +38,8 @@
     button.tag = tag;
     [button addTarget:self action:@selector(buttonClick:) forControlEvents:UIControlEventTouchUpInside];
     
-    [button setImage:[UIImage imageWithName:icon] forState:UIControlStateNormal];
-    [button setImage:[UIImage imageWithName:hightIcon] forState:UIControlStateHighlighted];
+    [button setImage:[UIImage imageNamed:icon] forState:UIControlStateNormal];
+    [button setImage:[UIImage imageNamed:hightIcon] forState:UIControlStateHighlighted];
     [self addSubview:button];
 
 }
