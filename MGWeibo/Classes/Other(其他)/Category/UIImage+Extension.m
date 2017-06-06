@@ -8,7 +8,8 @@
 
 #import "UIImage+MG.h"
 
-@implementation UIImage (MG)
+@implementation UIImage (Extension)
+
 + (UIImage *)imageWithName:(NSString *)name
 {
     if (iOS7) {

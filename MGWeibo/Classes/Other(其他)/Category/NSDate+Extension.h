@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-@interface NSDate (MG)
+@interface NSDate (Extension)
 /**
  *  是否是今天
  */

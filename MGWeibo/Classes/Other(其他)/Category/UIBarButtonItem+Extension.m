@@ -6,9 +6,9 @@
 //  Copyright (c) 2015年 穆良. All rights reserved.
 //
 
-#import "UIBarButtonItem+MG.h"
+#import "UIBarButtonItem+Extension.h"
 
-@implementation UIBarButtonItem (MG)
+@implementation UIBarButtonItem (Extension)
 
 /**
  *  快速创建一个显示图片的item

@@ -6,9 +6,9 @@
 //  Copyright © 2015年 穆良. All rights reserved.
 //
 
-#import "NSDate+MG.h"
+#import "NSDate+Extension.h"
 
-@implementation NSDate (MG)
+@implementation NSDate (Extension)
 /**
  *  是否是今天
  */

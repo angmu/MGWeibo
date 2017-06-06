@@ -6,8 +6,7 @@
 //  Copyright (c) 2015年 穆良. All rights reserved.
 //
 
-#define MGTitleButtonDown 0
-#define MGTitleButtonUp -1
+
 
 #import "MGHomeViewController.h"
 #import "MGBadgeButton.h"
@@ -27,6 +26,9 @@
 #import "MGHttpTool.h"
 //#import "AFNetworking.h"
 
+
+#define MGTitleButtonDown 0
+#define MGTitleButtonUp -1
 
 @interface MGHomeViewController () <MJRefreshBaseViewDelegate>
 @property (nonatomic, strong) NSMutableArray *statusFrames;
@@ -278,12 +280,10 @@
         [self.tableView reloadData];
     } failure:^(NSError *error) {
         
-        
     }];
-    
-
 }
 
+/// <#document comments#>
 /**
  *  显示最新微博的数量
  */
@@ -363,18 +363,15 @@
     self.navigationItem.titleView = titleBtn;
     self.titleButton = titleBtn;
     
-    
     self.tableView.backgroundColor = MGColor(226, 226, 226);
+    // 表格的frame就是屏幕的尺寸
+    // 有NAV和TAB默认会增加64和49上下间距
+    // 再给表格设置下间距, 会在原基础上增加 MGStatusTableBorder 结果是 53
     self.tableView.contentInset = UIEdgeInsetsMake(0, 0, MGStatusTableBorder, 0);
     //设置cell分割线样式
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
 }
 
-- (void)viewDidLayoutSubviews
-{
-    [super viewDidLayoutSubviews];
-    
-}
 
 /**
  *  翻转操作
@@ -401,7 +398,6 @@
 {
 //    MGLog(@"扫描一下...");
 }
-
 
 //- (void)btnClick
 //{
@@ -441,4 +437,14 @@
     return statusFrame.cellHeight;
 }
 
+#pragma mark - 
+- (void)viewDidLayoutSubviews
+{
+    [super viewDidLayoutSubviews];
+    LxDBAnyVar(self.tableView.contentInset);
+    
+    LxDBAnyVar(self.tableView.frame);
+    LxDBAnyVar([UIScreen mainScreen].bounds);
+    
+}
 @end

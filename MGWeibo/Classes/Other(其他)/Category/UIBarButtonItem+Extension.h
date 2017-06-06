@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface UIBarButtonItem (MG)
+@interface UIBarButtonItem (Extension)
 /**
  *  快速创建一个显示图片的item
  *  @param action   监听方法

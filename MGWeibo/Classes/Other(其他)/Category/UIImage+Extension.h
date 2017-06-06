@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface UIImage (MG)
+@interface UIImage (Extension)
 /**
  *  加载图片
  *  @param name 图片名
