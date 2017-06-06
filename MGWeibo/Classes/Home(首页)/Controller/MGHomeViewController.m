@@ -335,10 +335,10 @@
 - (void)setupNavBar
 {
     // 左边按钮
-    self.navigationItem.leftBarButtonItem = [UIBarButtonItem itemWithIcon:@"navigationbar_friendsearch"highIcon:@"navigationbar_friendsearch_highlighted" target:self action:@selector(findFriend)];
+    self.navigationItem.leftBarButtonItem = [UIBarButtonItem itemWithTarget:self action:@selector(findFriend) icon:@"navigationbar_friendsearch"highIcon:@"navigationbar_friendsearch_highlighted"];
     
     // 右边按钮
-    self.navigationItem.rightBarButtonItem = [UIBarButtonItem itemWithIcon:@"navigationbar_pop" highIcon:@"navigationbar_pop_highlighted" target:self action:@selector(pop)];
+    self.navigationItem.rightBarButtonItem = [UIBarButtonItem itemWithTarget:self action:@selector(pop) icon:@"navigationbar_pop" highIcon:@"navigationbar_pop_highlighted"];
     
     // 中间按钮
     MGTitleButton *titleBtn = [MGTitleButton titleButton];

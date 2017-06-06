@@ -9,8 +9,7 @@
 #import <UIKit/UIKit.h>
 
 @interface MGSearchBar : UITextField
-/**
- *  快速创建一个搜索框
- */
+
+/// 快速创建一个搜索框
 + (instancetype)searchBar;
 @end

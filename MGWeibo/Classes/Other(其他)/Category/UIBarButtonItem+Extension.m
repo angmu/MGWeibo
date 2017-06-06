@@ -12,17 +12,17 @@
 
 /**
  *  快速创建一个显示图片的item
- *  @param action   监听方法
  */
-+ (UIBarButtonItem *)itemWithIcon:(NSString *)icon highIcon:(NSString *)highIcon target:(id)target action:(SEL)action
++ (instancetype)itemWithTarget:(id)target action:(SEL)action icon:(NSString *)icon highIcon:(NSString *)highIcon
 {
     UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
     [button setBackgroundImage:[UIImage imageNamed:icon] forState:UIControlStateNormal];
     [button setBackgroundImage:[UIImage imageNamed:highIcon] forState:UIControlStateHighlighted];
+    // 设置按钮尺寸
     button.bounds = (CGRect){CGPointZero, button.currentBackgroundImage.size};
     [button addTarget:target action:action forControlEvents:UIControlEventTouchUpInside];
     
-    return [[UIBarButtonItem alloc] initWithCustomView:button];
+    return [[self alloc] initWithCustomView:button];
 }
 
 @end

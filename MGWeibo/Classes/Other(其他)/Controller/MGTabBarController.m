@@ -19,13 +19,26 @@
 #import "MGComposeViewController.h"
 
 @interface MGTabBarController ()<MGTabBarDelegate>
-/**
- *  自定义tabBar
- */
+/** 自定义tabBar */
 @property (nonatomic, weak) MGTabBar *customTabBar;
 @end
 
 @implementation MGTabBarController
+
+//+ (void)initialize
+//{
+//    NSMutableDictionary *attrs = [NSMutableDictionary dictionary];
+//    attrs[NSFontAttributeName] = [UIFont systemFontOfSize:12];
+//    attrs[NSForegroundColorAttributeName] = [UIColor grayColor];
+//    
+//    NSMutableDictionary *selAttrs = [NSMutableDictionary dictionary];
+//    selAttrs[NSForegroundColorAttributeName] = [UIColor darkGrayColor];
+//    
+//    UITabBarItem *tabBarItem = [UITabBarItem appearance];
+//    [tabBarItem setTitleTextAttributes:attrs forState:UIControlStateNormal];
+//    [tabBarItem setTitleTextAttributes:selAttrs forState:UIControlStateSelected];
+//    
+//}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -48,7 +61,6 @@
             [child removeFromSuperview];
         }
     }
-    
 //    UITabBarBackgroundView
 //    UIImageView
 //    UITabBarButton
@@ -73,9 +85,8 @@
 //    NSLog(@"---%d----%d",from, to);
     self.selectedIndex = to;
 }
-/**
- *  监听加号按钮的点击
- */
+
+/** 监听加号按钮的点击 */
 - (void)tabBarDidClickedPlusBtton:(MGTabBar *)tabBar
 {
     //modal出一个控制器
@@ -85,9 +96,7 @@
     [self presentViewController:nav animated:YES completion:nil];
 }
 
-/**
- *  初始化所有控制器
- */
+/** 初始化所有控制器 */
 - (void)setupAllChildViewController
 {
     // 1.首页
@@ -95,12 +104,10 @@
 //    home.tabBarItem.badgeValue = @"10";
     [self setupChildViewController:home title:@"首页" imageName:@"tabbar_home" selectedImageName:@"tabbar_home_selected"];
     
-    
     // 2.消息
     MGMessageViewController *message = [[MGMessageViewController alloc] init];
 //    message.tabBarItem.badgeValue = @"new";
     [self setupChildViewController:message title:@"消息" imageName:@"tabbar_message_center" selectedImageName:@"tabbar_message_center_selected"];
-    
     
     // 3.广场
     MGDiscoverViewController *discover = [[MGDiscoverViewController alloc] init];
@@ -122,30 +129,19 @@
  *  @param imageName         图标
  *  @param selectedImageName 选中的图标
  */
-- (void)setupChildViewController:(UIViewController *)childVc title:(NSString *)title imageName:(NSString *)imageName selectedImageName:(NSString *)selectedImageName
+- (void)setupChildViewController:(UIViewController *)childVC title:(NSString *)title imageName:(NSString *)imageName selectedImageName:(NSString *)selectedImageName
 {
     // 1.设置完控制器的属性
-    childVc.title = title;
-    // 设置图标
-    childVc.tabBarItem.image = [UIImage imageNamed:imageName];
-    
-    // 设置选中时的图标
-    UIImage *selectedImage = [UIImage imageNamed:selectedImageName];
-    childVc.tabBarItem.selectedImage = selectedImage;
-    
-//    if (iOS7) {
-//        childVc.tabBarItem.selectedImage = selectedImage;
-//        //        childVc.tabBarItem.selectedImage = [selectedImage imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
-//    } else { // iOS6没有渲染图片的方法
-//        
-//    }
-
+    childVC.title = title;
+    // 设置图标,这里tabBar是用UIView实现的,不用担心选中渲染
+    childVC.tabBarItem.image = [UIImage imageNamed:imageName];
+    childVC.tabBarItem.selectedImage = [UIImage imageNamed:selectedImageName];
     
     // 2.包装一个导航控制器
-    MGNavigationController *nav = [[MGNavigationController alloc] initWithRootViewController:childVc];
+    MGNavigationController *nav = [[MGNavigationController alloc] initWithRootViewController:childVC];
     [self addChildViewController:nav];
     
     // 3.添加tabBar内部的按钮
-    [self.customTabBar addTabBarbuttonWithItem:childVc.tabBarItem];
+    [self.customTabBar addTabBarbuttonWithItem:childVC.tabBarItem];
 }
 @end

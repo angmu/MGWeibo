@@ -15,7 +15,8 @@
 
 @implementation MGDiscoverViewController
 
-- (void)viewDidLoad {
+- (void)viewDidLoad
+{
     [super viewDidLoad];
 
     MGSearchBar *searchBar = [MGSearchBar searchBar];
@@ -34,7 +35,6 @@
 #pragma mark - Table view data source
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
 
-    // Return the number of sections.
     return 0;
 }
 

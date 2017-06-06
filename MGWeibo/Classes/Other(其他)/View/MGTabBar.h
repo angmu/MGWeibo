@@ -6,7 +6,9 @@
 //  Copyright (c) 2015年 穆良. All rights reserved.
 //自定义tabBar
 
-/// 为了增加中间加号按钮
+/// 为了增加中间加号按钮,需要自定义
+/// 这是傻逼的做法,每个按钮的都需要代理来做
+/// 直接继承UITabBar,只需要添加中间按钮即可,不需要代理
 
 #import <UIKit/UIKit.h>
 @class MGTabBar;

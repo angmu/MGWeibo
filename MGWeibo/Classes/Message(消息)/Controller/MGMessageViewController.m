@@ -17,6 +17,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    // style: 这个参数是用来设置背景的
+    // 在iOS7之前效果明显,iOS7以后扁平化了,没有任何效果
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"写私信" style:UIBarButtonItemStylePlain target:nil action:nil];
 //    self.navigationItem.rightBarButtonItem.enabled = NO;
     

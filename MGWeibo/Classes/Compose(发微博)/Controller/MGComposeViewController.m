@@ -88,8 +88,7 @@
     [self.textView addSubview:photosView];
 }
 
-/**
- *  添加textView
+/** 添加textView
  */
 - (void)setupTextView
 {
@@ -222,16 +221,16 @@
 {
     self.title = @"发微博";
     
-    //设置背景
+    // 设置背景
     self.view.backgroundColor = [UIColor blackColor];
     
-    //类加载完毕 设置导航栏内容
+    // 类加载完毕 设置导航栏内容
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"取消" style:UIBarButtonItemStyleDone target:self action:@selector(cancel)];
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"发送" style:UIBarButtonItemStyleDone target:self action:@selector(send)];
     
-    //文字还是显示不了 亮灰色 ？？小bug不是程序的错
+    // 文字还是显示不了 亮灰色 ？？小bug不是程序的错
     self.navigationItem.rightBarButtonItem.enabled = NO;
-    [self.navigationController.navigationBar layoutIfNeeded];
+//    [self.navigationController.navigationBar layoutIfNeeded];
 }
 
 //移除通知
@@ -254,9 +253,7 @@
 //    NSLog(@"------%@", self.textView.text);
     self.navigationItem.rightBarButtonItem.enabled = (self.textView.text.length != 0);
 }
-/**
- *  取消
- */
+/** 取消 */
 - (void)cancel
 {
 //    self.textView.font = [UIFont systemFontOfSize:14];
@@ -282,9 +279,7 @@
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
-/**
- *  发送有图片的微博
- */
+/** 发送有图片的微博 */
 - (void)sendWithImage
 {
     //1.封装请求参数
@@ -357,9 +352,7 @@
 //    }];
 }
 
-/**
- *  发送没有图片的微博
- */
+/** 发送没有图片的微博 */
 - (void)sendWithoutImage
 {
     //1.封装请求参数
