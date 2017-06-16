@@ -17,56 +17,36 @@
 
 - (instancetype)initWithFrame:(CGRect)frame
 {
-    self = [super initWithFrame:frame];
-    if (self) {
+    if (self = [super initWithFrame:frame]) {
         // 背景
         self.background = [UIImage resizeimageWithName:@"searchbar_textfield_background"];
         // 左边放大镜
-        UIImageView *iconView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"searchbar_textfield_search_icon"]];
-//        iconView.frame = CGRectMake(0, 0, 30, self.frame.size.height);
-        iconView.contentMode = UIViewContentModeCenter;
-        self.leftView = iconView;
-        self.leftViewMode = UITextFieldViewModeAlways;
+        UIImageView *searchIcon = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"searchbar_textfield_search_icon"]];
+        searchIcon.frame = CGRectMake(0, 0, 30, 30);
         
-//        self.leftView.frame = CGRectMake(0, 0, 30, self.frame.size.height);
+//        searchIcon.backgroundColor = [UIColor magentaColor];
+        searchIcon.contentMode = UIViewContentModeCenter;
+        
+        self.leftView = searchIcon;
+        self.leftViewMode = UITextFieldViewModeAlways;
         
         // 字体
         self.font = [UIFont systemFontOfSize:13];
-        
         // 右边的清除按钮
         self.clearButtonMode = UITextFieldViewModeAlways;
         
-        // 设置提醒文字
-        NSMutableDictionary *attrs = [NSMutableDictionary dictionary];
-        attrs[NSForegroundColorAttributeName] = [UIColor grayColor];
-        self.attributedPlaceholder = [[NSAttributedString alloc] initWithString:@"搜索" attributes:attrs];
+        // placehoder颜色
+//        NSMutableDictionary *attrs = [NSMutableDictionary dictionary];
+//        attrs[NSForegroundColorAttributeName] = [UIColor grayColor];
+//        self.attributedPlaceholder = [[NSAttributedString alloc] initWithString:@"请输入搜索条件" attributes:attrs];
+        self.placeholder = @"请输入搜索条件";
         
         // 设置键盘右下角按钮样式
         self.returnKeyType = UIReturnKeySearch;
         self.enablesReturnKeyAutomatically = YES;
-//        NSLog(@"initWithFrame-----%@", NSStringFromCGRect(self.leftView.frame));
     }
     
     return self;
 }
 
-
-- (void)layoutSubviews
-{
-    //把它放在最后是好的
-//    [super layoutSubviews];
-    
-    // 设置左边图标的frame
-    self.leftView.frame = CGRectMake(0, 0, 30, self.frame.size.height);
-    
-    
-//    NSLog(@"layoutSubviews-----%@", NSStringFromCGRect(self.leftView.frame));
-    
-    [super layoutSubviews];
-}
 @end
-
-/*
- 2015-10-17 10:20:41.030 MGWeibo[908:36831] initWithFrame-----{{0, 0}, {15, 15}}
- 2015-10-17 10:20:41.037 MGWeibo[908:36831] layoutSubviews-----{{0, 0}, {30, 30}}
- */

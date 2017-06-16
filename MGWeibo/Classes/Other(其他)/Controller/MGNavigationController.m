@@ -12,17 +12,11 @@
 @implementation MGNavigationController
 
 
-- (void)viewDidLoad
-{
-    [super viewDidLoad];
-    LxDBAnyVar(@"viewDidLoad");
-}
-
 /** 第一次使用这个类的时调用(只会调用1次) */
 + (void)initialize
 {
     // 只需要设置一次
-    LxDBAnyVar(@"initialize");
+//    LxDBAnyVar(@"initialize");
     // 1.取出appearance对象,拿到它能改导航栏里所有东西
     UINavigationBar *navBar = [UINavigationBar appearance];
 //    [navBar setBackgroundImage:[UIImage imageNamed:@""] forBarMetrics:UIBarMetricsDefault];

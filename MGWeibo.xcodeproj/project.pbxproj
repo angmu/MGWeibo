@@ -830,12 +830,12 @@
 		CCB852E21B3E916100CD4662 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				CC71BE461B462A0D0076AE04 /* Newfeature(新特性) */,
 				CC3C2BCF1BEF9ACA006C6277 /* Compose(发微博) */,
-				CCB852E31B3E916100CD4662 /* Discover(广场) */,
 				CCB852E91B3E916100CD4662 /* Home(首页) */,
 				CCB852FB1B3E916100CD4662 /* Message(消息) */,
+				CCB852E31B3E916100CD4662 /* Discover(广场) */,
 				CC7AE48E1CBEEC3F00241975 /* Mine(我) */,
-				CC71BE461B462A0D0076AE04 /* Newfeature(新特性) */,
 				CC8CD3A91B6A85B400B4E043 /* OAuth(授权) */,
 				CCB853011B3E916100CD4662 /* Other(其他) */,
 			);

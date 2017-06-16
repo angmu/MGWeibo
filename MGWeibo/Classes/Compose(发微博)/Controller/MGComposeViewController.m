@@ -26,9 +26,10 @@
 
 @implementation MGComposeViewController
 
-- (void)viewDidLoad {
+- (void)viewDidLoad
+{
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
+//    LxDBAnyVar([self class]);
     
     //设置导航栏属性
     [self setupNavBar];
@@ -36,10 +37,10 @@
     //添加textView
     [self setupTextView];
     
-    //添加toolbar
+    // 添加toolbar
     [self setupToolbar];
     
-//    //添加imageView
+//    // 添加imageView
 //    [self setupImageView];
     //添加photosView
     [self setupPhotosView];
@@ -50,7 +51,6 @@
  */
 - (void)setupToolbar
 {
-    
     MGComposeToolbar *toolbar = [[MGComposeToolbar alloc] init];
     _toolbar = toolbar;
     [self.view addSubview:toolbar];

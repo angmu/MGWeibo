@@ -15,6 +15,7 @@
 #define MGColor(r, g, b) [UIColor colorWithRed:(r)/255.0 green:(g)/255.0 blue:(b)/255.0 alpha:1.0]
 
 #define MGGlobalBg MGColor(232, 233, 232)
+
 // 3.自定义Log
 #ifdef DEBUG
 #define MGLog(...) NSLog(__VA_ARGS__)
@@ -50,6 +51,15 @@
 //extern const CGFloat IWTableBorderW;
 /** cell之间的间距 */
 //extern const CGFloat IWCellMargin;
+
+
+/************ 随机颜色 ************/
+#define UIRandomColor [UIColor colorWithRed:arc4random_uniform(255)/255.0 green:arc4random_uniform(255)/255.0 blue:arc4random_uniform(255)/255.0 alpha:1.0]
+// rgb颜色转换(十六进制)
+#define UIColorWithHex(rgbValue) [UIColor colorWithRed:((float)((rgbValue & 0xFF0000) >> 16))/255.0 green:((float)((rgbValue & 0xFF00) >> 8))/255.0 blue:((float)(rgbValue & 0xFF))/255.0 alpha:1.0]
+#define UIColorWithRGB(R,G,B)  [UIColor colorWithRed:R/255.0 green:G/255.0 blue:B/255.0 alpha:1.0]
+#define UIColorWithRGBA(R,G,B,A)  [UIColor colorWithRed:R/255.0 green:G/255.0 blue:B/255.0 alpha:A]
+
 
 
 // 导航栏标题颜色

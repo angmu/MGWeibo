@@ -38,17 +38,10 @@
 
 @implementation MGHomeViewController
 
-- (NSMutableArray *)statusFrames
+- (void)viewDidLoad
 {
-    if (_statusFrames == nil) {
-        _statusFrames = [[NSMutableArray alloc] init];
-    }
-    
-    return _statusFrames;
-}
-
-- (void)viewDidLoad {
     [super viewDidLoad];
+    LxDBAnyVar([self class]);
     
     //0.继承下拉刷新控件
     [self setupRefreashView];
@@ -441,4 +434,15 @@
     [super viewDidLayoutSubviews];
     
 }
+
+#pragma mark - 懒加载
+- (NSMutableArray *)statusFrames
+{
+    if (_statusFrames == nil) {
+        _statusFrames = [[NSMutableArray alloc] init];
+    }
+    
+    return _statusFrames;
+}
+
 @end

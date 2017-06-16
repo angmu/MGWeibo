@@ -19,7 +19,8 @@
 
 @implementation MGOAuthViewController
 
-- (void)viewDidLoad {
+- (void)viewDidLoad
+{
     [super viewDidLoad];
     
     // 1.添加webView

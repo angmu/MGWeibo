@@ -20,6 +20,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
     // 0.设置背景UIScrollView的背景
     self.view.backgroundColor = MGColor(246, 246, 246);
     
