@@ -54,7 +54,6 @@
     
     //2.获取用户信息
     [self setupUserData];
-
 }
 
 /**
@@ -329,20 +328,19 @@
 {
     // 左边按钮
     self.navigationItem.leftBarButtonItem = [UIBarButtonItem itemWithTarget:self action:@selector(findFriend) icon:@"navigationbar_friendsearch"highIcon:@"navigationbar_friendsearch_highlighted"];
-    
     // 右边按钮
     self.navigationItem.rightBarButtonItem = [UIBarButtonItem itemWithTarget:self action:@selector(pop) icon:@"navigationbar_pop" highIcon:@"navigationbar_pop_highlighted"];
     
+    
     // 中间按钮
     MGTitleButton *titleBtn = [MGTitleButton titleButton];
-    // 图标
     [titleBtn setImage:[UIImage imageNamed:@"navigationbar_arrow_down"] forState:UIControlStateNormal];
     
-    //设置titleButton的frame一定要放在前面 放在后面计算字体宽度就没用了
+    // 设置titleButton的frame一定要放在前面 放在后面计算字体宽度就没用了
     titleBtn.frame = CGRectMake(0, 0, 0, 40);
     MGAccount *account = [MGAccountTool account];
     NSString *title = account.name;
-    //文字
+    // 文字
     if (title) {
         [titleBtn setTitle:title forState:UIControlStateNormal];
     } else {
@@ -378,7 +376,32 @@
     }
 
 //    MGLog(@"titleBtn.currentImage-----%@", titleBtn.currentImage);
+    
+    UITextField *textField = [[UITextField alloc] init];
+    textfield.x = 0;
+    textField.width = 200;
+    textField.height = 40;
+    [[UIApplication sharedApplication].keyWindow addSubview:textField];
+    
+    // 弹出下拉菜单
+    UIImageView *dropDownMenu = [[UIImageView alloc] init];
+    dropDownMenu.image = [UIImage imageNamed:@"popover_background"];
+    dropDownMenu.y = 100;
+    dropDownMenu.width = 217;
+    dropDownMenu.height = 300;
+    
+    // 添加到view上，它能动--> 添加到当前控制器的window上
+    // self.view.window == [UIApplication sharedApplication].keyWindow
+    // 左边可能没有值，当左边控制器view 还未添加到窗口上时，是空的
+    // 添加到最上层的window上,不会被遮盖住
+    [[UIApplication sharedApplication].keyWindow addSubview:dropDownMenu];
+    
+    LxDBAnyVar([UIApplication sharedApplication].windows);
+    LxDBAnyVar(SCREEN_WIDTH);
+    
 }
+
+
 
 - (void)findFriend
 {

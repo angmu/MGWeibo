@@ -1,5 +1,16 @@
-//#import <Foundation/Foundation.h>
-#import <UIKit/UIKit.h>
+//
+//  MGMacro.h
+//  MGWeibo
+//
+//  Created by 穆良 on 2017/6/17.
+//  Copyright © 2017年 穆良. All rights reserved.
+//
+
+#ifndef MGMacro_h
+#define MGMacro_h
+
+
+
 
 //0.账号相关信息
 #define MGAppKey @"3637170628"
@@ -15,52 +26,12 @@
 #define MGColor(r, g, b) [UIColor colorWithRed:(r)/255.0 green:(g)/255.0 blue:(b)/255.0 alpha:1.0]
 
 #define MGGlobalBg MGColor(232, 233, 232)
-
-// 3.自定义Log
-#ifdef DEBUG
-#define MGLog(...) NSLog(__VA_ARGS__)
-#else
-#define MGLog(...)
-#endif
-
-//4.根据尺寸判断 是否为4inch
-#define is4Inch ([UIScreen mainScreen].bounds.size.height == 568)
-
-/** 昵称的字体 */
-#define MGStatusNameFont [UIFont systemFontOfSize:14]
-/** 被转发微博的昵称的字体 */
-#define MGRetweetStatusNameFont MGStatusNameFont
-/** 时间的字体 */
-#define MGStatusTimeFont [UIFont systemFontOfSize:13]
-/** 来源的字体 */
-#define MGStatusSourceFont MGStatusTimeFont
-/** 正文的字体 */
-#define MGStatusContentFont [UIFont systemFontOfSize:13]
-/** 被转发微博的正文的字体 */
-#define MGRetweetStatusContentFont MGStatusContentFont
-
-/** cell的边框宽度 */
-#define MGStatusCellBorder 7
-/** 表格的边框宽度 */
-#define MGStatusTableBorder 4
-
-/** cell之间的间距 */
-#define MGStatusCellMargin 5
-
-/** 表格边框的宽度 */
-//extern const CGFloat IWTableBorderW;
-/** cell之间的间距 */
-//extern const CGFloat IWCellMargin;
-
-
 /************ 随机颜色 ************/
 #define UIRandomColor [UIColor colorWithRed:arc4random_uniform(255)/255.0 green:arc4random_uniform(255)/255.0 blue:arc4random_uniform(255)/255.0 alpha:1.0]
 // rgb颜色转换(十六进制)
 #define UIColorWithHex(rgbValue) [UIColor colorWithRed:((float)((rgbValue & 0xFF0000) >> 16))/255.0 green:((float)((rgbValue & 0xFF00) >> 8))/255.0 blue:((float)(rgbValue & 0xFF))/255.0 alpha:1.0]
 #define UIColorWithRGB(R,G,B)  [UIColor colorWithRed:R/255.0 green:G/255.0 blue:B/255.0 alpha:1.0]
 #define UIColorWithRGBA(R,G,B,A)  [UIColor colorWithRed:R/255.0 green:G/255.0 blue:B/255.0 alpha:A]
-
-
 
 // 导航栏标题颜色
 #define IWNavigationBarTitleColor IWColor(65, 65, 65)
@@ -74,11 +45,32 @@
 // 导航栏按钮文字字体
 #define IWBarButtonTitleFont (iOS7 ? [UIFont systemFontOfSize:15] : [UIFont boldSystemFontOfSize:12])
 
-// 6.常用的尺寸
-/** 表格边框的宽度 */
-extern const CGFloat IWTableBorderW;
-/** cell之间的间距 */
-extern const CGFloat IWCellMargin;
+
+// 3.自定义Log
+#ifdef DEBUG
+#define MGLog(...) NSLog(__VA_ARGS__)
+#else
+#define MGLog(...)
+#endif
+
+//4.根据尺寸判断 是否为4inch
+#define is4Inch ([UIScreen mainScreen].bounds.size.height == 568)
+
 
 // 7.数据存储
 #define IWUserDefaults [NSUserDefaults standardUserDefaults]
+
+// 主窗口
+//#define KEYWindow [UIApplication sharedApplication].keyWindow
+
+
+#define SCREEN_WIDTH ([UIScreen mainScreen].bounds.size.width)
+#define SCREEN_HEIGHT ([UIScreen mainScreen].bounds.size.height)
+#define StatusBar_HEIGHT 20
+#define NavigationBar_HEIGHT 44
+#define NavigationBarIcon 20
+#define TabBar_HEIGHT 49
+#define TabBarIcon 30
+
+
+#endif /* MGMacro_h */

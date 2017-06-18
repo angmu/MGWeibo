@@ -18,6 +18,9 @@
 @end
 
 @implementation AppDelegate
+{
+//    UIWindow *window2;
+}
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
@@ -33,8 +36,14 @@
     } else { // 之前没有登陆成功
         self.window.rootViewController = [[MGOAuthViewController alloc] init];
     }
+
     
-//    [self.window makeKeyAndVisible];
+    // 添加window
+//    window2 = [[UIWindow alloc] init];
+//    window2.width = 120;
+//    window2.height = 400;
+//    window2.backgroundColor = [UIColor redColor];
+//    window2.hidden = NO;
     
     return YES;
 }

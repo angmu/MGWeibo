@@ -1,30 +1,29 @@
 //
-//  MgTabBarButton.m
-//  MgWeibo
+//  MGTabBarButton.m
+//  MGWeibo
 //
 //  Created by 穆良 on 15/6/28.
 //  Copyright (c) 2015年 穆良. All rights reserved.
 //
+
+
 // 图标的比例
-#define MgTabBarButtonImageRatio 0.6
+#define MGTabBarButtonImageRatio 0.6
 
-// 按钮默认文字颜色
-#define MgtabBarbuttonTitleColor (iOS7 ? [UIColor blackColor] : [UIColor whiteColor])
-// 按钮选中文字颜色
-#define MgtabBarbuttonTitleSelectedColor (iOS7 ? [UIColor orangeColor] : MGColor(284,139, 0))
 
-#import "MgTabBarButton.h"
+
+#import "MGTabBarButton.h"
 #import "MGBadgeButton.h"
 
 
-@interface MgTabBarButton()
+@interface MGTabBarButton()
 /**
  *  提醒数字
  */
 @property (nonatomic, weak) MGBadgeButton *badgeButton;
 
 @end
-@implementation MgTabBarButton
+@implementation MGTabBarButton
 
 -(instancetype)initWithFrame:(CGRect)frame
 {
@@ -34,8 +33,8 @@
         self.titleLabel.textAlignment = NSTextAlignmentCenter;
         self.titleLabel.font = [UIFont systemFontOfSize:11];
         
-        [self setTitleColor:MgtabBarbuttonTitleColor forState:UIControlStateNormal];
-        [self setTitleColor:MgtabBarbuttonTitleSelectedColor forState:UIControlStateSelected];
+        [self setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+        [self setTitleColor:[UIColor orangeColor] forState:UIControlStateSelected];
         
         // 有些设置操作只需做一次
         if (!iOS7) {
@@ -55,13 +54,13 @@
 - (CGRect)imageRectForContentRect:(CGRect)contentRect
 {
     CGFloat imageW = contentRect.size.width;
-    CGFloat imageH = contentRect.size.height * MgTabBarButtonImageRatio;
+    CGFloat imageH = contentRect.size.height * MGTabBarButtonImageRatio;
     return CGRectMake(0, 0, imageW, imageH);
 }
 
 - (CGRect)titleRectForContentRect:(CGRect)contentRect
 {
-    CGFloat titleY = contentRect.size.height * MgTabBarButtonImageRatio;
+    CGFloat titleY = contentRect.size.height * MGTabBarButtonImageRatio;
     CGFloat titleW = contentRect.size.width;
     CGFloat titleH = contentRect.size.height - titleY;
     return CGRectMake(0, titleY, titleW, titleH);

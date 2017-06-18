@@ -11,7 +11,7 @@
 
 @interface MGTabBar()
 @property (nonatomic, strong) NSMutableArray *tabBarButtons;
-@property (nonatomic, weak) MgTabBarButton *selectedButton;
+@property (nonatomic, weak) MGTabBarButton *selectedButton;
 @property (nonatomic, weak) UIButton *plusButton;
 @end
 
@@ -66,7 +66,7 @@
 - (void)addTabBarbuttonWithItem:(UITabBarItem *)item
 {
     // 1.创建按钮
-    MgTabBarButton *button = [[MgTabBarButton alloc] init];
+    MGTabBarButton *button = [[MGTabBarButton alloc] init];
     [self addSubview:button];
     
     // 添加按钮到数组中
@@ -87,7 +87,7 @@
 /**
  *  监听按钮点击
  */
-- (void)buttonClick:(MgTabBarButton *)button
+- (void)buttonClick:(MGTabBarButton *)button
 {
     // 1.通知代理,一般写在前面
     if ([self.delegate respondsToSelector:@selector(tabBar:didSelectedButtonFrom:to:)]) {
@@ -117,7 +117,7 @@
     
     for (int index=0; index<self.tabBarButtons.count; index++) {
         // 1.取出按钮
-        MgTabBarButton *button  = self.tabBarButtons[index];
+        MGTabBarButton *button  = self.tabBarButtons[index];
         
         // 2.设置frame
         CGFloat buttonX = buttonW * index;

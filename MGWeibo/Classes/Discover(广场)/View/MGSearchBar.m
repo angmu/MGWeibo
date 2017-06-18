@@ -24,7 +24,6 @@
         UIImageView *searchIcon = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"searchbar_textfield_search_icon"]];
         searchIcon.frame = CGRectMake(0, 0, 30, 30);
         
-//        searchIcon.backgroundColor = [UIColor magentaColor];
         searchIcon.contentMode = UIViewContentModeCenter;
         
         self.leftView = searchIcon;
@@ -45,7 +44,6 @@
         self.returnKeyType = UIReturnKeySearch;
         self.enablesReturnKeyAutomatically = YES;
     }
-    
     return self;
 }
 

@@ -9,9 +9,10 @@
 #ifndef MgWeibo_PrefixHeader_pch
 #define MgWeibo_PrefixHeader_pch
 
+#import "MGMacro.h"
+#import "MGConst.h"
 
-#import "MGCommon.h"
-
+#import "LxDBAnything.h"
 
 #import "UIView+Layout.h"
 #import "NSDate+Extension.h"
@@ -20,6 +21,5 @@
 #import "MBProgressHUD+Extension.h"
 
 
-#import "LxDBAnything.h"
 
 #endif

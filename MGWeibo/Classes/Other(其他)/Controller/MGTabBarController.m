@@ -89,9 +89,9 @@
 /** 监听加号按钮的点击 */
 - (void)tabBarDidClickedPlusBtton:(MGTabBar *)tabBar
 {
-    //modal出一个控制器
+    // modal出一个控制器
     MGComposeViewController *composeVC = [[MGComposeViewController alloc] init];
-    //包装一个导航控制器
+    // 包装一个导航控制器
     MGNavigationController *nav = [[MGNavigationController alloc] initWithRootViewController:composeVC];
     [self presentViewController:nav animated:YES completion:nil];
 }
