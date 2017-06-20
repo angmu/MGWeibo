@@ -41,7 +41,6 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    LxDBAnyVar([self class]);
     
     //0.继承下拉刷新控件
     [self setupRefreashView];
@@ -273,7 +272,6 @@
     }];
 }
 
-/// <#document comments#>
 /**
  *  显示最新微博的数量
  */
@@ -298,24 +296,24 @@
     [btn.titleLabel setFont:[UIFont systemFontOfSize:14]];
     
     
-    //3.设置按钮的frame
+    // 3.设置按钮的frame
     CGFloat btnH = 30;
     CGFloat btnX = 2;
     CGFloat btnY = 64 - btnH;
     CGFloat btnW = self.view.frame.size.width - 2*btnX;
     btn.frame = CGRectMake(btnX, btnY, btnW, btnH);
     
-    //通过动画移动按钮(向下移动 btnH+1)
+    // 通过动画移动按钮(向下移动 btnH+1)
     [UIView animateWithDuration:0.7 animations:^{
         btn.transform = CGAffineTransformMakeTranslation(0, btnH);
     } completion:^(BOOL finished) { //向下的动画执行完毕后
         
-        //延迟1s，在执行
+        // 延迟1s，在执行
         [UIView animateKeyframesWithDuration:0.7 delay:1.0 options:UIViewKeyframeAnimationOptionCalculationModeLinear animations:^{
-            //执行向上移动的动画(清空transform)
+            // 执行向上移动的动画(清空transform)
             btn.transform = CGAffineTransformIdentity;
         } completion:^(BOOL finished) {
-            //将btn从内存中移除
+            // 将btn从内存中移除
             [btn removeFromSuperview];
         }];
     }];
@@ -374,31 +372,6 @@
         [titleBtn setImage:[UIImage imageNamed:@"navigationbar_arrow_down"] forState:UIControlStateNormal];
         titleBtn.tag = MGTitleButtonDown;
     }
-
-//    MGLog(@"titleBtn.currentImage-----%@", titleBtn.currentImage);
-    
-    UITextField *textField = [[UITextField alloc] init];
-    textfield.x = 0;
-    textField.width = 200;
-    textField.height = 40;
-    [[UIApplication sharedApplication].keyWindow addSubview:textField];
-    
-    // 弹出下拉菜单
-    UIImageView *dropDownMenu = [[UIImageView alloc] init];
-    dropDownMenu.image = [UIImage imageNamed:@"popover_background"];
-    dropDownMenu.y = 100;
-    dropDownMenu.width = 217;
-    dropDownMenu.height = 300;
-    
-    // 添加到view上，它能动--> 添加到当前控制器的window上
-    // self.view.window == [UIApplication sharedApplication].keyWindow
-    // 左边可能没有值，当左边控制器view 还未添加到窗口上时，是空的
-    // 添加到最上层的window上,不会被遮盖住
-    [[UIApplication sharedApplication].keyWindow addSubview:dropDownMenu];
-    
-    LxDBAnyVar([UIApplication sharedApplication].windows);
-    LxDBAnyVar(SCREEN_WIDTH);
-    
 }
 
 
