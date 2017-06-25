@@ -80,7 +80,7 @@
 }
 
 #pragma mark 通知代理,监听tabBar内部按钮的改变,切换子控制器
-- (void)tabBar:(MGTabBar *)tabBar didSelectedButtonFrom:(int)from to:(int)to
+- (void)tabBar:(MGTabBar *)tabBar didSelectedButtonFrom:(NSInteger)from to:(NSInteger)to
 {
 //    NSLog(@"---%d----%d",from, to);
     self.selectedIndex = to;
@@ -138,11 +138,12 @@
     childVC.tabBarItem.selectedImage = [UIImage imageNamed:selectedImageName];
     
     /// viewDidLoad是懒加载,view加载完毕时调用
-    /// 弊端1: 提前加载view,可能都用不到,性能问题!
+    /// 弊端1: 提前加载view, 可能都用不到, 性能问题!
     /// 弊端2: 在viewDidLoad设置导航item不可用, 颜色可能会失效
     /// item状态是在nav控制器的initialize中设置,此时还未创建
     /// 调用顺序问题,系统不同显示效果不一致
 //    childVC.view.backgroundColor = [UIColor redColor];
+    
     
     // 2.包装一个导航控制器
     MGNavigationController *nav = [[MGNavigationController alloc] initWithRootViewController:childVC];

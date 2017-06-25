@@ -25,7 +25,8 @@
 // 2.获得RGB颜色
 #define MGColor(r, g, b) [UIColor colorWithRed:(r)/255.0 green:(g)/255.0 blue:(b)/255.0 alpha:1.0]
 
-#define MGGlobalBg MGColor(232, 233, 232)
+#define MGGlobalBg MGColor(226, 226, 226)
+
 /************ 随机颜色 ************/
 #define UIRandomColor [UIColor colorWithRed:arc4random_uniform(255)/255.0 green:arc4random_uniform(255)/255.0 blue:arc4random_uniform(255)/255.0 alpha:1.0]
 // rgb颜色转换(十六进制)

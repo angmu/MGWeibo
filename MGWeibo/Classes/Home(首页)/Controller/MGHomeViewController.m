@@ -41,6 +41,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    self.tableView.backgroundColor = MGGlobalBg;
     
     //0.继承下拉刷新控件
     [self setupRefreashView];
@@ -48,16 +49,12 @@
     // 1.设置导航栏的内容
     [self setupNavBar];
     
-    // 2.加载微博数据
-//    [self setupStatusData];
-    
-    //2.获取用户信息
+    // 2.获取用户信息
     [self setupUserData];
 }
 
-/**
- *  获取用户信息
- */
+
+#pragma mark - 获取用户信息
 - (void)setupUserData
 {
     //1.封装请求参数
@@ -80,23 +77,20 @@
     } failure:^(NSError *error) {
         
     }];
-    
 }
 
-/**
- *  集成拉刷新控件
- */
+#pragma mark - 集成拉刷新控件
 - (void)setupRefreashView
 {
-    //下拉刷新
+    // 1.下拉刷新
     MJRefreshHeaderView *header = [MJRefreshHeaderView header];
     header.scrollView = self.tableView;
     header.delegate = self;
-    //一进来就刷新
+    // 2.一进来就刷新
     [header beginRefreshing];
     self.header = header;
     
-    //3.下拉刷新(上拉加载更多数据)
+    // 3.下拉刷新(上拉加载更多数据)
     MJRefreshFooterView *footer = [MJRefreshFooterView footer];
     footer.scrollView = self.tableView;
     footer.delegate = self;
@@ -170,11 +164,8 @@
 }
 
 /**
- *  监听刷新控件状态的改变(手动进入刷新状态才会调用这个方法)
- */
-
-/**
  *  下拉加载更新的数据
+ *  手动进入刷新状态才会调用这个方法
  */
 - (void)loadNewData
 {
@@ -272,9 +263,7 @@
     }];
 }
 
-/**
- *  显示最新微博的数量
- */
+#pragma mark - 显示最新微博的数量
 - (void)showNewStatusCount:(NSInteger)count
 {
     //1.创建一个按钮
@@ -319,9 +308,7 @@
     }];
 }
 
-/**
- *  设置导航栏的内容
- */
+#pragma mark - 设置导航栏的内容
 - (void)setupNavBar
 {
     // 左边按钮
@@ -331,26 +318,26 @@
     
     
     // 中间按钮
-    MGTitleButton *titleBtn = [MGTitleButton titleButton];
-    [titleBtn setImage:[UIImage imageNamed:@"navigationbar_arrow_down"] forState:UIControlStateNormal];
+    MGTitleButton *button = [MGTitleButton titleButton];
+    _titleButton = button;
+    [button setImage:[UIImage imageNamed:@"navigationbar_arrow_down"] forState:UIControlStateNormal];
+    [button setImage:[UIImage imageNamed:@"navigationbar_arrow_up"] forState:UIControlStateSelected];
     
     // 设置titleButton的frame一定要放在前面 放在后面计算字体宽度就没用了
-    titleBtn.frame = CGRectMake(0, 0, 0, 40);
+    button.frame = CGRectMake(0, 0, 0, 40);
     MGAccount *account = [MGAccountTool account];
     NSString *title = account.name;
     // 文字
     if (title) {
-        [titleBtn setTitle:title forState:UIControlStateNormal];
+        [button setTitle:title forState:UIControlStateNormal];
     } else {
-        [titleBtn setTitle:@"首页" forState:UIControlStateNormal];
+        [button setTitle:@"首页" forState:UIControlStateNormal];
     }
     
-    titleBtn.tag = MGTitleButtonDown;
-    [titleBtn addTarget:self action:@selector(titleClick:) forControlEvents:UIControlEventTouchUpInside];
-    self.navigationItem.titleView = titleBtn;
-    self.titleButton = titleBtn;
+    [button addTarget:self action:@selector(titleClick:) forControlEvents:UIControlEventTouchUpInside];
+    self.navigationItem.titleView = button;
     
-    self.tableView.backgroundColor = MGColor(226, 226, 226);
+    
     // 表格的frame就是屏幕的尺寸
     // 有NAV和TAB默认会增加64和49上下间距
     // 再给表格设置下间距, 会在原基础上增加 MGStatusTableBorder 结果是 53
@@ -360,22 +347,40 @@
 }
 
 
-/**
- *  翻转操作
- */
-- (void)titleClick:(MGTitleButton *)titleBtn
+#pragma mark - 翻转操作
+- (void)titleClick:(MGTitleButton *)button
 {
-    if (titleBtn.tag == MGTitleButtonDown) {
-        [titleBtn setImage:[UIImage imageNamed:@"navigationbar_arrow_up"] forState:UIControlStateNormal];
-        titleBtn.tag = MGTitleButtonUp;
-    } else {
-        [titleBtn setImage:[UIImage imageNamed:@"navigationbar_arrow_down"] forState:UIControlStateNormal];
-        titleBtn.tag = MGTitleButtonDown;
-    }
+    LxDBAnyVar(button.isSelected);
+    button.selected = !button.isSelected;
+    
+    
+    
+    // 最顶层视图的window
+    UIWindow *window = [[UIApplication sharedApplication].windows lastObject];
+    
+    // 1.添加蒙版
+    UIView *cover = [[UIView alloc] init];
+    cover.backgroundColor = [UIColor clearColor];
+    cover.frame = CGRectMake(0, 64, SCREEN_WIDTH, SCREEN_HEIGHT - 64);
+    [window addSubview:cover];
+    
+    // 2.弹出下拉框
+    UIImageView *dropDownMenu = [[UIImageView alloc] init];
+    dropDownMenu.image = [UIImage imageNamed:@"popover_background"];
+//    dropDownMenu.centerX = window.centerX;
+    dropDownMenu.y = 64;
+    dropDownMenu.width = 217;
+    dropDownMenu.height = 150;
+    
+    [dropDownMenu addSubview:[UIButton buttonWithType:UIButtonTypeContactAdd]];
+    
+    // 添加到view上，它能动--> 添加到当前控制器的window上
+    // 添加到最上层的window上,不会被遮盖住
+    [window addSubview:dropDownMenu];
 }
 
 
-
+#pragma mark - 导航栏按钮操作
 - (void)findFriend
 {
 //    MGLog(@"找朋友...");
@@ -408,14 +413,6 @@
     return cell;
 }
 
-//- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
-//{
-//    UIViewController *vc = [[UIViewController alloc] init];
-//    vc.view.backgroundColor = [UIColor redColor];
-////    vc.hidesBottomBarWhenPushed = YES;
-//    
-//    [self.navigationController pushViewController:vc animated:YES];
-//}
 
 #pragma mark - 代理方法
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -424,12 +421,6 @@
     return statusFrame.cellHeight;
 }
 
-#pragma mark - 
-- (void)viewDidLayoutSubviews
-{
-    [super viewDidLayoutSubviews];
-    
-}
 
 #pragma mark - 懒加载
 - (NSMutableArray *)statusFrames

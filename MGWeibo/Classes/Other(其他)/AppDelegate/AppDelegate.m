@@ -38,13 +38,13 @@ UIWindow *window2;
 
     
     // 添加window
-    window2 = [[UIWindow alloc] init];
-    window2.y = 100;
-    window2.width = 120;
-    window2.height = 200;
-    window2.backgroundColor = [UIColor yellowColor];
-    window2.hidden = NO;
-    window2.rootViewController = [[UIViewController alloc] init];
+//    window2 = [[UIWindow alloc] init];
+//    window2.y = 100;
+//    window2.width = 120;
+//    window2.height = 200;
+//    window2.backgroundColor = [UIColor yellowColor];
+//    window2.hidden = NO;
+//    window2.rootViewController = [[UIViewController alloc] init];
     
     return YES;
 }
