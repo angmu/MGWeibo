@@ -23,7 +23,6 @@
         // 左边放大镜
         UIImageView *searchIcon = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"searchbar_textfield_search_icon"]];
         searchIcon.frame = CGRectMake(0, 0, 30, 30);
-        
         searchIcon.contentMode = UIViewContentModeCenter;
         
         self.leftView = searchIcon;

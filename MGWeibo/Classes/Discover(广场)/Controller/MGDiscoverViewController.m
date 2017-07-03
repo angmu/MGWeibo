@@ -45,8 +45,8 @@
     // 左边可能没有值，当左边控制器view 还未添加到窗口上时，是空的
     // 添加到最上层的window上,不会被遮盖住
     
-    
     [[[UIApplication sharedApplication].windows lastObject] addSubview:dropDownMenu];
+    
     
     LxDBAnyVar([UIApplication sharedApplication].windows);
 }

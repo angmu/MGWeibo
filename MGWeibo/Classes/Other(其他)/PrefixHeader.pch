@@ -6,8 +6,8 @@
 //  Copyright (c) 2015年 穆良. All rights reserved.
 //
 
-#ifndef MgWeibo_PrefixHeader_pch
-#define MgWeibo_PrefixHeader_pch
+#ifndef MGWeibo_PrefixHeader_pch
+#define MGWeibo_PrefixHeader_pch
 
 #import "MGMacro.h"
 #import "MGConst.h"
